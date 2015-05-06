@@ -26,5 +26,6 @@ namespace FeedIt.Controllers
 
             return View();
         }
+
     }
 }

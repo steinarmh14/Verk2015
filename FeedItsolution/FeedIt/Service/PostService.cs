@@ -71,6 +71,7 @@ namespace FeedIt.Service
                               select s).ToList();
 
             List<Comment> comments = new List<Comment>();
+
             foreach (var s in commentIDs)
             {
                 Comment currComment = (from c in db.Comments
@@ -81,6 +82,7 @@ namespace FeedIt.Service
 
             return comments;
         }
+
 
         public void deleteComment(int commentID)
         {
