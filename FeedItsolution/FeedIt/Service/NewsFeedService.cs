@@ -67,12 +67,35 @@ namespace FeedIt.Service
 
         public List<Post> getAllPosts(int userID)
         {
-            return null;
+            List<Post> userPosts = getFeedForUser(userID);
+            List<Post> groupPosts = getFeedForGroup(userID);
+            foreach(var s in userPosts)
+            {
+                groupPosts.Add(s);
+            }
+            var dateOrdered = groupPosts.OrderBy(x => x.date).Take(15).ToList();
+            return dateOrdered;
         }
 
         public List<Post> getAllPostsFromUser(int userID)
         {
-            return null;
+            var db = new ApplicationDbContext();
+
+            var userIds = (from b in db.UserPosts
+                         where b.userID == userID
+                         select b).ToList();
+
+            List<Post> allPosts = new List<Post>();
+
+            foreach(var c in userIds)
+            {
+                var singlePost = (from k in db.Posts
+                                where k.ID == c.postID
+                                select k).SingleOrDefault();
+                allPosts.Add(singlePost);
+            }
+             var dateOrdered = allPosts.OrderBy(x => x.date).Take(15).ToList();
+            return dateOrdered;           
         }
     }
 }
