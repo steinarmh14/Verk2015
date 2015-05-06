@@ -3,9 +3,76 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
+using FeedIt.Models;
+
 namespace FeedIt.Service
 {
     public class NewsFeedService
     {
+        public List<Post> getFeedForUser(int userID)
+        {
+            var db = new ApplicationDbContext();
+
+            var followings = (from s in db.Followers
+                              where s.follower == userID
+                              select s).ToList();
+
+            List<Post> postsList = new List<Post>();
+
+            foreach(var s in followings)
+            {
+                var userPosts = (from b in db.UserPosts
+                                 where b.userID == s.following
+                                 select b).ToList();
+                foreach (var c in userPosts)
+                {
+                    var post = (from n in db.Posts
+                                where n.ID == c.postID
+                                select n).SingleOrDefault();
+
+                    postsList.Add(post);
+                }
+            }
+            var dateOrdered = postsList.OrderBy(x => x.date).Take(15).ToList();
+            return dateOrdered;
+        }
+
+        public List<Post> getFeedForGroup(int userID)
+        {
+            var db = new ApplicationDbContext();
+
+            var groups = (from s in db.GroupFollowers
+                              where s.userID == userID
+                              select s).ToList();
+
+            List<Post> postsList = new List<Post>();
+
+            foreach(var d in groups)
+            {
+                var groupPosts = (from b in db.GroupPosts
+                                 where d.groupID == b.groupID
+                                 select b).ToList();
+                foreach (var c in groupPosts)
+                {
+                    var post = (from n in db.Posts
+                                where n.ID == c.postID
+                                select n).SingleOrDefault();
+
+                    postsList.Add(post);
+                }
+            }
+            var dateOrdered = postsList.OrderBy(x => x.date).Take(15).ToList();
+            return dateOrdered;
+        }
+
+        public List<Post> getAllPosts(int userID)
+        {
+            return null;
+        }
+
+        public List<Post> getAllPostsFromUser(int userID)
+        {
+            return null;
+        }
     }
 }

@@ -8,7 +8,7 @@ namespace FeedIt.Models
     public class GroupPost
     {
         public int ID { get; set; }
-        public int group { get; set; }
-        public int post { get; set; }
+        public int groupID { get; set; }
+        public int postID { get; set; }
     }
 }
