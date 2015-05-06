@@ -8,6 +8,7 @@ namespace FeedIt.Controllers
 {
     public class HomeController : Controller
     {
+        [Authorize]
         public ActionResult Index()
         {
             return View();
@@ -19,6 +20,7 @@ namespace FeedIt.Controllers
 
             return View();
         }
+
 
         public ActionResult Contact()
         {
