@@ -16,7 +16,7 @@ namespace FeedIt.Service
         {
 
         }
-        public List<ApplicationUser> getFollowers(int userID)
+        public void getFollowers(int userID)
         {
             var db = new ApplicationDbContext();
             var followers = (from s in db.Followers
@@ -29,11 +29,11 @@ namespace FeedIt.Service
                 var person = (from b in db.Users
                              where Int32.Parse(b.Id) == s.follower
                              select b);
-                result.Add(person);
+                //result.Add(person);
             }
 
         }
-        public List<AccountViewModels> getFollowing(int userID)
+        public void getFollowing(int userID)
         {
 
         }
