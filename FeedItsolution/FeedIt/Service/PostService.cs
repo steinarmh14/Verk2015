@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 
 using FeedIt.Models;
+using System.Data.SqlClient;
 
 namespace FeedIt.Service
 {
@@ -13,7 +14,13 @@ namespace FeedIt.Service
         {
             var db = new ApplicationDbContext();
 
-            //Todo: gera
+            db.Posts.Add(post);
+            db.SaveChanges();
+            // Todo: link with UserPost table
+            /*int _postID = db.Posts.Last().ID;
+            new UserPost userPost{ user}
+            db.UserPosts.Add(userPost);
+            db.SaveChanges();*/
         }
 
         public Post getPostById(int postID)
@@ -41,14 +48,18 @@ namespace FeedIt.Service
             rateCount++;
             currentRating = allRatings / rateCount;
 
-            //todo: setja currentRating og rateCount í database
+            post.rateCount = rateCount;
+            post.rating = rating;
+            db.SaveChanges();
         }
 
         public void addComment(Comment comment)
         {
             var db = new ApplicationDbContext();
 
-            //Todo: add comment to database;
+            db.Comments.Add(comment);
+
+            //Todo: add to postComment table;
         }
 
         public List<Comment> getCommentsForPost(int ID)
@@ -59,31 +70,49 @@ namespace FeedIt.Service
                               where s.postID == ID
                               select s).ToList();
 
-            List<Comment> comments;
+            List<Comment> comments = new List<Comment>();
             foreach (var s in commentIDs)
             {
-                Comment currComment = from c in db.Comments
-                                      where c.ID == s.commentID // breyta öllum foreignkeys í navchar???
-                                      select c;
+                Comment currComment = (from c in db.Comments
+                                      where c.ID == s.commentID
+                                      select c).FirstOrDefault();
                 comments.Add(currComment);
             }
 
             return comments;
         }
 
-        public void deleteComment(int ID)
+        public void deleteComment(int commentID)
         {
             var db = new ApplicationDbContext();
 
-            //Todo: eyða kommenti úr gagnagrunni Comments og PostComments
+            var comment = (from s in db.Comments
+                           where s.ID == commentID
+                           select s).FirstOrDefault();
+
+            db.Comments.Remove(comment);
+
+            var postComments = (from s in db.PostComments
+                                where s.commentID == commentID
+                                select s).ToList();
+
+            foreach (var s in postComments)
+            {
+                db.PostComments.Remove(s);
+            }
         }
 
-        public void addDescription(string description)
+        public void addDescription(string description, int postID)
         {
-            //Todo: implement
+            var db = new ApplicationDbContext();
+
+            var post = (from s in db.Posts
+                        where s.ID == postID
+                        select s).FirstOrDefault();
+
+            post.about = description;
+
+            db.SaveChanges();
         }
-
-
-
     }
 }
