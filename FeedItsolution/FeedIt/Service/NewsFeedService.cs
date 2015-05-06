@@ -37,7 +37,7 @@ namespace FeedIt.Service
             return dateOrdered;
         }
 
-        public List<Post> getFeedForGroup(int userID)
+        public List<Post> getFeedForGroups(int userID)
         {
             var db = new ApplicationDbContext();
 
@@ -94,8 +94,31 @@ namespace FeedIt.Service
                                 select k).SingleOrDefault();
                 allPosts.Add(singlePost);
             }
-             var dateOrdered = allPosts.OrderBy(x => x.date).Take(15).ToList();
+
+             var dateOrdered = allPosts.OrderBy(x => x.date).ToList();
             return dateOrdered;           
+        }
+
+        public List<Post> getFeedForGroup(int groupID)
+        {
+            var db = new ApplicationDbContext();
+
+            var groupPosts = (from b in db.GroupPosts
+                              where b.groupID == groupID
+                              select b).ToList();
+
+            List<Post> allPosts = new List<Post>();
+
+            foreach (var c in groupPosts)
+            {
+                var singlePost = (from k in db.Posts
+                                  where k.ID == c.postID
+                                  select k).SingleOrDefault();
+                allPosts.Add(singlePost);
+            }
+
+            var dateOrdered = allPosts.OrderBy(x => x.date).ToList();
+            return dateOrdered;
         }
     }
 }
