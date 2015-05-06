@@ -7,5 +7,6 @@ namespace FeedIt.Service
 {
     public class UserService
     {
+
     }
 }
