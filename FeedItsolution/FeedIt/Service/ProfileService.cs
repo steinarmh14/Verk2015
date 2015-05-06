@@ -9,7 +9,7 @@ namespace FeedIt.Service
     {
         public void getProfileByID(int ID)
         {
-            var db = new ApplicationDbContext();
+            //var db = new ApplicationDbContext();
 
         }
 

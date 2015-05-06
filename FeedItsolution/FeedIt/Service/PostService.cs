@@ -50,7 +50,7 @@ namespace FeedIt.Service
 
             //Todo: add comment to database;
         }
-
+        /*
         public List<Comment> getCommentsForPost(int ID)
         {
             var db = new ApplicationDbContext();
@@ -60,17 +60,18 @@ namespace FeedIt.Service
                               select s).ToList();
 
             List<Comment> comments;
+            
             foreach (var s in commentIDs)
             {
                 Comment currComment = from c in db.Comments
-                                      where c.ID == s.commentID // breyta öllum foreignkeys í navchar???
+                                      //where c.ID == s.commentID // breyta öllum foreignkeys í navchar???
                                       select c;
                 comments.Add(currComment);
             }
-
+            
             return comments;
         }
-
+        */
         public void deleteComment(int ID)
         {
             var db = new ApplicationDbContext();
