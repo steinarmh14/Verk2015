@@ -12,10 +12,10 @@ namespace FeedIt.Controllers
     public class PostController : Controller
     {
         // GET: Post
-        public ActionResult Index()
+        public ActionResult Index(int id)
         {
-
-            return View();
+            Post post = PostService.Instance.getPostById(id);
+            return View(post);
         }
 
         [HttpPost]

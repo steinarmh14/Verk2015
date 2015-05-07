@@ -1,4 +1,5 @@
-﻿@{
+﻿@model List<FeedIt.Models.Post>
+@{
     ViewBag.Title = "Front Page";
 }
 
@@ -11,15 +12,30 @@
         <body>
             <h2>News Feed</h2>
             <div>  
-                <form action="upload-script-url" method="post" enctype="multipart/form-data">
+                <form action="" method="post">
                 <input type="file" name="file">
                     <textarea rows="5" cols="20" placeholder="Description/recipe">
                     </textarea>
-                <input type="submit" name="Submit"/>
+                <input type="button" class="createpost" value="Post" />
                 </form>
             </div>
             <div class="posts">
-              
+                @if(Model != null)
+                { 
+              foreach (var item in Model)
+              {
+                <div>
+                    <a class="postpic" href="@Url.Action("Index", "Post", new { id = item.ID})">
+                        <img src="@Url.Content(item.picture)" alt="picture" style="width:100px; height:100px;"/>                     
+                    </a>
+                </div>
+                <div>
+                    <p>@Html.Display(item.about)</p>
+                </div>
+                  
+                  
+              }
+                }
             </div>
         </body>
 
