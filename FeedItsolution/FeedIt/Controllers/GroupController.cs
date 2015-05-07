@@ -30,7 +30,7 @@ namespace FeedIt.Controllers
             string strID = User.Identity.GetUserId();
             int owner = Int32.Parse(strID);
 
-            Group group;
+            Group group = new Group();
             group.about = about;
             group.name = name;
             group.owner = owner;
