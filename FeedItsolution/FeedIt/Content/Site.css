@@ -1,6 +1,9 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
+    width:1200px !important;/*hér*/
+    margin-left:auto;
+    margin-right:auto;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -11,7 +14,7 @@
 /*comment*/
 /* Set width on the form input elements since they're 100% wide by default */
 input,
-select,
+select
 textarea {
     max-width: 280px;
 }
@@ -23,6 +26,10 @@ textarea {
 
 .field-validation-valid {
     display: none;
+}
+
+label {
+    font-weight:normal !important;
 }
 
 input.input-validation-error {
