@@ -8,6 +8,19 @@ namespace FeedIt.Service
 {
     public class FollowerService
     {
+        private static FollowerService instance;
+
+        public static FollowerService Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new FollowerService();
+                }
+                return instance;
+            }
+        }
         public void addFollower(int followerID, int followingID)
         {
             var db = new ApplicationDbContext();

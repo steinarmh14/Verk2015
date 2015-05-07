@@ -21,5 +21,13 @@ namespace FeedIt.Controllers
         {
             return View();
         }
+        public ActionResult follow()
+        {
+            return View();
+        }
+        public ActionResult unfollow()
+        {
+            return View();
+        }
     }
 }

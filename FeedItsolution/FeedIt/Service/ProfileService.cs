@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using FeedIt.Models;
 
 namespace FeedIt.Service
 {
@@ -9,7 +10,8 @@ namespace FeedIt.Service
     {
         public void getProfileByID(int ID)
         {
-            //var db = new ApplicationDbContext();
+            var db = new ApplicationDbContext();
+            
 
         }
 

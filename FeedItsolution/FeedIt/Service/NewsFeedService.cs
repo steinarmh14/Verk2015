@@ -9,6 +9,20 @@ namespace FeedIt.Service
 {
     public class NewsFeedService
     {
+        private static NewsFeedService instance;
+
+        public static NewsFeedService Instance
+        {
+            get
+            {
+                if(instance == null)
+                {
+                    instance = new NewsFeedService();
+                }
+                return instance;
+            }
+        }
+
         public List<Post> getFeedForUser(int userID)
         {
             var db = new ApplicationDbContext();

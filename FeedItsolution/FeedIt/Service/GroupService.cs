@@ -9,6 +9,20 @@ namespace FeedIt.Service
 {
     public class GroupService
     {
+        private static GroupService instance;
+
+        public static GroupService Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new GroupService();
+                }
+                return instance;
+            }
+        }
+
         public void createGroup(Group group)
         {
             var db = new ApplicationDbContext();
