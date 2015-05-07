@@ -14,10 +14,9 @@
             <div>  
                 @using (Html.BeginForm("createPost", "Post", FormMethod.Post, new {  id = "postform"}))
                 {
-                    <input type="text" name="picture" id="picture">
-                    <textarea rows="5" cols="20" placeholder="Description/recipe" id="about">
-                    </textarea>
-                <input type="submit" class="createpost" value="Post" />
+                    <input type="text" name="picture" id="picture"/>
+                    <input type="text" placeholder="Description/recipe" name="description" id="description"/>
+                    <input type="submit" class="createpost" value="Post" />
                 }
             </div>
             <div class="posts">

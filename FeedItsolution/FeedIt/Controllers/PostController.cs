@@ -21,7 +21,7 @@ namespace FeedIt.Controllers
         [HttpPost]
         public ActionResult createPost(FormCollection collection)
         {
-            string about = collection["about"];
+            string about = collection["description"];
             string picture = collection["picture"];
 
             Post post = new Post();
@@ -34,10 +34,10 @@ namespace FeedIt.Controllers
             post.rating = 0;
 
             string strID = User.Identity.GetUserId();
-            Console.WriteLine(strID);
+            //Console.WriteLine(strID);
 
             PostService.Instance.createPost(post, strID);
-            return View();
+            return View("~/Views/Home/Index.cshtml");
         }
 
         [HttpPost]

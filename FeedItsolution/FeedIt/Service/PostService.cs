@@ -26,18 +26,20 @@ namespace FeedIt.Service
 
         public void createPost(Post post, string userID)
         {
-            var db = new ApplicationDbContext();
+            using (var db = new ApplicationDbContext())
+            {
+                db.Posts.Add(post);
 
-            db.Posts.Add(post);
+                // risky move
+                UserPost userPost = new UserPost();
+                // línan fyrir neðan virkar ekki
+                userPost.postID = post.ID;
+                userPost.userID = userID;
 
-            // risky move
-            UserPost userPost = new UserPost();
-            
-            userPost.postID = post.ID;
-            userPost.userID = userID;
+                db.UserPosts.Add(userPost);
+                db.SaveChanges();
 
-            db.UserPosts.Add(userPost);
-            db.SaveChanges();
+            }
         }
 
         public Post getPostById(int postID)
