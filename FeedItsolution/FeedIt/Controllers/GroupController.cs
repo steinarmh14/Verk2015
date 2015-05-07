@@ -12,7 +12,7 @@ namespace FeedIt.Controllers
     public class GroupController : Controller
     {
         // GET: Group
-        public ActionResult Index(int? id)
+        public ActionResult Index(int? id) 
         {
             if(id.HasValue)
             {
@@ -21,6 +21,11 @@ namespace FeedIt.Controllers
                 return View(model);
             }
             return View("Error");
+        }
+
+        public ActionResult GroupProfileView()
+        {
+            return View();
         }
 
         [HttpPost]
