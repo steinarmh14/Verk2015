@@ -29,12 +29,11 @@ namespace FeedIt.Controllers
             string name = collection["name"];
             string about = collection["about"];
             string strID = User.Identity.GetUserId();
-            int owner = Int32.Parse(strID);
 
             Group group = new Group();
             group.about = about;
             group.name = name;
-            group.owner = owner;
+            group.owner = strID;
 
             GroupService.Instance.createGroup(group);
 
@@ -46,12 +45,11 @@ namespace FeedIt.Controllers
         {
             if(id.HasValue)
             {
-                string strID = User.Identity.GetUserId();
-                int user = Int32.Parse(strID);
                 int realID = id.Value;
+                string strID = User.Identity.GetUserId();
                 Group group = GroupService.Instance.getGroupByID(realID);
 
-                if(user == group.owner)
+                if(strID == group.owner)
                 {
                     GroupService.Instance.deleteGroup(realID);
                 }
@@ -65,11 +63,10 @@ namespace FeedIt.Controllers
             if (id.HasValue)
             {
                 string strID = User.Identity.GetUserId();
-                int user = Int32.Parse(strID);
                 int realID = id.Value;
                 Group group = GroupService.Instance.getGroupByID(realID);
 
-                if (user == group.owner)
+                if (strID == group.owner)
                 {
                     return View("EditGroupView");
                 }

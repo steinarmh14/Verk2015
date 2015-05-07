@@ -21,7 +21,7 @@ namespace FeedIt.Service
                 return instance;
             }
         }
-        public void addFollower(int followerID, int followingID)
+        public void addFollower(string followerID, string followingID)
         {
             var db = new ApplicationDbContext();
 
@@ -31,7 +31,7 @@ namespace FeedIt.Service
             db.SaveChanges();
         }
 
-        public void removeFollower(int followerID, int followingID)
+        public void removeFollower(string followerID, string followingID)
         {
             var db = new ApplicationDbContext();
 
@@ -42,7 +42,7 @@ namespace FeedIt.Service
             db.Followers.Remove(follower);
         }
 
-        public List<ApplicationUser> getFollowers(int userID)
+        public List<ApplicationUser> getFollowers(string userID)
         {
             var db = new ApplicationDbContext();
             var followers = (from s in db.Followers
@@ -53,7 +53,7 @@ namespace FeedIt.Service
             foreach(var s in followers)
             {
                 var person = (from b in db.Users
-                             where Int32.Parse(b.Id) == s.follower
+                             where b.Id == s.follower
                              select b).FirstOrDefault();
                 result.Add(person);
             }
@@ -61,7 +61,7 @@ namespace FeedIt.Service
             return result;
         }
 
-        public List<ApplicationUser> getFollowing(int userID)
+        public List<ApplicationUser> getFollowing(string userID)
         {
             var db = new ApplicationDbContext();
             var followings = (from s in db.Followers
@@ -72,7 +72,7 @@ namespace FeedIt.Service
             foreach (var s in followings)
             {
                 var person = (from b in db.Users
-                              where Int32.Parse(b.Id) == s.following
+                              where b.Id == s.following
                               select b).FirstOrDefault();
                 result.Add(person);
             }

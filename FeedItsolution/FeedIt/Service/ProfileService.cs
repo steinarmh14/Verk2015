@@ -22,13 +22,13 @@ namespace FeedIt.Service
             }
         }
 
-        public ApplicationUser getProfileByID(int ID)
+        public ApplicationUser getProfileByID(string userID)
         {
             var db = new ApplicationDbContext();
 
 
             var user = (from s in db.Users
-                        where Int32.Parse(s.Id) == ID
+                        where s.Id == userID
                         select s).SingleOrDefault();
 
             return user;

@@ -15,59 +15,51 @@ namespace FeedIt.Controllers
         public ActionResult Index()
         {
             string strID = User.Identity.GetUserId();
-            int id = Int32.Parse(strID);
 
             ApplicationUser user = new ApplicationUser();
-            user = ProfileService.Instance.getProfileByID(id);
+            user = ProfileService.Instance.getProfileByID(strID);
 
             return View(user);
         }
-        public ActionResult profile(int? userID)
+        public ActionResult profile(string userID)
         {
-            if(userID.HasValue)
+            if(!String.IsNullOrEmpty(userID))
             {
-                int realUserID = userID.Value;
                 ApplicationUser user = new ApplicationUser();
-                user = ProfileService.Instance.getProfileByID(realUserID);
+                user = ProfileService.Instance.getProfileByID(userID);
 
                 return View(user);
             }
-            return View();
+            return View("Error");
         }
 
         [HttpPost]
         public ActionResult editProfile(ApplicationUser user)
         {
 
-            return View();
+            return View("Error");
         }
 
         [HttpPost]
-        public ActionResult follow(int? userID)
+        public ActionResult follow(string userID)
         {
-            if(userID.HasValue)
+            if(!String.IsNullOrEmpty(userID))
             {
-                int realUserID = userID.Value;
-
                 string strID = User.Identity.GetUserId();
-                int id = Int32.Parse(strID);
 
-                FollowerService.Instance.addFollower(id, realUserID);
+                FollowerService.Instance.addFollower(strID, userID);
             }
             return View();
         }
 
         [HttpPost]
-        public ActionResult unfollow(int? userID)
+        public ActionResult unfollow(string userID)
         {
-            if (userID.HasValue)
+            if(!String.IsNullOrEmpty(userID))
             {
-                int realUserID = userID.Value;
-
                 string strID = User.Identity.GetUserId();
-                int id = Int32.Parse(strID);
 
-                FollowerService.Instance.removeFollower(id, realUserID);
+                FollowerService.Instance.removeFollower(strID, userID);
             }
             return View();
         }

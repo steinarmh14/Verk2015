@@ -10,6 +10,6 @@ namespace FeedIt.Models
         public int ID { get; set; }
         public string name { get; set; }
         public string about { get; set; }
-        public int owner { get; set; }
+        public string owner { get; set; }
     }
 }

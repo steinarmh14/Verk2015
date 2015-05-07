@@ -34,9 +34,9 @@ namespace FeedIt.Controllers
             post.rating = 0;
 
             string strID = User.Identity.GetUserId();
-            int id = Int32.Parse(strID);
+            Console.WriteLine(strID);
 
-            PostService.Instance.createPost(post, id);
+            PostService.Instance.createPost(post, strID);
             return View();
         }
 
@@ -63,8 +63,7 @@ namespace FeedIt.Controllers
                 comment.date = DateTime.Now;
                 comment.postID = realPostID;
                 string strID = User.Identity.GetUserId();
-                int id = Int32.Parse(strID);
-                comment.ownerID = id;
+                comment.ownerID = strID;
 
                 PostService.Instance.addComment(comment, realPostID);
                 return View();

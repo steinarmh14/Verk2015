@@ -23,7 +23,7 @@ namespace FeedIt.Service
             }
         }
 
-        public List<Post> getFeedForUser(int userID)
+        public List<Post> getFeedForUser(string userID)
         {
             var db = new ApplicationDbContext();
 
@@ -51,7 +51,7 @@ namespace FeedIt.Service
             return dateOrdered;
         }
 
-        public List<Post> getFeedForGroups(int userID)
+        public List<Post> getFeedForGroups(string userID)
         {
             var db = new ApplicationDbContext();
 
@@ -79,10 +79,10 @@ namespace FeedIt.Service
             return dateOrdered;
         }
 
-        public List<Post> getAllPosts(int userID)
+        public List<Post> getAllPosts(string userID)
         {
             List<Post> userPosts = getFeedForUser(userID);
-            List<Post> groupPosts = getFeedForGroup(userID);
+            List<Post> groupPosts = getFeedForGroups(userID);
             foreach(var s in userPosts)
             {
                 groupPosts.Add(s);
@@ -91,7 +91,7 @@ namespace FeedIt.Service
             return dateOrdered;
         }
 
-        public List<Post> getAllPostsFromUser(int userID)
+        public List<Post> getAllPostsFromUser(string userID)
         {
             var db = new ApplicationDbContext();
 

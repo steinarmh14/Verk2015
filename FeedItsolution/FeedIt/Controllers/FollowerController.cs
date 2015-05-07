@@ -16,13 +16,12 @@ namespace FeedIt.Controllers
             return View();
         }
         
-        public ActionResult showFollowers(int? userID)
+        public ActionResult showFollowers(string userID)
         {
-            if(userID.HasValue)
+            if(!String.IsNullOrEmpty(userID))
             {
-                int realUserID = userID.Value;
                 List<ApplicationUser> users = new List<ApplicationUser>();
-                users = FollowerService.Instance.getFollowers(realUserID);
+                users = FollowerService.Instance.getFollowers(userID);
                 return View(users);
             }
 
@@ -33,13 +32,12 @@ namespace FeedIt.Controllers
 
         }
 
-        public ActionResult showFollowing(int? userID)
+        public ActionResult showFollowing(string userID)
         {
-            if (userID.HasValue)
+            if (!String.IsNullOrEmpty(userID))
             {
-                int realUserID = userID.Value;
                 List<ApplicationUser> users = new List<ApplicationUser>();
-                users = FollowerService.Instance.getFollowing(realUserID);
+                users = FollowerService.Instance.getFollowing(userID);
                 return View(users);
             }
 

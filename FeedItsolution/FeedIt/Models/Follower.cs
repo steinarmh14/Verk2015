@@ -8,7 +8,7 @@ namespace FeedIt.Models
     public class Follower
     {
         public int ID { get; set; }
-        public int follower { get; set; }
-        public int following { get; set; }
+        public string follower { get; set; }
+        public string following { get; set; }
     }
 }

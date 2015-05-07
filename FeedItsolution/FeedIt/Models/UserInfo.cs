@@ -7,7 +7,7 @@ namespace FeedIt.Models
 {
     public class UserInfo
     {
-        public int ID { get; set; }
+        public string ID { get; set; }
         public string aboutMe { get; set; }
         public string fullName { get; set; }
         public string profilePic { get; set; }

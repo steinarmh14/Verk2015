@@ -12,12 +12,13 @@
         <body>
             <h2>News Feed</h2>
             <div>  
-                <form action="" method="post">
-                <input type="file" name="file">
-                    <textarea rows="5" cols="20" placeholder="Description/recipe">
+                @using (Html.BeginForm("createPost", "Post", FormMethod.Post, new {  id = "postform"}))
+                {
+                    <input type="text" name="picture" id="picture">
+                    <textarea rows="5" cols="20" placeholder="Description/recipe" id="about">
                     </textarea>
-                <input type="button" class="createpost" value="Post" />
-                </form>
+                <input type="submit" class="createpost" value="Post" />
+                }
             </div>
             <div class="posts">
                 @if(Model != null)

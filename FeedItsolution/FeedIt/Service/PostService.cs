@@ -24,17 +24,16 @@ namespace FeedIt.Service
             }
         }
 
-        public void createPost(Post post, int userID)
+        public void createPost(Post post, string userID)
         {
             var db = new ApplicationDbContext();
 
             db.Posts.Add(post);
-            db.SaveChanges();
 
             // risky move
             UserPost userPost = new UserPost();
-            userPost.postID = (from s in db.Posts
-                              select s).Last().ID;
+            
+            userPost.postID = post.ID;
             userPost.userID = userID;
 
             db.UserPosts.Add(userPost);
