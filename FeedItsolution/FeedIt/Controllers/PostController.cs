@@ -14,6 +14,7 @@ namespace FeedIt.Controllers
         // GET: Post
         public ActionResult Index()
         {
+
             return View();
         }
 

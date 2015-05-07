@@ -8,6 +8,20 @@ namespace FeedIt.Service
 {
     public class ProfileService
     {
+        private static ProfileService instance;
+
+        public static ProfileService Instance
+        {
+            get
+            {
+                if(instance == null)
+                {
+                    instance = new ProfileService();
+                }
+                return instance;
+            }
+        }
+
         public ApplicationUser getProfileByID(int ID)
         {
             var db = new ApplicationDbContext();
@@ -36,4 +50,6 @@ namespace FeedIt.Service
 
         }
     }
+    }
+        
 }
