@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using FeedIt.Models;
+using FeedIt.Service;
+using Microsoft.AspNet.Identity;
 
 namespace FeedIt.Controllers
 {
@@ -13,28 +16,88 @@ namespace FeedIt.Controllers
         {
             return View();
         }
-        public ActionResult createPost()
+
+        public ActionResult createPost(FormCollection collection)
         {
+            string about = collection["about"];
+            string picture = collection["picture"];
+
+            Post post = new Post();
+
+            // til að byrja með er ratingið alltaf 0!!!!! fix later
+            post.about = about;
+            post.picture = picture;
+            post.date = DateTime.Now;
+            post.rateCount = 0;
+            post.rating = 0;
+
+            string strID = User.Identity.GetUserId();
+            int id = Int32.Parse(strID);
+
+            PostService.Instance.createPost(post, id);
             return View();
         }
-        public ActionResult ratePost()
+
+        public ActionResult ratePost(int? postID, int rating)
         {
+            if (postID.HasValue)
+            {
+                int realPostID = postID.Value;
+                PostService.Instance.rate(realPostID, rating);
+                return View();
+            }
+            return View("Error");
+        }
+
+        public ActionResult comment(string content,int? postID)
+        {
+            if (postID.HasValue)
+            {
+                int realPostID = postID.Value;
+                Comment comment = new Comment();
+                comment.comment = content;
+                comment.date = DateTime.Now;
+                comment.postID = realPostID;
+                string strID = User.Identity.GetUserId();
+                int id = Int32.Parse(strID);
+                comment.ownerID = id;
+
+                PostService.Instance.addComment(comment, realPostID);
+                return View();
+            }
+            return View("Error");
+        }
+
+        public ActionResult getComments(int? postID)
+        {
+            if (postID.HasValue)
+            {
+                int realPostID = postID.Value;
+                List<Comment> comments = new List<Comment>();
+
+                comments = PostService.Instance.getCommentsForPost(realPostID);
+                return View(comments);
+            }
+            return View("Error");
+        }
+
+        public ActionResult deleteComment(int? commentID)
+        {
+            if (commentID.HasValue)
+            {
+                int realCommentID = commentID.Value;
+                PostService.Instance.deleteComment(realCommentID);
+            }
             return View();
         }
-        public ActionResult comment()
+
+        public ActionResult addDescription(string description, int? postID)
         {
-            return View();
-        }
-        public ActionResult getComments()
-        {
-            return View();
-        }
-        public ActionResult deleteComment()
-        {
-            return View();
-        }
-        public ActionResult addDescription()
-        {
+            if (postID.HasValue)
+            {
+                int realPostID = postID.Value;
+                PostService.Instance.addDescription(description, realPostID);
+            }
             return View();
         }
     }
