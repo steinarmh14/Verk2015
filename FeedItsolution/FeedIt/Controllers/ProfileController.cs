@@ -35,12 +35,14 @@ namespace FeedIt.Controllers
             return View();
         }
 
+        [HttpPost]
         public ActionResult editProfile(ApplicationUser user)
         {
 
             return View();
         }
 
+        [HttpPost]
         public ActionResult follow(int? userID)
         {
             if(userID.HasValue)
@@ -55,6 +57,7 @@ namespace FeedIt.Controllers
             return View();
         }
 
+        [HttpPost]
         public ActionResult unfollow(int? userID)
         {
             if (userID.HasValue)

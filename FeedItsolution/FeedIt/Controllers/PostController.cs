@@ -18,6 +18,7 @@ namespace FeedIt.Controllers
             return View();
         }
 
+        [HttpPost]
         public ActionResult createPost(FormCollection collection)
         {
             string about = collection["about"];
@@ -39,6 +40,7 @@ namespace FeedIt.Controllers
             return View();
         }
 
+        [HttpPost]
         public ActionResult ratePost(int? postID, int rating)
         {
             if (postID.HasValue)
@@ -50,6 +52,7 @@ namespace FeedIt.Controllers
             return View("Error");
         }
 
+        [HttpPost]
         public ActionResult comment(string content,int? postID)
         {
             if (postID.HasValue)
@@ -82,6 +85,7 @@ namespace FeedIt.Controllers
             return View("Error");
         }
 
+        [HttpPost]
         public ActionResult deleteComment(int? commentID)
         {
             if (commentID.HasValue)
@@ -92,6 +96,7 @@ namespace FeedIt.Controllers
             return View();
         }
 
+        [HttpPost]
         public ActionResult addDescription(string description, int? postID)
         {
             if (postID.HasValue)
@@ -101,5 +106,6 @@ namespace FeedIt.Controllers
             }
             return View();
         }
+
     }
 }

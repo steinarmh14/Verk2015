@@ -15,7 +15,7 @@ namespace FeedIt.Controllers
         {
             return View();
         }
-
+        
         public ActionResult showFollowers(int? userID)
         {
             if(userID.HasValue)

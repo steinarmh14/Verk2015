@@ -23,6 +23,7 @@ namespace FeedIt.Controllers
             return View("Error");
         }
 
+        [HttpPost]
         public ActionResult createGroup(FormCollection collection)
         {
             string name = collection["name"];
@@ -40,6 +41,7 @@ namespace FeedIt.Controllers
             return View();
         }
 
+        [HttpPost]
         public ActionResult deleteGroup(int? id)
         {
             if(id.HasValue)
@@ -57,6 +59,7 @@ namespace FeedIt.Controllers
             return View();
         }
 
+        [HttpPost]
         public ActionResult editGroup(int? id)
         {
             if (id.HasValue)

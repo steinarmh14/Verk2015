@@ -38,11 +38,11 @@ namespace FeedIt.Service
         {
             var db = new ApplicationDbContext();
 
-            var profilenames = (from s in db.Users
+            var profileNames = (from s in db.Users
                                 where s.UserName == name
                                 select s).ToList();
             
-            return profilenames;
+            return profileNames;
         }
 
         public void editProfile(int id)
