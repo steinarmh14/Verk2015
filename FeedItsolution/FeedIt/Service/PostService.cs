@@ -10,17 +10,35 @@ namespace FeedIt.Service
 {
     public class PostService
     {
-        public void createPost(Post post)
+        private static PostService instance;
+
+        public static PostService Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new PostService();
+                }
+                return instance;
+            }
+        }
+
+        public void createPost(Post post, int userID)
         {
             var db = new ApplicationDbContext();
 
             db.Posts.Add(post);
             db.SaveChanges();
-            // Todo: link with UserPost table
-            /*int _postID = db.Posts.Last().ID;
-            new UserPost userPost{ user}
+
+            // risky move
+            UserPost userPost = new UserPost();
+            userPost.postID = (from s in db.Posts
+                              select s).Last().ID;
+            userPost.userID = userID;
+
             db.UserPosts.Add(userPost);
-            db.SaveChanges();*/
+            db.SaveChanges();
         }
 
         public Post getPostById(int postID)
@@ -53,13 +71,19 @@ namespace FeedIt.Service
             db.SaveChanges();
         }
 
-        public void addComment(Comment comment)
+        public void addComment(Comment comment, int postID)
         {
             var db = new ApplicationDbContext();
 
             db.Comments.Add(comment);
 
-            //Todo: add to postComment table;
+            PostComment postComment = new PostComment();
+            postComment.commentID = (from s in db.Comments
+                               select s).Last().ID;
+            postComment.postID = comment.postID;
+
+            db.PostComments.Add(postComment);
+            db.SaveChanges();
         }
 
         public List<Comment> getCommentsForPost(int ID)
