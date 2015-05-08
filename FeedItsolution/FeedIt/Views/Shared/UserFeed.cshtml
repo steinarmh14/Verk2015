@@ -1,10 +1,5 @@
 ﻿@model IEnumerable<FeedIt.Models.Post>
 
-
-
-<p>
-    Feed from friends
-</p>
 <div class="posts">
     @if (Model != null)
     {
@@ -16,12 +11,8 @@
                 </a>
             </div>
             <div>
-                <p>@Html.Display(item.about)</p>
+                <p>@item.about</p>
             </div>
         }
-    }
-    else
-    {
-        <p>No feed from friends</p>
     }
 </div>

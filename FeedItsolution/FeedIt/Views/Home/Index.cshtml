@@ -21,7 +21,22 @@
                 
             </div>
             <div class="posts">
-              @Html.Partial("UserFeed",Model.userFeed)
+                <p>
+                    Feed from friends
+                </p>
+                @Html.Partial("UserFeed",Model.userFeed)
+            </div>
+            <div class="posts">
+                <p>
+                    Feed from groups
+                </p>
+                @Html.Partial("UserFeed",Model.groupsFeed)
+            </div>
+            <div class="posts">
+                <p>
+                    Feed from friends and groups
+                </p>
+                @Html.Partial("UserFeed",Model.allFeed)
             </div>
         </body>
 
