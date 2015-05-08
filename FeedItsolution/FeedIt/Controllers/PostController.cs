@@ -18,8 +18,8 @@ namespace FeedIt.Controllers
             return View(post);
         }
 
-        [HttpPost]
-        public ActionResult createPost(FormCollection collection)
+        /*[HttpPost]
+        public void createPost(FormCollection collection)
         {
             string about = collection["description"];
             string picture = collection["picture"];
@@ -37,8 +37,9 @@ namespace FeedIt.Controllers
             //Console.WriteLine(strID);
 
             PostService.Instance.createPost(post, strID);
-            return View("~/Views/Home/Index.cshtml");
-        }
+            RedirectToAction("~Controllers/Home/Index");
+            return RedirectToAction("Index");
+        }*/
 
         [HttpPost]
         public ActionResult ratePost(int? postID, int rating)

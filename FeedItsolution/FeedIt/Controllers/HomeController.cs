@@ -27,6 +27,29 @@ namespace FeedIt.Controllers
            // return View();
         }
 
+        [HttpPost]
+        public ActionResult createPost(FormCollection collection)
+        {
+            string about = collection["description"];
+            string picture = collection["picture"];
+
+            Post post = new Post();
+
+            // til að byrja með er ratingið alltaf 0!!!!! fix later
+            post.about = about;
+            post.picture = picture;
+            post.date = DateTime.Now;
+            post.rateCount = 0;
+            post.rating = 0;
+
+            string strID = User.Identity.GetUserId();
+            //Console.WriteLine(strID);
+
+            PostService.Instance.createPost(post, strID);
+            //RedirectToAction("~Controllers/Home/Index");
+            return RedirectToAction("Index", "Home");
+        }
+
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
