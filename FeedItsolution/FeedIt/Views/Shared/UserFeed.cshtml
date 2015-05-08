@@ -1,5 +1,7 @@
 ﻿@model List<FeedIt.Models.Post>
 
+
+
 <p>
     Feed from friends
 </p>
@@ -16,8 +18,10 @@
             <div>
                 <p>@Html.Display(item.about)</p>
             </div>
-
-
         }
+    }
+    else
+    {
+        <p>No feed from friends</p>
     }
 </div>

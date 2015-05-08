@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
+using FeedIt.Models;
+using FeedIt.Service;
 
 namespace FeedIt.Controllers
 {
@@ -11,7 +14,11 @@ namespace FeedIt.Controllers
         [Authorize]
         public ActionResult Index()
         {
-            return View();
+            string strID = User.Identity.GetUserId();
+            List<Post> model = NewsFeedService.Instance.getFeedForUser(strID);
+
+            return View(model);
+           // return View();
         }
 
         public ActionResult About()
