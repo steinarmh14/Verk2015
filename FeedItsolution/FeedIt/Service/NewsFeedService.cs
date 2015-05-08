@@ -35,13 +35,13 @@ namespace FeedIt.Service
 
             foreach(var s in followings)
             {
-                var userPosts = (from b in db.UserPosts
-                                 where b.userID == s.following
+                var posts = (from b in db.Posts
+                                 where b.owner == s.following
                                  select b).ToList();
-                foreach (var c in userPosts)
+                foreach (var c in posts)
                 {
                     var post = (from n in db.Posts
-                                where n.ID == c.postID
+                                where n.ID == c.ID
                                 select n).SingleOrDefault();
 
                     postsList.Add(post);
@@ -63,16 +63,12 @@ namespace FeedIt.Service
 
             foreach(var d in groups)
             {
-                var groupPosts = (from b in db.GroupPosts
-                                 where d.groupID == b.groupID
-                                 select b).ToList();
-                foreach (var c in groupPosts)
+                var post = (from n in db.Posts
+                            where n.ID == d.groupID
+                            select n).ToList();
+                foreach (var item in post)
                 {
-                    var post = (from n in db.Posts
-                                where n.ID == c.postID
-                                select n).SingleOrDefault();
-
-                    postsList.Add(post);
+                    postsList.Add(item);
                 }
             }
             var dateOrdered = postsList.OrderBy(x => x.date).Take(15).ToList();
@@ -95,21 +91,11 @@ namespace FeedIt.Service
         {
             var db = new ApplicationDbContext();
 
-            var userIds = (from b in db.UserPosts
-                         where b.userID == userID
+            var posts = (from b in db.Posts
+                         where b.owner == userID
                          select b).ToList();
 
-            List<Post> allPosts = new List<Post>();
-
-            foreach(var c in userIds)
-            {
-                var singlePost = (from k in db.Posts
-                                where k.ID == c.postID
-                                select k).SingleOrDefault();
-                allPosts.Add(singlePost);
-            }
-
-             var dateOrdered = allPosts.OrderBy(x => x.date).ToList();
+             var dateOrdered = posts.OrderBy(x => x.date).ToList();
             return dateOrdered;           
         }
 
@@ -117,21 +103,11 @@ namespace FeedIt.Service
         {
             var db = new ApplicationDbContext();
 
-            var groupPosts = (from b in db.GroupPosts
+            var posts = (from b in db.Posts
                               where b.groupID == groupID
                               select b).ToList();
 
-            List<Post> allPosts = new List<Post>();
-
-            foreach (var c in groupPosts)
-            {
-                var singlePost = (from k in db.Posts
-                                  where k.ID == c.postID
-                                  select k).SingleOrDefault();
-                allPosts.Add(singlePost);
-            }
-
-            var dateOrdered = allPosts.OrderBy(x => x.date).ToList();
+            var dateOrdered = posts.OrderBy(x => x.date).ToList();
             return dateOrdered;
         }
     }

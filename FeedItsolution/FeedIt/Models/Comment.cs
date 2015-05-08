@@ -12,5 +12,6 @@ namespace FeedIt.Models
         public string ownerID { get; set; }
         public int postID { get; set; }
         public DateTime date { get; set; }
+
     }
 }

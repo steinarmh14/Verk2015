@@ -13,5 +13,7 @@ namespace FeedIt.Models
         public double rating { get; set; }
         public int rateCount { get; set; }
         public DateTime date { get; set; }
+        public string owner { get; set; }
+        public int groupID { get; set; }
     }
 }

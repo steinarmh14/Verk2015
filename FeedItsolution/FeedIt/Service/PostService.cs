@@ -28,17 +28,21 @@ namespace FeedIt.Service
         {
             using (var db = new ApplicationDbContext())
             {
+                post.owner = userID;
+                post.groupID = -1;
                 db.Posts.Add(post);
-
-                // risky move
-                UserPost userPost = new UserPost();
-                // línan fyrir neðan virkar ekki
-                userPost.postID = post.ID;
-                userPost.userID = userID;
-
-                db.UserPosts.Add(userPost);
                 db.SaveChanges();
+            }
+        }
 
+        public void createPostForGroup(Post post, string userID, int groupID)
+        {
+            using (var db = new ApplicationDbContext())
+            {
+                post.owner = userID;
+                post.groupID = groupID;
+                db.Posts.Add(post);
+                db.SaveChanges();
             }
         }
 
@@ -75,15 +79,8 @@ namespace FeedIt.Service
         public void addComment(Comment comment, int postID)
         {
             var db = new ApplicationDbContext();
-
+            comment.postID = postID;
             db.Comments.Add(comment);
-
-            PostComment postComment = new PostComment();
-            postComment.commentID = (from s in db.Comments
-                               select s).Last().ID;
-            postComment.postID = comment.postID;
-
-            db.PostComments.Add(postComment);
             db.SaveChanges();
         }
 
@@ -91,21 +88,13 @@ namespace FeedIt.Service
         {
             var db = new ApplicationDbContext();
 
-            var commentIDs = (from s in db.PostComments
+            var comments = (from s in db.Comments
                               where s.postID == ID
                               select s).ToList();
 
-            List<Comment> comments = new List<Comment>();
+            var dateOrdered = comments.OrderBy(x => x.date).Take(15).ToList();
 
-            foreach (var s in commentIDs)
-            {
-                Comment currComment = (from c in db.Comments
-                                      where c.ID == s.commentID
-                                      select c).FirstOrDefault();
-                comments.Add(currComment);
-            }
-
-            return comments;
+            return dateOrdered;
         }
 
 
@@ -118,15 +107,7 @@ namespace FeedIt.Service
                            select s).FirstOrDefault();
 
             db.Comments.Remove(comment);
-
-            var postComments = (from s in db.PostComments
-                                where s.commentID == commentID
-                                select s).ToList();
-
-            foreach (var s in postComments)
-            {
-                db.PostComments.Remove(s);
-            }
+            db.SaveChanges();
         }
 
         public void addDescription(string description, int postID)
