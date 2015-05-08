@@ -14,8 +14,14 @@ namespace FeedIt.Controllers
         [Authorize]
         public ActionResult Index()
         {
+            FeedLists model = new FeedLists();
+
             string strID = User.Identity.GetUserId();
-            List<Post> model = NewsFeedService.Instance.getFeedForUser(strID);
+            model.userFeed = NewsFeedService.Instance.getFeedForUser(strID);
+
+            model.groupsFeed = NewsFeedService.Instance.getFeedForGroups(strID);
+
+            model.allFeed = NewsFeedService.Instance.getAllPosts(strID);
 
             return View(model);
            // return View();

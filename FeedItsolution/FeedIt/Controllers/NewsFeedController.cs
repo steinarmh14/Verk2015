@@ -21,13 +21,6 @@ namespace FeedIt.Controllers
             return View(model);
         }
 
-        public List<Post> newsFeedPosts()
-        {
-            string strID = User.Identity.GetUserId();
-            List<Post> model = NewsFeedService.Instance.getFeedForUser(strID);
-            return model;
-        }
-
         public ActionResult groupFeed()
         {
             string strID = User.Identity.GetUserId();
