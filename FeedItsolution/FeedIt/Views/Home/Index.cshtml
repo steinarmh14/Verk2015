@@ -1,4 +1,4 @@
-﻿@model List<FeedIt.Models.Post>
+﻿@model FeedIt.Models.FeedLists
 @{
     ViewBag.Title = "Front Page";
 }
@@ -18,9 +18,10 @@
                     <input type="text" placeholder="Description/recipe" name="description" id="description"/>
                     <input type="submit" class="createpost" value="Post" />
                 }
+                
             </div>
             <div class="posts">
-              @Html.Partial("UserFeed",Model)
+              @Html.Partial("UserFeed",Model.userFeed)
             </div>
         </body>
 
