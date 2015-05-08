@@ -20,22 +20,7 @@
                 }
             </div>
             <div class="posts">
-                @if(Model != null)
-                { 
-              foreach (var item in Model)
-              {
-                <div>
-                    <a class="postpic" href="@Url.Action("Index", "Post", new { id = item.ID})">
-                        <img src="@Url.Content(item.picture)" alt="picture" style="width:100px; height:100px;"/>                     
-                    </a>
-                </div>
-                <div>
-                    <p>@Html.Display(item.about)</p>
-                </div>
-                  
-                  
-              }
-                }
+              @Html.Partial("UserFeed");
             </div>
         </body>
 
