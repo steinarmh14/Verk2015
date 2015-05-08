@@ -22,11 +22,22 @@ namespace FeedIt.Controllers
             }
             return View("Error");
         }
-
-        public ActionResult GroupProfileView()
+        
+        public ActionResult CreateGroupView()
         {
             return View();
         }
+
+        public ActionResult MyGroupsView()
+        {
+            return View();
+        }
+
+        public ActionResult EditGroupView()
+        {
+            return View();
+        }
+
 
         [HttpPost]
         public ActionResult createGroup(FormCollection collection)

@@ -41,10 +41,5 @@ namespace FeedIt.Controllers
             return View();
         }
 
-        public ActionResult GroupProfileView()
-        {
-            return View();
-        }
-
     }
 }

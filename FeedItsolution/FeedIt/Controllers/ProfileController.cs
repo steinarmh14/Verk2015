@@ -33,6 +33,11 @@ namespace FeedIt.Controllers
             return View("Error");
         }
 
+        public ActionResult MyProfileView()
+        {
+            return View();
+        }
+
         [HttpPost]
         public ActionResult editProfile(ApplicationUser user)
         {

@@ -242,8 +242,11 @@
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Profile\Index.cshtml" />
-    <Content Include="Views\Group\GroupProfileView.cshtml" />
     <Content Include="Views\Shared\UserFeed.cshtml" />
+    <Content Include="Views\Group\MyGroupsView.cshtml" />
+    <Content Include="Views\Profile\MyProfileView.cshtml" />
+    <Content Include="Views\Group\CreateGroupView.cshtml" />
+    <Content Include="Views\Group\EditGroupView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
