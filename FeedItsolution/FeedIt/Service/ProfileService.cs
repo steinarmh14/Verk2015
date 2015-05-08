@@ -24,25 +24,28 @@ namespace FeedIt.Service
 
         public ApplicationUser getProfileByID(string userID)
         {
-            var db = new ApplicationDbContext();
+            using (var db = new ApplicationDbContext())
+            {
+                var user = (from s in db.Users
+                            where s.Id == userID
+                            select s).SingleOrDefault();
 
-
-            var user = (from s in db.Users
-                        where s.Id == userID
-                        select s).SingleOrDefault();
-
-            return user;
+                            return user;
+            }
+  
         }
 
         public List<ApplicationUser> getProfilesByName(string name)
         {
-            var db = new ApplicationDbContext();
+            using (var db = new ApplicationDbContext())
+            {
+                var profileNames = (from s in db.Users
+                                    where s.UserName == name
+                                    select s).ToList();
+                return profileNames;
+            }
 
-            var profileNames = (from s in db.Users
-                                where s.UserName == name
-                                select s).ToList();
             
-            return profileNames;
         }
 
         public void editProfile(int id)

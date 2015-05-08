@@ -33,51 +33,54 @@ namespace FeedIt.Service
 
         public void removeFollower(string followerID, string followingID)
         {
-            var db = new ApplicationDbContext();
+            using (var db = new ApplicationDbContext())
+            {
+                var follower = (from s in db.Followers
+                                where s.following == followingID && s.follower == followerID
+                                select s).FirstOrDefault();
 
-            var follower = (from s in db.Followers
-                            where s.following == followingID && s.follower == followerID
-                            select s).FirstOrDefault();
-
-            db.Followers.Remove(follower);
+                db.Followers.Remove(follower);
+            }
         }
 
         public List<ApplicationUser> getFollowers(string userID)
         {
-            var db = new ApplicationDbContext();
-            var followers = (from s in db.Followers
-                         where s.following == userID
-                         select s).ToList();
-            List<ApplicationUser> result = new List<ApplicationUser>();
-
-            foreach(var s in followers)
+            using (var db = new ApplicationDbContext())
             {
-                var person = (from b in db.Users
-                             where b.Id == s.follower
-                             select b).FirstOrDefault();
-                result.Add(person);
-            }
+                 var followers = (from s in db.Followers
+                                  where s.following == userID
+                                  select s).ToList();
+                 List<ApplicationUser> result = new List<ApplicationUser>();
 
-            return result;
+                 foreach(var s in followers)
+                 {
+                       var person = (from b in db.Users
+                                     where b.Id == s.follower
+                                     select b).FirstOrDefault();
+                        result.Add(person);
+                  }
+                  return result;
+            } 
         }
 
         public List<ApplicationUser> getFollowing(string userID)
         {
-            var db = new ApplicationDbContext();
-            var followings = (from s in db.Followers
-                             where s.follower == userID
-                             select s).ToList();
-            List<ApplicationUser> result = new List<ApplicationUser>();
-
-            foreach (var s in followings)
+            using (var db = new ApplicationDbContext())
             {
-                var person = (from b in db.Users
-                              where b.Id == s.following
-                              select b).FirstOrDefault();
-                result.Add(person);
-            }
+                    var followings = (from s in db.Followers
+                                      where s.follower == userID
+                                      select s).ToList();
+                   List<ApplicationUser> result = new List<ApplicationUser>();
 
-            return result;
+                   foreach (var s in followings)
+                   {
+                       var person = (from b in db.Users
+                                     where b.Id == s.following
+                                     select b).FirstOrDefault();
+                       result.Add(person);
+                    }
+                    return result;
+            }
         }
     }
 }

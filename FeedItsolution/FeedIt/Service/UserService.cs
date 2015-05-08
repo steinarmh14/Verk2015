@@ -12,11 +12,15 @@ namespace FeedIt.Service
         /*
         public void editUser(U userID)
         {
-            var db = new ApplicationDbContext();
+            using (var db = new ApplicationDbContext())
+           {
+                 var edit = (from s in db.Users
+                            where s.Id == userID
+                           select s).SingleOrDefault();
+         * }
+          ;
 
-            var edit = (from s in db.Users
-                        where s.Id == userID
-                        select s).SingleOrDefault();
+            
         }
         */
         public void deleteUser(int userID)

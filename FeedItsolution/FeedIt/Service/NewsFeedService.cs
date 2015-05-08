@@ -25,54 +25,57 @@ namespace FeedIt.Service
 
         public List<Post> getFeedForUser(string userID)
         {
-            var db = new ApplicationDbContext();
-
-            var followings = (from s in db.Followers
-                              where s.follower == userID
-                              select s).ToList();
-
-            List<Post> postsList = new List<Post>();
-
-            foreach(var s in followings)
+            using (var db = new ApplicationDbContext())
             {
-                var posts = (from b in db.Posts
+                var followings = (from s in db.Followers
+                                  where s.follower == userID
+                                  select s).ToList();
+
+                List<Post> postsList = new List<Post>();
+
+                foreach(var s in followings)
+                {
+                    var posts = (from b in db.Posts
                                  where b.owner == s.following
                                  select b).ToList();
-                foreach (var c in posts)
-                {
-                    var post = (from n in db.Posts
-                                where n.ID == c.ID
-                                select n).SingleOrDefault();
+                    foreach (var c in posts)
+                    {
+                           var post = (from n in db.Posts
+                                       where n.ID == c.ID
+                                       select n).SingleOrDefault();
 
-                    postsList.Add(post);
+                           postsList.Add(post);
+                    }
                 }
+                var dateOrdered = postsList.OrderBy(x => x.date).Take(15).ToList();
+                return dateOrdered;
             }
-            var dateOrdered = postsList.OrderBy(x => x.date).Take(15).ToList();
-            return dateOrdered;
+           
         }
-
         public List<Post> getFeedForGroups(string userID)
         {
-            var db = new ApplicationDbContext();
-
-            var groups = (from s in db.GroupFollowers
+            using (var db = new ApplicationDbContext())
+            {
+                var groups = (from s in db.GroupFollowers
                               where s.userID == userID
                               select s).ToList();
 
-            List<Post> postsList = new List<Post>();
+                List<Post> postsList = new List<Post>();
 
-            foreach(var d in groups)
-            {
-                var post = (from n in db.Posts
-                            where n.ID == d.groupID
-                            select n).ToList();
-                foreach (var item in post)
+                foreach(var d in groups)
                 {
-                    postsList.Add(item);
+                     var post = (from n in db.Posts
+                                 where n.ID == d.groupID
+                                 select n).ToList();
+                     foreach (var item in post)
+                     {
+                           postsList.Add(item);
+                     }
                 }
+                var dateOrdered = postsList.OrderBy(x => x.date).Take(15).ToList();
+                return dateOrdered;
             }
-            var dateOrdered = postsList.OrderBy(x => x.date).Take(15).ToList();
-            return dateOrdered;
+            
         }
 
         public List<Post> getAllPosts(string userID)
@@ -89,26 +92,28 @@ namespace FeedIt.Service
 
         public List<Post> getAllPostsFromUser(string userID)
         {
-            var db = new ApplicationDbContext();
+            using (var db = new ApplicationDbContext())
+            {
+                var posts = (from b in db.Posts
+                             where b.owner == userID
+                             select b).ToList();
 
-            var posts = (from b in db.Posts
-                         where b.owner == userID
-                         select b).ToList();
-
-             var dateOrdered = posts.OrderBy(x => x.date).ToList();
-            return dateOrdered;           
+                var dateOrdered = posts.OrderBy(x => x.date).ToList();
+                return dateOrdered;           
+            }
         }
 
         public List<Post> getFeedForGroup(int groupID)
         {
-            var db = new ApplicationDbContext();
+            using (var db = new ApplicationDbContext())
+            {
+                var posts = (from b in db.Posts
+                             where b.groupID == groupID
+                             select b).ToList();
 
-            var posts = (from b in db.Posts
-                              where b.groupID == groupID
-                              select b).ToList();
-
-            var dateOrdered = posts.OrderBy(x => x.date).ToList();
-            return dateOrdered;
+                var dateOrdered = posts.OrderBy(x => x.date).ToList();
+                return dateOrdered;
+            }
         }
     }
 }

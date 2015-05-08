@@ -44,83 +44,101 @@ namespace FeedIt.Service
                 db.Posts.Add(post);
                 db.SaveChanges();
             }
+
         }
 
         public Post getPostById(int postID)
         {
-            var db = new ApplicationDbContext();
-
-            Post result = (from s in db.Posts
-                          where s.ID == postID
-                          select s).SingleOrDefault();
-            return result;
+            using (var db = new ApplicationDbContext())
+            {
+                Post result = (from s in db.Posts
+                               where s.ID == postID
+                               select s).SingleOrDefault();
+                            return result;
+            }
+    
         }
 
         public void rate(int postID,int rating)
         {
-            var db = new ApplicationDbContext();
+            using (var db = new ApplicationDbContext())
+            {
+                Post post = (from s in db.Posts
+                             where s.ID == postID
+                             select s).SingleOrDefault();
 
-            Post post = (from s in db.Posts
-                         where s.ID == postID
-                         select s).SingleOrDefault();
+               double currentRating = post.rating;
+               int rateCount = post.rateCount;
 
-            double currentRating = post.rating;
-            int rateCount = post.rateCount;
+              double allRatings = currentRating * rateCount;
+              rateCount++;
+              currentRating = allRatings / rateCount;
 
-            double allRatings = currentRating * rateCount;
-            rateCount++;
-            currentRating = allRatings / rateCount;
+               post.rateCount = rateCount;
+               post.rating = rating;
+               db.SaveChanges();
+            }
 
-            post.rateCount = rateCount;
-            post.rating = rating;
-            db.SaveChanges();
+            
         }
 
         public void addComment(Comment comment, int postID)
         {
-            var db = new ApplicationDbContext();
-            comment.postID = postID;
-            db.Comments.Add(comment);
-            db.SaveChanges();
+            using (var db = new ApplicationDbContext())
+            {
+                comment.postID = postID;
+                db.Comments.Add(comment);
+                db.SaveChanges();
+            }
+            
         }
 
         public List<Comment> getCommentsForPost(int ID)
         {
-            var db = new ApplicationDbContext();
+            using (var db = new ApplicationDbContext())
+            {
+                var comments = (from s in db.Comments
+                                where s.postID == ID
+                                select s).ToList();
 
-            var comments = (from s in db.Comments
-                              where s.postID == ID
-                              select s).ToList();
+               var dateOrdered = comments.OrderBy(x => x.date).Take(15).ToList();
 
-            var dateOrdered = comments.OrderBy(x => x.date).Take(15).ToList();
+               return dateOrdered;
+            }
 
-            return dateOrdered;
+            
         }
 
 
         public void deleteComment(int commentID)
         {
-            var db = new ApplicationDbContext();
+            using (var db = new ApplicationDbContext())
+            {
+                var comment = (from s in db.Comments
+                               where s.ID == commentID
+                               select s).FirstOrDefault();
 
-            var comment = (from s in db.Comments
-                           where s.ID == commentID
-                           select s).FirstOrDefault();
+                            db.Comments.Remove(comment);
+                            db.SaveChanges();
+            }
 
-            db.Comments.Remove(comment);
-            db.SaveChanges();
         }
 
         public void addDescription(string description, int postID)
         {
-            var db = new ApplicationDbContext();
+            using (var db = new ApplicationDbContext())
+            {
+                var post = (from s in db.Posts
+                            where s.ID == postID
+                            select s).FirstOrDefault();
 
-            var post = (from s in db.Posts
-                        where s.ID == postID
-                        select s).FirstOrDefault();
+                            post.about = description;
 
-            post.about = description;
+                            db.SaveChanges();
+            }
 
-            db.SaveChanges();
+            
         }
+
     }
 }
