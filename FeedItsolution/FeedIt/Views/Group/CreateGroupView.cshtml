@@ -1,4 +1,6 @@
-﻿
+﻿@using Microsoft.AspNet.Identity
+@model FeedIt.Models.ManageUserViewModel
+          
 @{
     ViewBag.Title = "CreateGroupView";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -6,3 +8,38 @@
 
 <h2>CreateGroupView</h2>
 
+@using (Html.BeginForm("Manage", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    <h3>Create Group nigga</h3>
+    <hr />
+    
+    <div class="form-group">
+        <div>
+            <p class="col-md-offset-1 col-md-1">Name</p>
+            <div class="col-md-10">
+                <input type="text"/>
+            </div>
+        </div>
+    </div>
+    <div class="form-group" >
+        <div>
+            <p class="col-md-offset-1 col-md-1">About Me</p>
+            <div class="col-md-10">
+                <textarea cols="45" rows="6" placeholder="About me..."></textarea>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div>
+            <label class="col-md-offset-1 col-md-1">Group picture</label>
+            <div class="col-md-10">
+                <input type="text" />
+                <input type="button" value="Browse"/>
+                <div class="col-md-offset-6">
+                    <input type="button" value="Cancel" class="btn btn-default" />
+                    <input type="button" value="Create" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    </div>
+}
