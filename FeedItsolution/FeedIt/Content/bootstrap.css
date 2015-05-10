@@ -316,7 +316,7 @@ body {
   font-size: 14px;
   line-height: 1.428571429;
   color: #333333;
-  background-color: #ffffff;
+  background-color: #fff;
 }
 
 input,
@@ -785,11 +785,10 @@ pre code {
 }
 
 .row {
-    width: 900px;
-    margin-top: 200px;
-  margin-left: 350px;
-  background-color: #fff
-  
+  margin: auto;
+  margin-top: 20%;
+  background-color: #fff;
+
 }
 
 .row:before,
@@ -4517,7 +4516,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
 }
 
 .navbar-inverse {
-  background-color: #eeff5a;
+  background-color: #2ebd2e;
   border-color: #fff;
 }
 

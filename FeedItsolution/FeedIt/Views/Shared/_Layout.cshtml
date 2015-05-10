@@ -1,6 +1,6 @@
 ﻿<!DOCTYPE html>
 <html>
-<head>
+<head class="frontPageBackground">
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
@@ -10,26 +10,32 @@
 
 </head>
 
-<body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
+<body class="frontPageBackground">
+ @if (Request.IsAuthenticated)
+ { 
+    <div class="navbar navbar-inverse navbar-fixed-top"/>
+        <div class="container"/>
+            <div class="navbar-header"/>
+ }
 
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-
+    @if (Request.IsAuthenticated)
+ {
                 <a href='@Url.Action("Index", "Home")'>
                     <img class="logo" src="../Images/image.jpg"/>
                 </a>
                @* @Html.ActionLink("Logoið", "Index", "Home", null, new { @class = "navbar-brand" })*@
-                <form action="http://www.google.com">
-                <input type="text" name="search" placeholder="Search.." />
-                <input type="submit" value="Search here" class="btn btn-default"/>
-                </form>
-                
+                <div class="wrap">
+                    <div class="search">
+                        <input type="text" class="searchTerm" placeholder="What are you looking for?">
+                        <input type="submit" class="searchButton">
+                    </div>
+                </div>
+    }
             </div>
             
             <div class="navbar-collapse collapse">
@@ -51,6 +57,8 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+
 </body>
+ 
 </html>
 <!--Layout site.-->
