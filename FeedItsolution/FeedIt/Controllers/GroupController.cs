@@ -28,23 +28,18 @@ namespace FeedIt.Controllers
             {
                 int realID = id.Value;
                 List<UserFeed> groupFeed = new List<UserFeed>();
-                ApplicationUser user = new ApplicationUser();
-                string userID = User.Identity.GetUserId();
-                user = ProfileService.Instance.getProfileByID(userID);
                 IEnumerable<Post> posts = NewsFeedService.Instance.getFeedForGroup(realID);
 
                 foreach (var post in posts)
                 {
                     UserFeed singleUserFeed = new UserFeed();
-                    singleUserFeed.user = user;
                     singleUserFeed.post = post;
                     groupFeed.Add(singleUserFeed);
                 }
-                ProfileViewModel model = new ProfileViewModel();
+                GroupViewModel model = new GroupViewModel();
                 model.feed = groupFeed;
-                model.user = user;
+                model.group = GroupService.Instance.getGroupByID(realID);
                 model.followers = GroupService.Instance.getFollowers(realID);
-                model.followings = null;
                 return View(model);
             }
             return View("Error");
@@ -112,6 +107,33 @@ namespace FeedIt.Controllers
                 }
             }
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult createPost(FormCollection collection)
+        {
+            string about = collection["description"];
+            string picture = collection["picture"];
+            string groupID = collection["groupID"];
+
+            int ID = Int32.Parse(groupID);
+
+
+            Post post = new Post();
+
+            // til að byrja með er ratingið alltaf 0!!!!! fix later
+            post.about = about;
+            post.picture = picture;
+            post.date = DateTime.Now;
+            post.rateCount = 0;
+            post.rating = 0;
+            post.groupID = ID;
+
+            string strID = User.Identity.GetUserId();
+
+            PostService.Instance.createPost(post, strID);
+
+            return RedirectToAction("GroupView", new { id = ID});
         }
     }
 }

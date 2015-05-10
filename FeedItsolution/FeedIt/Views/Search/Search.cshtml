@@ -12,6 +12,6 @@
 
 @foreach (var item in Model.groups)
 {
-    <a href=@Url.Action("Profile", "Profile", new { userID = item.ID })>@item.name</a>
+    <a href=@Url.Action("GroupView", "Group", new { id = item.ID })>@item.name</a>
 }
 

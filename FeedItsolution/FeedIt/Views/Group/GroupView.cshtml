@@ -1,0 +1,33 @@
+﻿@model FeedIt.Models.GroupViewModel
+@{
+    ViewBag.Title = "GroupView";
+}
+
+<h2>GroupView</h2>
+
+<div>
+    <p>@Model.group.name</p>
+</div>
+
+<div>
+    <p>@Model.group.picture</p>
+</div>
+
+<div>
+    <p>@Model.group.about</p>
+</div>
+
+<div>
+    @using (Html.BeginForm("createPost", "Group", FormMethod.Post, new { id = "postform" }))
+    {
+        <input type="hidden" name="groupID" value=@Model.group.ID/>
+        <input type="text" name="picture" id="picture" />
+        <input type="text" placeholder="Description/recipe" name="description" id="description" />
+        <input type="submit" class="createpost" value="Post" />
+    }
+</div>
+
+<div>
+    @Html.Partial("UserFeed", Model.feed)
+</div>
+
