@@ -1,8 +1,16 @@
-﻿
+﻿@model FeedIt.Models.ProfileViewModel
 @{
     ViewBag.Title = "MyProfileView";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>MyProfileView</h2>
 
+<h2>@Model.user.fullName</h2>
+
+<div>
+    <p>@Model.user.aboutMe</p>
+</div>
+
+<div>
+    @Html.Partial("UserFeed", Model.feed)
+</div>

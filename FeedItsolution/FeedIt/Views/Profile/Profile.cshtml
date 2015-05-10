@@ -1,8 +1,11 @@
 ﻿@model FeedIt.Models.ProfileViewModel
 
 
-<h2>@Model.user.UserName</h2>
+<h2>@Model.user.fullName</h2>
 
+<div>
+    <p>@Model.user.profilePicture</p>
+</div>
 <div>
    <p>@Model.user.aboutMe</p>
 </div>
