@@ -35,22 +35,19 @@ namespace FeedIt.Controllers
         }
 
         [HttpPost]
-        public ActionResult comment(string content,int? postID)
+        public ActionResult Comment(FormCollection collection)
         {
-            if (postID.HasValue)
-            {
-                int realPostID = postID.Value;
-                Comment comment = new Comment();
-                comment.comment = content;
-                comment.date = DateTime.Now;
-                comment.postID = realPostID;
-                string strID = User.Identity.GetUserId();
-                comment.ownerID = strID;
-
-                PostService.Instance.addComment(comment, realPostID);
-                return View();
-            }
-            return View("Error");
+            string postID = collection["postID"];
+            string content = collection["content"];
+            int realPostID = Int32.Parse(postID);
+            Comment comment = new Comment();
+            comment.comment = content;
+            comment.date = DateTime.Now;
+            comment.postID = realPostID;
+            string strID = User.Identity.GetUserId();
+            comment.ownerID = strID;
+            PostService.Instance.addComment(comment, realPostID);
+            return View();
         }
 
         public ActionResult getComments(int? postID)

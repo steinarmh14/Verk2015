@@ -3,6 +3,8 @@
     ViewBag.Title = "Index";
 }
 
+<h2>Post</h2>
+
 <div>
     <a class="col-md-offset-1 col-md-1" href=@Url.Action("profile", "Profile", new { userID = Model.user.Id})>@Model.user.UserName</a>
     @Model.post.date
@@ -13,6 +15,13 @@
 <div>
     <p>@Model.post.about</p>
 </div>
+
+@using (Html.BeginForm("Comment", "Post", FormMethod.Post, new { id = "postform" }))
+{
+    <input type="hidden" name="postID" id="postID" />
+    <input type="text" placeholder="Comment" name="content" id="content" />
+    <input type="submit" class="createpost" value="Post" />
+}
 
 @foreach(var comment in Model.comments)
 {
