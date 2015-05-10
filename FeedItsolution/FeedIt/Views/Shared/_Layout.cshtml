@@ -9,6 +9,7 @@
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>
 
 </head>
+
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
@@ -24,6 +25,10 @@
                     <img class="logo" src="../Images/image.jpg"/>
                 </a>
                @* @Html.ActionLink("Logoið", "Index", "Home", null, new { @class = "navbar-brand" })*@
+                <form action="http://www.google.com">
+                <input type="text" name="search" placeholder="Search.." />
+                <input type="submit" value="Search here" class="btn btn-default"/>
+                </form>
                 
             </div>
             
@@ -38,7 +43,7 @@
     </div>
     <div class="container body-content">
         @RenderBody()
-        <hr />
+
         <footer>
         </footer>
     </div>

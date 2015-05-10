@@ -47,3 +47,10 @@ input[type="checkbox"].input-validation-error {
 .validation-summary-valid {
     display: none;
 }
+
+.Search
+  {
+      margin-left: 25%;
+      margin-right: 25%;
+      background-color: #000
+  }

@@ -785,8 +785,11 @@ pre code {
 }
 
 .row {
-  margin-right: -15px;
-  margin-left: -15px;
+    width: 900px;
+    margin-top: 200px;
+  margin-left: 350px;
+  background-color: #fff
+  
 }
 
 .row:before,
@@ -4514,8 +4517,8 @@ textarea.input-group-sm > .input-group-btn > .btn {
 }
 
 .navbar-inverse {
-  background-color: #222222;
-  border-color: #080808;
+  background-color: #eeff5a;
+  border-color: #fff;
 }
 
 .navbar-inverse .navbar-brand {
@@ -6827,5 +6830,26 @@ td.visible-print {
     display: none !important;
   }
 
+  .center
+  {
+      background-color: #333333;
+      width: 500px;
+      margin-left: auto;
+      margin-right: auto; 
+  }
+
+  .frontpageheader
+  {
+      height: 300px;
+      background-color: #428bca;
+  }
+
+  .Search
+  {
+      margin-left: 200px;
+      margin-right: auto;
+      height: 200px;
+      background-color: #000
+  }
 
 }
