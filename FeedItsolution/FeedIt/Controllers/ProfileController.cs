@@ -14,12 +14,30 @@ namespace FeedIt.Controllers
         // GET: Profile
         public ActionResult Index()
         {
-            string strID = User.Identity.GetUserId();
+            string userID = User.Identity.GetUserId();
 
-            ApplicationUser user = new ApplicationUser();
-            user = ProfileService.Instance.getProfileByID(strID);
+            if (!String.IsNullOrEmpty(userID))
+            {
+                List<UserFeed> profileFeed = new List<UserFeed>();
+                ApplicationUser user = new ApplicationUser();
+                user = ProfileService.Instance.getProfileByID(userID);
+                IEnumerable<Post> posts = NewsFeedService.Instance.getAllPostsFromUser(userID);
 
-            return View(user);
+                foreach (var post in posts)
+                {
+                    UserFeed singleUserFeed = new UserFeed();
+                    singleUserFeed.user = user;
+                    singleUserFeed.post = post;
+                    profileFeed.Add(singleUserFeed);
+                }
+                ProfileViewModel model = new ProfileViewModel();
+                model.feed = profileFeed;
+                model.user = user;
+                model.followers = FollowerService.Instance.getFollowers(userID);
+                model.followings = FollowerService.Instance.getFollowing(userID);
+                return View(model);
+            }
+            return View("Error");
         }
         public ActionResult Profile(string userID)
         {
