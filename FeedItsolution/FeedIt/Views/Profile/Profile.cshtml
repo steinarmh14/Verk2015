@@ -1,17 +1,10 @@
 ﻿@model IEnumerable<FeedIt.Models.UserFeed>
-@{
-    ViewBag.Title = "Profile";
-}
 
-<h2>@Model.First().user.fullName</h2>
+
+<h2>hi</h2>
 
 <div>
-    <a class="profilePic">
-        <img src="@Url.Content(Model.First().user.profilePicture)" alt="picture" style="width:100px; height:100px;" />
-    </a>
-    <p>
-        @Model.First().user.aboutMe
-    </p>
+   
 </div>
 
 <div>
