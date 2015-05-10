@@ -188,6 +188,7 @@
     <Compile Include="Models\Post.cs" />
     <Compile Include="Models\PostViewModel.cs" />
     <Compile Include="Models\ProfileViewModel.cs" />
+    <Compile Include="Models\SearchViewModel.cs" />
     <Compile Include="Models\UserFeed.cs" />
     <Compile Include="Models\UserInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -252,12 +253,12 @@
     <Content Include="Views\Group\EditGroupView.cshtml" />
     <Content Include="Views\Profile\Profile.cshtml" />
     <Content Include="Views\Post\Index.cshtml" />
+    <Content Include="Views\Search\Search.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Follower\" />
     <Folder Include="Views\NewsFeed\" />
-    <Folder Include="Views\Search\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
