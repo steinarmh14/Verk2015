@@ -1,13 +1,13 @@
-﻿@model IEnumerable<FeedIt.Models.UserFeed>
+﻿@model FeedIt.Models.ProfileViewModel
 
 
-<h2>hi</h2>
+<h2>@Model.user.UserName</h2>
 
 <div>
-   
+   <p>@Model.user.aboutMe</p>
 </div>
 
 <div>
-    @Html.Partial("UserFeed", Model)
+    @Html.Partial("UserFeed", Model.feed)
 </div>
 

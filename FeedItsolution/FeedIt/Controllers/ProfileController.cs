@@ -37,7 +37,12 @@ namespace FeedIt.Controllers
                     singleUserFeed.post = post;
                     profileFeed.Add(singleUserFeed);
                 }
-                return View(profileFeed);
+                ProfileViewModel model = new ProfileViewModel();
+                model.feed = profileFeed;
+                model.user = user;
+                model.followers = FollowerService.Instance.getFollowers(userID);
+                model.followings = FollowerService.Instance.getFollowing(userID);
+                return View(model);
             }
             return View("Error");
         }
