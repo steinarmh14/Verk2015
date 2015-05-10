@@ -248,6 +248,7 @@
     <Content Include="Views\Profile\MyProfileView.cshtml" />
     <Content Include="Views\Group\CreateGroupView.cshtml" />
     <Content Include="Views\Group\EditGroupView.cshtml" />
+    <Content Include="Views\Profile\Profile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

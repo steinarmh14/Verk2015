@@ -6,7 +6,7 @@
         foreach (var item in Model)
         {
             <div>
-                @item.user.UserName
+                <a href=@Url.Action("profile", "Profile", new { userID = item.user.Id}) >@item.user.UserName</a>
                 @item.post.date
             </div>
             <div>

@@ -1,0 +1,11 @@
+﻿@model IEnumerable<FeedIt.Models.UserFeed>
+@{
+    ViewBag.Title = "Profile";
+}
+
+<h2>@Model.First().user.UserName</h2>
+
+<div>
+    @Html.Partial("UserFeed", Model)
+</div>
+

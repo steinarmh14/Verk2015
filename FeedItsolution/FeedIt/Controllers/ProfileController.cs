@@ -21,14 +21,23 @@ namespace FeedIt.Controllers
 
             return View(user);
         }
-        public ActionResult profile(string userID)
+        public ActionResult Profile(string userID)
         {
             if(!String.IsNullOrEmpty(userID))
             {
+                List<UserFeed> profileFeed = new List<UserFeed>();
                 ApplicationUser user = new ApplicationUser();
                 user = ProfileService.Instance.getProfileByID(userID);
+                IEnumerable<Post> posts = NewsFeedService.Instance.getAllPostsFromUser(userID);
 
-                return View(user);
+                foreach (var post in posts)
+                {
+                    UserFeed singleUserFeed = new UserFeed();
+                    singleUserFeed.user = user;
+                    singleUserFeed.post = post;
+                    profileFeed.Add(singleUserFeed);
+                }
+                return View(profileFeed);
             }
             return View("Error");
         }
