@@ -8,8 +8,8 @@ namespace FeedIt.Models
 {
     public class FeedLists
     {
-        public IEnumerable<Post> userFeed { get; set; }
-        public IEnumerable<Post> groupsFeed { get; set; }
-        public IEnumerable<Post> allFeed { get; set; }
+        public IEnumerable<UserFeed> userFeed { get; set; }
+        public IEnumerable<UserFeed> groupsFeed { get; set; }
+        public IEnumerable<UserFeed> allFeed { get; set; }
     }
 }

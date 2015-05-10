@@ -16,7 +16,7 @@ namespace FeedIt.Controllers
         public ActionResult Index()
         {
             string strID = User.Identity.GetUserId();
-            List<Post> model = NewsFeedService.Instance.getFeedForUser(strID);
+            List<UserFeed> model = NewsFeedService.Instance.getFeedForUser(strID);
 
             return View(model);
         }
@@ -24,7 +24,7 @@ namespace FeedIt.Controllers
         public ActionResult groupFeed()
         {
             string strID = User.Identity.GetUserId();
-            List<Post> model = NewsFeedService.Instance.getFeedForGroups(strID);
+            List<UserFeed> model = NewsFeedService.Instance.getFeedForGroups(strID);
 
             return View(model);
         }
@@ -32,7 +32,7 @@ namespace FeedIt.Controllers
         public ActionResult allFeed()
         {
             string strID = User.Identity.GetUserId();
-            List<Post> model = NewsFeedService.Instance.getAllPosts(strID);
+            List<UserFeed> model = NewsFeedService.Instance.getAllPosts(strID);
 
             return View(model);
         }

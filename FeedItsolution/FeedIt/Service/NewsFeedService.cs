@@ -23,7 +23,7 @@ namespace FeedIt.Service
             }
         }
 
-        public List<Post> getFeedForUser(string userID)
+        public List<UserFeed> getFeedForUser(string userID)
         {
             using (var db = new ApplicationDbContext())
             {
@@ -31,7 +31,7 @@ namespace FeedIt.Service
                                   where s.follower == userID
                                   select s).ToList();
 
-                List<Post> postsList = new List<Post>();
+                List<UserFeed> postsList = new List<UserFeed>();
 
                 foreach(var s in followings)
                 {
@@ -40,19 +40,22 @@ namespace FeedIt.Service
                                  select b).ToList();
                     foreach (var c in posts)
                     {
-                           var post = (from n in db.Posts
+                        UserFeed userFeed = new UserFeed();
+                           userFeed.post = (from n in db.Posts
                                        where n.ID == c.ID
                                        select n).SingleOrDefault();
-
-                           postsList.Add(post);
+                           userFeed.user = (from h in db.Users
+                                            where h.Id == userFeed.post.owner
+                                            select h).SingleOrDefault();
+                           postsList.Add(userFeed);
                     }
                 }
-                var dateOrdered = postsList.OrderBy(x => x.date).Take(15).ToList();
+                var dateOrdered = postsList.OrderBy(x => x.post.date).Take(15).ToList();
                 return dateOrdered;
             }
            
         }
-        public List<Post> getFeedForGroups(string userID)
+        public List<UserFeed> getFeedForGroups(string userID)
         {
             using (var db = new ApplicationDbContext())
             {
@@ -60,33 +63,34 @@ namespace FeedIt.Service
                               where s.userID == userID
                               select s).ToList();
 
-                List<Post> postsList = new List<Post>();
+                List<UserFeed> postsList = new List<UserFeed>();
 
                 foreach(var d in groups)
                 {
-                     var post = (from n in db.Posts
-                                 where n.ID == d.groupID
-                                 select n).ToList();
-                     foreach (var item in post)
-                     {
-                           postsList.Add(item);
-                     }
+                    UserFeed userFeed = new UserFeed();
+                    userFeed.post = (from n in db.Posts
+                                     where n.ID == d.groupID
+                                     select n).SingleOrDefault();
+                    userFeed.user = (from h in db.Users
+                                     where h.Id == userFeed.post.owner
+                                     select h).SingleOrDefault();
+                    postsList.Add(userFeed);
                 }
-                var dateOrdered = postsList.OrderBy(x => x.date).Take(15).ToList();
+                var dateOrdered = postsList.OrderBy(x => x.post.date).Take(15).ToList();
                 return dateOrdered;
             }
             
         }
 
-        public List<Post> getAllPosts(string userID)
+        public List<UserFeed> getAllPosts(string userID)
         {
-            List<Post> userPosts = getFeedForUser(userID);
-            List<Post> groupPosts = getFeedForGroups(userID);
+            List<UserFeed> userPosts = getFeedForUser(userID);
+            List<UserFeed> groupPosts = getFeedForGroups(userID);
             foreach(var s in userPosts)
             {
                 groupPosts.Add(s);
             }
-            var dateOrdered = groupPosts.OrderBy(x => x.date).Take(15).ToList();
+            var dateOrdered = groupPosts.OrderBy(x => x.post.date).Take(15).ToList();
             return dateOrdered;
         }
 
