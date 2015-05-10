@@ -10,19 +10,20 @@ namespace FeedIt.Service
     public class UserService
     {
         /*
-        public void editUser(U userID)
+        public void editUser(string userID)
         {
-            using (var db = new ApplicationDbContext())
+           using (var db = new ApplicationDbContext())
            {
                  var edit = (from s in db.Users
                             where s.Id == userID
                            select s).SingleOrDefault();
-         * }
-          ;
+           }
+          
 
             
         }
         */
+       
         public void deleteUser(int userID)
         {
             
