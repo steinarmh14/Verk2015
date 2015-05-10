@@ -20,7 +20,7 @@
 <div>
     @using (Html.BeginForm("createPost", "Group", FormMethod.Post, new { id = "postform" }))
     {
-        <input type="hidden" name="groupID" value=@Model.group.ID/>
+        <input type="hidden" name="groupID" id="groupID" value=@Model.group.ID/>
         <input type="text" name="picture" id="picture" />
         <input type="text" placeholder="Description/recipe" name="description" id="description" />
         <input type="submit" class="createpost" value="Post" />
