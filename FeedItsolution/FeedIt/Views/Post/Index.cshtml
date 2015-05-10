@@ -1,0 +1,21 @@
+﻿@model FeedIt.Models.PostViewModel
+@{
+    ViewBag.Title = "Index";
+}
+
+<div>
+    <a class="col-md-offset-1 col-md-1" href=@Url.Action("profile", "Profile", new { userID = Model.user.Id})>@Model.user.UserName</a>
+    @Model.post.date
+</div>
+<div>
+        <img class="col-md-10" src="@Url.Content(Model.post.picture)" alt="picture" style="width:300px; height:300px;" />
+</div>
+<div>
+    <p>@Model.post.about</p>
+</div>
+
+@foreach(var comment in Model.comments)
+{
+    
+}
+

@@ -15,31 +15,12 @@ namespace FeedIt.Controllers
         public ActionResult Index(int id)
         {
             Post post = PostService.Instance.getPostById(id);
-            return View(post);
+            PostViewModel model = new PostViewModel();
+            model.post = post;
+            model.comments = PostService.Instance.getCommentsForPost(id);
+            model.user = UserService.Instance.getProfileByID(post.owner);
+            return View(model);
         }
-
-        /*[HttpPost]
-        public void createPost(FormCollection collection)
-        {
-            string about = collection["description"];
-            string picture = collection["picture"];
-
-            Post post = new Post();
-
-            // til að byrja með er ratingið alltaf 0!!!!! fix later
-            post.about = about;
-            post.picture = picture;
-            post.date = DateTime.Now;
-            post.rateCount = 0;
-            post.rating = 0;
-
-            string strID = User.Identity.GetUserId();
-            //Console.WriteLine(strID);
-
-            PostService.Instance.createPost(post, strID);
-            RedirectToAction("~Controllers/Home/Index");
-            return RedirectToAction("Index");
-        }*/
 
         [HttpPost]
         public ActionResult ratePost(int? postID, int rating)
