@@ -37,6 +37,7 @@ namespace FeedIt.Controllers
 
             // til að byrja með er ratingið alltaf 0!!!!! fix later
             post.about = about;
+            post.groupID = -1;
             post.picture = picture;
             post.date = DateTime.Now;
             post.rateCount = 0;

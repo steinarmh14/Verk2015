@@ -31,8 +31,11 @@
                @* @Html.ActionLink("Logoið", "Index", "Home", null, new { @class = "navbar-brand" })*@
                 <div class="wrap">
                     <div class="search">
-                        <input type="text" class="searchTerm" placeholder="What are you looking for?">
-                        <input type="submit" class="searchButton">
+                        @using (Html.BeginForm("Search", "Search", FormMethod.Post, new {  id = "postform"}))
+                        {
+                            <input type="text" class="searchTerm" placeholder="What are you looking for?" id="search" name="search">
+                            <input type="submit" class="searchButton">
+                        }
                     </div>
                 </div>
     }

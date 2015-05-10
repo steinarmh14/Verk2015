@@ -12,11 +12,11 @@ namespace FeedIt.Controllers
     public class GroupController : Controller
     {
         // GET: Group
-        public ActionResult Index() 
+        public ActionResult Index()
         {
             return View();
         }
-        
+
         public ActionResult CreateGroup()
         {
             return View();
@@ -34,6 +34,7 @@ namespace FeedIt.Controllers
                 {
                     UserFeed singleUserFeed = new UserFeed();
                     singleUserFeed.post = post;
+                    singleUserFeed.user = UserService.Instance.getProfileByID(post.owner);
                     groupFeed.Add(singleUserFeed);
                 }
                 GroupViewModel model = new GroupViewModel();
@@ -78,13 +79,13 @@ namespace FeedIt.Controllers
         [HttpPost]
         public ActionResult deleteGroup(int? id)
         {
-            if(id.HasValue)
+            if (id.HasValue)
             {
                 int realID = id.Value;
                 string strID = User.Identity.GetUserId();
                 Group group = GroupService.Instance.getGroupByID(realID);
 
-                if(strID == group.owner)
+                if (strID == group.owner)
                 {
                     GroupService.Instance.deleteGroup(realID);
                 }
@@ -115,9 +116,7 @@ namespace FeedIt.Controllers
             string about = collection["description"];
             string picture = collection["picture"];
             string groupID = collection["groupID"];
-
             int ID = Int32.Parse(groupID);
-
 
             Post post = new Post();
 
@@ -130,10 +129,10 @@ namespace FeedIt.Controllers
             post.groupID = ID;
 
             string strID = User.Identity.GetUserId();
-
+            post.owner = strID;
             PostService.Instance.createPost(post, strID);
 
-            return RedirectToAction("GroupView", new { id = ID});
+            return RedirectToAction("GroupView", new { id = ID });
         }
     }
 }

@@ -29,7 +29,6 @@ namespace FeedIt.Service
             using (var db = new ApplicationDbContext())
             {
                 post.owner = userID;
-                post.groupID = -1;
                 db.Posts.Add(post);
                 db.SaveChanges();
             }
