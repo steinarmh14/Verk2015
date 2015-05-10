@@ -77,9 +77,7 @@ namespace FeedIt.Service
                post.rateCount = rateCount;
                post.rating = rating;
                db.SaveChanges();
-            }
-
-            
+            }           
         }
 
         public void addComment(Comment comment, int postID)

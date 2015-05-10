@@ -18,7 +18,7 @@
 
 @using (Html.BeginForm("Comment", "Post", FormMethod.Post, new { id = "postform" }))
 {
-    <input type="hidden" name="postID" id="postID" />
+    <input type="hidden" name="postID" id="postID" value=@Model.post.ID />
     <input type="text" placeholder="Comment" name="content" id="content" />
     <input type="submit" class="createpost" value="Post" />
 }

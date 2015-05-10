@@ -47,7 +47,7 @@ namespace FeedIt.Controllers
             string strID = User.Identity.GetUserId();
             comment.ownerID = strID;
             PostService.Instance.addComment(comment, realPostID);
-            return View();
+            return RedirectToAction("Index", new { id = @realPostID });
         }
 
         public ActionResult getComments(int? postID)
