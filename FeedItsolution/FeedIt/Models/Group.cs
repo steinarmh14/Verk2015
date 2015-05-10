@@ -11,5 +11,6 @@ namespace FeedIt.Models
         public string name { get; set; }
         public string about { get; set; }
         public string owner { get; set; }
+        public string picture { get; set; }
     }
 }
