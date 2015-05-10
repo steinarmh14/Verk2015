@@ -32,6 +32,56 @@ namespace FeedIt.Service
             }    
         }
 
+        public void followGroup(int groupID, string userID)
+        {
+            using (var db = new ApplicationDbContext())
+            {
+                GroupFollower groupFollower = new GroupFollower();
+                groupFollower.groupID = groupID;
+                groupFollower.userID = userID;
+                db.GroupFollowers.Add(groupFollower);
+                db.SaveChanges();
+            } 
+        }
+
+        public List<ApplicationUser> getFollowers(int groupID)
+        {
+            List<ApplicationUser> result = new List<ApplicationUser>();
+            using (var db = new ApplicationDbContext())
+            {
+                var users = (from s in db.GroupFollowers
+                                      where s.groupID == groupID
+                                      select s).ToList();
+                foreach (var item in users)
+                {
+                    ApplicationUser user = (from c in db.Users
+                                            where c.Id == item.userID
+                                            select c).SingleOrDefault();
+                    result.Add(user);
+                }
+            }
+            return result;
+        }
+
+        public List<Group> getGroups(string userID)
+        {
+            List<Group> result = new List<Group>();
+            using (var db = new ApplicationDbContext())
+            {
+                var users = (from s in db.GroupFollowers
+                             where s.userID == userID
+                             select s).ToList();
+                foreach (var item in users)
+                {
+                    Group group = (from c in db.Groups
+                                            where c.ID == item.groupID
+                                            select c).SingleOrDefault();
+                    result.Add(group);
+                }
+            }
+            return result;
+        }
+
         public void deleteGroup(int groupID)
         {
             using (var db = new ApplicationDbContext())

@@ -5,10 +5,9 @@ using System.Web;
 
 namespace FeedIt.Models
 {
-    public class PostViewModel
-    {
-        public Post post { get; set; }
-        public IEnumerable<CommentUser> comments { get; set; }
+	public class CommentUser
+	{
+        public Comment comment { get; set; }
         public ApplicationUser user { get; set; }
-    }
+	}
 }

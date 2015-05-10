@@ -11,6 +11,22 @@ namespace FeedIt.Controllers
 {
     public class SearchController : Controller
     {
+        public ActionResult Index()
+        {
+            return View();
+        }
+
+        public ActionResult Search (FormCollection collection)
+        {
+            string search = collection["search"];
+            SearchViewModel model = new SearchViewModel();
+
+            model.groups = GroupService.Instance.getGroupsByName(search);
+            model.users = UserService.Instance.getProfilesByName(search);
+
+            return View(model);
+        }
+
         public ActionResult searchGroupsByName(string name)
         {
             if (!String.IsNullOrEmpty(name))

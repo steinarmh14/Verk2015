@@ -12,20 +12,42 @@ namespace FeedIt.Controllers
     public class GroupController : Controller
     {
         // GET: Group
-        public ActionResult Index(int? id) 
+        public ActionResult Index() 
         {
-            if(id.HasValue)
+            return View();
+        }
+        
+        public ActionResult CreateGroup()
+        {
+            return View();
+        }
+
+        public ActionResult GroupView(int? id)
+        {
+            if (id.HasValue)
             {
                 int realID = id.Value;
-                Group model = GroupService.Instance.getGroupByID(realID);
+                List<UserFeed> groupFeed = new List<UserFeed>();
+                ApplicationUser user = new ApplicationUser();
+                string userID = User.Identity.GetUserId();
+                user = ProfileService.Instance.getProfileByID(userID);
+                IEnumerable<Post> posts = NewsFeedService.Instance.getFeedForGroup(realID);
+
+                foreach (var post in posts)
+                {
+                    UserFeed singleUserFeed = new UserFeed();
+                    singleUserFeed.user = user;
+                    singleUserFeed.post = post;
+                    groupFeed.Add(singleUserFeed);
+                }
+                ProfileViewModel model = new ProfileViewModel();
+                model.feed = groupFeed;
+                model.user = user;
+                model.followers = GroupService.Instance.getFollowers(realID);
+                model.followings = null;
                 return View(model);
             }
             return View("Error");
-        }
-        
-        public ActionResult CreateGroupView()
-        {
-            return View();
         }
 
         public ActionResult MyGroupsView()
@@ -40,20 +62,22 @@ namespace FeedIt.Controllers
 
 
         [HttpPost]
-        public ActionResult createGroup(FormCollection collection)
+        public ActionResult Create(FormCollection collection)
         {
-            string name = collection["name"];
-            string about = collection["about"];
+            string name = collection["groupName"];
+            string about = collection["aboutGroup"];
             string strID = User.Identity.GetUserId();
+            string picture = collection["groupPicture"];
 
             Group group = new Group();
             group.about = about;
             group.name = name;
             group.owner = strID;
+            group.picture = picture;
 
             GroupService.Instance.createGroup(group);
 
-            return View();
+            return RedirectToAction("CreateGroup");
         }
 
         [HttpPost]

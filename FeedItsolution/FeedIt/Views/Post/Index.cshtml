@@ -4,27 +4,43 @@
 }
 
 <h2>Post</h2>
+<div class="col-md-12">
+    <div class="col-md-offset-1 col-md-1">
 
-<div>
-    <a class="col-md-offset-1 col-md-1" href=@Url.Action("profile", "Profile", new { userID = Model.user.Id})>@Model.user.UserName</a>
-    @Model.post.date
-</div>
-<div>
+        <a href=@Url.Action("profile", "Profile", new { userID = Model.user.Id})>@Model.user.UserName</a>
+
+        @Model.post.date
+
+    </div>
+
+    <div style="margin-bottom:25px;">
+
         <img class="col-md-10" src="@Url.Content(Model.post.picture)" alt="picture" style="width:300px; height:300px;" />
+
+    </div>
+</div>
+
+<div class="col-md-offset-3 col-md-9" style="margin-bottom:25px;">
+
+    <p>@Model.post.about</p>
+
 </div>
 <div>
-    <p>@Model.post.about</p>
+    @using (Html.BeginForm("Comment", "Post", FormMethod.Post, new { id = "postform" }))
+    {
+        <input type="hidden" name="postID" id="postID" value=@Model.post.ID />
+        <textarea placeholder="Comment" cols="10" rows="4" name="content" id="content" class="col-md-offset-2 col-md-2"></textarea>
+    <input type="submit" class="col-md-offset-1 col-md-1" value="Post" />
+    }
 </div>
-
-@using (Html.BeginForm("Comment", "Post", FormMethod.Post, new { id = "postform" }))
-{
-    <input type="hidden" name="postID" id="postID" value=@Model.post.ID />
-    <input type="text" placeholder="Comment" name="content" id="content" />
-    <input type="submit" class="createpost" value="Post" />
-}
-
 @foreach(var comment in Model.comments)
 {
-    
+    <div>
+        <p>
+            @comment.user.UserName
+            @comment.comment.comment
+            @comment.comment.date
+        </p>
+    </div>
 }
 
