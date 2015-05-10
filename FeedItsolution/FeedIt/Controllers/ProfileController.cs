@@ -78,27 +78,29 @@ namespace FeedIt.Controllers
         }
 
         [HttpPost]
-        public ActionResult follow(string userID)
+        public ActionResult Follow(FormCollection collection)
         {
+            string userID = collection["userID"];
             if(!String.IsNullOrEmpty(userID))
             {
                 string strID = User.Identity.GetUserId();
 
                 FollowerService.Instance.addFollower(strID, userID);
             }
-            return View();
+            return RedirectToAction("Profile", new { userID =  userID });
         }
 
         [HttpPost]
-        public ActionResult unfollow(string userID)
+        public ActionResult Unfollow(FormCollection collection)
         {
+            string userID = collection["userID"];
             if(!String.IsNullOrEmpty(userID))
             {
                 string strID = User.Identity.GetUserId();
 
                 FollowerService.Instance.removeFollower(strID, userID);
             }
-            return View();
+            return RedirectToAction("Profile", new { userID = userID });
         }
     }
 }

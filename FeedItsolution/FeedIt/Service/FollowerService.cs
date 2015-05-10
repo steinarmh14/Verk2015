@@ -23,12 +23,13 @@ namespace FeedIt.Service
         }
         public void addFollower(string followerID, string followingID)
         {
-            var db = new ApplicationDbContext();
+            using (var db = new ApplicationDbContext())
+            {
+                Follower follower = new Follower { follower = followerID, following = followingID };
 
-            Follower follower = new Follower { follower = followerID, following = followingID };
-
-            db.Followers.Add(follower);
-            db.SaveChanges();
+                db.Followers.Add(follower);
+                db.SaveChanges();
+            }
         }
 
         public void removeFollower(string followerID, string followingID)
@@ -40,6 +41,7 @@ namespace FeedIt.Service
                                 select s).FirstOrDefault();
 
                 db.Followers.Remove(follower);
+                db.SaveChanges();
             }
         }
 
