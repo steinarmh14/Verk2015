@@ -50,7 +50,7 @@ namespace FeedIt.Service
                            postsList.Add(userFeed);
                     }
                 }
-                var dateOrdered = postsList.OrderBy(x => x.post.date).Take(15).ToList();
+                var dateOrdered = postsList.OrderByDescending(x => x.post.date).Take(15).ToList();
                 return dateOrdered;
             }
            
@@ -77,7 +77,7 @@ namespace FeedIt.Service
                                      select h).SingleOrDefault();
                     postsList.Add(userFeed);
                 }
-                var dateOrdered = postsList.OrderBy(x => x.post.date).Take(15).ToList();
+                var dateOrdered = postsList.OrderByDescending(x => x.post.date).Take(15).ToList();
                 return dateOrdered;
             }
             
@@ -103,7 +103,7 @@ namespace FeedIt.Service
                              where b.owner == userID
                              select b).ToList();
 
-                var dateOrdered = posts.OrderBy(x => x.date).ToList();
+                var dateOrdered = posts.OrderByDescending(x => x.date).ToList();
                 return dateOrdered;           
             }
         }
@@ -116,7 +116,7 @@ namespace FeedIt.Service
                              where b.groupID == groupID
                              select b).ToList();
 
-                var dateOrdered = posts.OrderBy(x => x.date).ToList();
+                var dateOrdered = posts.OrderByDescending(x => x.date).ToList();
                 return dateOrdered;
             }
         }
