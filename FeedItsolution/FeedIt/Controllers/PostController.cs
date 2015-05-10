@@ -17,8 +17,18 @@ namespace FeedIt.Controllers
             Post post = PostService.Instance.getPostById(id);
             PostViewModel model = new PostViewModel();
             model.post = post;
-            model.comments = PostService.Instance.getCommentsForPost(id);
+            IEnumerable<Comment> comments = PostService.Instance.getCommentsForPost(id);
             model.user = UserService.Instance.getProfileByID(post.owner);
+            List<CommentUser> commentList = new List<CommentUser>();
+            foreach (var item in comments)
+            {
+                CommentUser commentUser = new CommentUser();
+                commentUser.comment = item;
+                ApplicationUser user = UserService.Instance.getProfileByID(item.ownerID);
+                commentUser.user = user;
+                commentList.Add(commentUser);
+            }
+            model.comments = commentList;
             return View(model);
         }
 

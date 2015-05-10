@@ -35,6 +35,12 @@
 </div>
 @foreach(var comment in Model.comments)
 {
-    
+    <div>
+        <p>
+            @comment.user.UserName
+            @comment.comment.comment
+            @comment.comment.date
+        </p>
+    </div>
 }
 
