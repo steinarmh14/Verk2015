@@ -55,6 +55,7 @@ namespace FeedIt.Service
             }
            
         }
+
         public List<UserFeed> getFeedForGroups(string userID)
         {
             using (var db = new ApplicationDbContext())
@@ -119,5 +120,6 @@ namespace FeedIt.Service
                 return dateOrdered;
             }
         }
+
     }
 }
