@@ -4194,11 +4194,6 @@ textarea.input-group-sm > .input-group-btn > .btn {
   margin-bottom: 0;
 }
 
-.logo
-{
-    width: 60px;
-    height: 60px;
-}
 
 .navbar-brand {
    /* background: url(../Images/image.jpg) no-repeat top left;
@@ -4516,7 +4511,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
 }
 
 .navbar-inverse {
-  background-color: #2ebd2e;
+  background-color: #e6e6e6;
   border-color: #fff;
 }
 
