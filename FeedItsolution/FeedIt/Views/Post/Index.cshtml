@@ -4,43 +4,44 @@
 }
 
 <h2>Post</h2>
-<div class="col-md-12">
-    <div class="col-md-offset-1 col-md-1">
+<body>
+    <div class="wholepage">
+        <div class="col-md-12">
+            <div>
+                <a href=@Url.Action("profile", "Profile", new { userID = Model.user.Id})>@Model.user.UserName </a>
+                <p>@Model.post.date</p>
+            </div>
+            <div>
+                <img class="postpicture" src="@Url.Content(Model.post.picture)" alt="picture" />
+            </div>
+        </div>
 
-        <a href=@Url.Action("profile", "Profile", new { userID = Model.user.Id})>@Model.user.UserName</a>
-
-        @Model.post.date
-
-    </div>
-
-    <div style="margin-bottom:25px;">
-
-        <img class="col-md-10" src="@Url.Content(Model.post.picture)" alt="picture" style="width:300px; height:300px;" />
-
-    </div>
-</div>
-
-<div class="col-md-offset-3 col-md-9" style="margin-bottom:25px;">
-
-    <p>@Model.post.about</p>
-
-</div>
-<div>
-    @using (Html.BeginForm("Comment", "Post", FormMethod.Post, new { id = "postform" }))
-    {
+        <div>
+            <p class="recipe">@Model.post.about</p>
+        </div>
+        <div>
+        @using (Html.BeginForm("Comment", "Post", FormMethod.Post, new { id = "commentForm" }))
+        {
         <input type="hidden" name="postID" id="postID" value=@Model.post.ID />
-        <textarea placeholder="Comment" cols="10" rows="4" name="content" id="content" class="col-md-offset-2 col-md-2"></textarea>
-    <input type="submit" class="col-md-offset-1 col-md-1" value="Post" />
-    }
-</div>
-@foreach(var comment in Model.comments)
-{
-    <div>
-        <p>
-            @comment.user.UserName
-            @comment.comment.comment
-            @comment.comment.date
-        </p>
+        <div>
+            <textarea placeholder="Comment" cols="75" rows="5" name="content" id="content"></textarea>
+        </div>
+        <div>
+            <input type="submit" value="Post" />
+        </div>
+        }
+        </div>
+        @foreach (var comment in Model.comments)
+        {
+            <blockquote>
+                <div>
+                    <p>
+                        @comment.comment.comment
+                    </p>
+                    <footer> - @comment.user.UserName at @comment.comment.date</footer>
+                </div>
+            </blockquote>
+        }
     </div>
-}
+</body>
 

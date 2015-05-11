@@ -48,9 +48,14 @@ video {
     height:500px;
 }
 
+.recipe{
+    font-size:larger;
+}
+
 .wholepage{
-    margin-left: 30%;
-    margin-right: 30%;
+    witdh: 50%;
+    margin-left: auto;
+    margin-right: auto;
     margin-top: 10%;
 }
 

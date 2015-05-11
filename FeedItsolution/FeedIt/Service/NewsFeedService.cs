@@ -91,7 +91,7 @@ namespace FeedIt.Service
             {
                 groupPosts.Add(s);
             }
-            var dateOrdered = groupPosts.OrderBy(x => x.post.date).Take(15).ToList();
+            var dateOrdered = groupPosts.OrderByDescending(x => x.post.date).Take(15).ToList();
             return dateOrdered;
         }
 

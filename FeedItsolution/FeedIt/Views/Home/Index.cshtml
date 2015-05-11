@@ -5,42 +5,44 @@
 
 <!DOCTYPE html>
 <html>
-<head><title>Feedit</title>
-    </head>
-<div class="wholepage">
-    <div class="bodydiv">
-        <body>
+<head>
+    <title>Feedit</title>
+</head>
+<body>
+    <div class="wholepage">
+        <div class="bodydiv">
             <h2>News Feed</h2>
-            <div>  
-                @using (Html.BeginForm("createPost", "Home", FormMethod.Post, new {  id = "postform"}))
+            <div>
+                @using (Html.BeginForm("createPost", "Home", FormMethod.Post, new { id = "makePostForm" }))
                 {
-                    <input type="text" name="picture" id="picture"/>
-                    <textarea rows="7" cols="10" placeholder="Description/recipe" name="description" id="description"></textarea>
-                    <input type="submit" class="createpost" value="Post" />
+                    <input type="text" name="picture" id="picture" />
+                    <div>
+                        <textarea rows="7" cols="75" placeholder="Description/recipe" name="description" id="description"></textarea>
+                    </div>
+                    <div>
+                        <input type="submit" class="createpost" value="Post" />
+                    </div>
                 }
-                
             </div>
             <div class="posts">
                 <p>
                     Feed from friends
                 </p>
-                @Html.Partial("UserFeed",Model.userFeed)
+                @Html.Partial("UserFeed", Model.userFeed)
             </div>
             <div class="posts">
                 <p>
                     Feed from groups
                 </p>
-                @Html.Partial("UserFeed",Model.groupsFeed)
+                @Html.Partial("UserFeed", Model.groupsFeed)
             </div>
             <div class="posts">
                 <p>
                     Feed from friends and groups
                 </p>
-                @Html.Partial("UserFeed",Model.allFeed)
+                @Html.Partial("UserFeed", Model.allFeed)
             </div>
-        </body>
-
+        </div>
     </div>
-
-</div>
+</body>
 </html>
