@@ -73,7 +73,7 @@ namespace FeedIt.Controllers
 
             GroupService.Instance.createGroup(group);
 
-            return RedirectToAction("CreateGroup");
+            return RedirectToAction("GroupView", new { id = group.ID });
         }
 
         [HttpPost]
