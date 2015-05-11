@@ -15,7 +15,7 @@
                 @using (Html.BeginForm("createPost", "Home", FormMethod.Post, new {  id = "postform"}))
                 {
                     <input type="text" name="picture" id="picture"/>
-                    <input type="text" placeholder="Description/recipe" name="description" id="description"/>
+                    <textarea rows="7" cols="10" placeholder="Description/recipe" name="description" id="description"></textarea>
                     <input type="submit" class="createpost" value="Post" />
                 }
                 
