@@ -43,6 +43,17 @@ video {
   display: inline-block;
 }
 
+.postpicture{
+    width:500px;
+    height:500px;
+}
+
+.wholepage{
+    margin-left: 30%;
+    margin-right: 30%;
+    margin-top: 10%;
+}
+
 audio:not([controls]) {
   display: none;
   height: 0;
