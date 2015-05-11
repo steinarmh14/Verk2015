@@ -50,7 +50,6 @@ video {
 
 .recipe{
     font-size:larger;
-    text-align:right;
 }
 
 .wholepage{
@@ -6862,5 +6861,4 @@ td.visible-print {
       height: 200px;
       background-color: #000
   }
-
 }
