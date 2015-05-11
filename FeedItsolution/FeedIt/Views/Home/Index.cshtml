@@ -9,42 +9,44 @@
     <title>Feedit</title>
 </head>
 <body>
-    <div class="text-center">
-        <div class="bodydiv">
-            <h2>News Feed</h2>
-            <div>
-                @using (Html.BeginForm("createPost", "Home", FormMethod.Post, new { id = "makePostForm" }))
-                {
-                <div>
-                    <input class="col-xs-12" type="text" name="picture" id="picture" />
-                <div>
-                    <textarea rows="7" cols="75" placeholder="Description/recipe" name="description" id="description"></textarea>
+
+            <div class="text-center">
+                <div class="bodydiv">
+                    <h2>News Feed</h2>
+                    <div>
+                        @using (Html.BeginForm("createPost", "Home", FormMethod.Post, new { id = "makePostForm" }))
+                        {
+                            <div>
+                                <input class="col-xs-12" type="text" name="picture" id="picture" />
+                                <div>
+                                    <textarea rows="7" cols="75" placeholder="Description/recipe" name="description" id="description"></textarea>
+                                </div>
+                                <div>
+                                    <input type="submit" class="text-right" value="Post" />
+                                </div>
+                            </div>
+                        }
+                    </div>
+                    <div class="posts">
+                        <p>
+                            Feed from friends
+                        </p>
+                        @Html.Partial("UserFeed", Model.userFeed)
+                    </div>
+                    <div class="posts">
+                        <p>
+                            Feed from groups
+                        </p>
+                        @Html.Partial("UserFeed", Model.groupsFeed)
+                    </div>
+                    <div class="posts">
+                        <p>
+                            Feed from friends and groups
+                        </p>
+                        @Html.Partial("UserFeed", Model.allFeed)
+                    </div>
                 </div>
-                <div>
-                    <input type="submit" class="text-right" value="Post" />
-                </div>
-                </div>
-                }
             </div>
-            <div class="posts">
-                <p>
-                    Feed from friends
-                </p>
-                @Html.Partial("UserFeed", Model.userFeed)
-            </div>
-            <div class="posts">
-                <p>
-                    Feed from groups
-                </p>
-                @Html.Partial("UserFeed", Model.groupsFeed)
-            </div>
-            <div class="posts">
-                <p>
-                    Feed from friends and groups
-                </p>
-                @Html.Partial("UserFeed", Model.allFeed)
-            </div>
-        </div>
-    </div>
+
 </body>
 </html>
