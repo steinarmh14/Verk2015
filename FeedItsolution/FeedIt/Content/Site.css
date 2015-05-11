@@ -4,6 +4,7 @@
     width:1200px !important;/*hér*/
     margin-left:auto;
     margin-right:auto;
+   
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -151,7 +152,7 @@ input[type="checkbox"].input-validation-error {
 	right: -40px;
 	bottom: -40px;
 	width: auto;
-	height: auto;
+	height: 125%;
 	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0)), color-stop(100%,rgba(0,0,0,0.65))); /* Chrome,Safari4+ */
 	z-index: 1;
 	opacity: 0.7;
@@ -214,7 +215,6 @@ input[type="checkbox"].input-validation-error {
 }
 
 .login input[type=button]{
-	width: 100px;
 	height: 35px;
 	background: #fff;
 	border: 1px solid #fff;
@@ -237,7 +237,6 @@ input[type="checkbox"].input-validation-error {
 }
 
 .login input[type=submit]{
-	width: 100px;
 	height: 35px;
 	background: #fff;
 	border: 1px solid #fff;
@@ -314,6 +313,23 @@ border-bottom:3px solid rgba(255,255,255,0.6);
     margin-top: 2%;
 }
 
+.editProfile{
+	position: absolute;
+	z-index: 2;
+}
+
+.editProfile div{
+	float: left;
+	color: #fff;
+	font-family: 'Exo', sans-serif;
+	font-size: 25px;
+	font-weight: 200;
+}
+
+.editProfile div span{
+	color: #5379fa !important;
+}
+
 .Post{
     text-align:center;
     width:500px;
@@ -340,6 +356,24 @@ border-bottom:3px solid rgba(255,255,255,0.6);
     border-width:thin;
     width:500px;
     height:500px;
+}
+
+.profilepicture{
+    border-style:solid;
+    border-color:black;
+    border-width:thin;
+    width:50px;
+    height:50px;
+}
+
+.groupprofilepicture
+{
+    border-style:solid;
+    border-color:black;
+    border-width:thin;
+    width:75px;
+    height:75px;
+
 }
 
 .Postuser{
@@ -371,7 +405,6 @@ border-bottom:3px solid rgba(255,255,255,0.6);
 .wrapper
 {
     width:100%;
-    background-color: #F9F9F9;
 }
 
 .navleft
@@ -383,6 +416,7 @@ border-bottom:3px solid rgba(255,255,255,0.6);
 
 .navcenter
 {
+    background-color:#E0E0E0;
     width:70%;
     float:right;
 }
@@ -391,4 +425,30 @@ border-bottom:3px solid rgba(255,255,255,0.6);
 {
     float:right;
     width: 30%;
+}
+
+.createpostforms 
+{
+    margin-bottom:13px;
+}
+
+.groupabout
+{
+   margin-top:20px;
+}
+
+.postbutton
+{
+    text-align:center;
+    margin-top:8px;
+}
+
+.margintop
+{
+    margin-top:15px;
+}
+
+.marginPassword
+{
+    margin-top: -1px;
 }

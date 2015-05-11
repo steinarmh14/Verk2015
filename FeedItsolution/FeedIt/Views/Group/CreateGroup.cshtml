@@ -6,35 +6,39 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>CreateGroupView</h2>
 
 @using (Html.BeginForm("Create", "Group", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
-    <h3>Create Group</h3>
-    <hr />
-    
-    <div class="form-group">
-        <div>
-            <p class="col-md-offset-1 col-md-1">Name</p>
-            <div class="col-md-10">
-                <input type="text" id="groupName" name="groupName"/>
+    <div class="line-separator"></div>
+    <div class="grad"></div>
+    <div class="header">
+        <div>feed<span>It</span></div>
+    </div>
+    <br>
+    <div class="login">
+        <div class="form-group">
+            <div>
+                <p class="fontLogin col-md-12">Name</p>
+            </div>
+            <div class="col-md-12">
+                <input type="text" id="groupName" name="groupName" />
             </div>
         </div>
-    </div>
-    <div class="form-group" >
-        <div>
-            <p class="col-md-offset-1 col-md-1">About group</p>
-            <div class="col-md-10">
+        <div class="form-group">
+            <div>
+                <p class="fontLogin col-md-12">About group</p>
+            </div>
+            <div class="col-md-12">
                 <textarea cols="45" rows="6" placeholder="About group..." id="aboutGroup" name="aboutGroup"></textarea>
             </div>
         </div>
-    </div>
-    <div class="form-group">
-        <div>
-            <label class="col-md-offset-1 col-md-1">Group picture</label>
-            <div class="col-md-10">
-                <input type="text" id="groupPicture" name="groupPicture"/>
-                <div class="col-md-offset-6">
+        <div class="form-group">
+            <div>
+                <label class="fontLogin col-md-12">Group picture</label>
+                <div class="col-md-12">
+                    <input type="text" id="groupPicture" name="groupPicture" />
+                </div>
+                <div class="col-md-12">
                     <input type="button" value="Cancel" class="btn btn-default" />
                     <input type="submit" value="Create" class="btn btn-default" />
                 </div>
