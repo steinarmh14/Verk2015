@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<FeedIt.Models.UserFeed>
 
-<div>
+<div class="text-center">
     @if (Model != null)
     {
         foreach (var item in Model)
@@ -16,7 +16,7 @@
                     <img src="@Url.Content(item.post.picture)" alt="picture" class="postpicture" />
                 </a>
             </div>
-            <div class="text-right">
+            <div class="Postabout">
                 <p>@item.post.about</p>
             </div>
         }
