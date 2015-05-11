@@ -314,17 +314,44 @@ border-bottom:3px solid rgba(255,255,255,0.6);
     margin-top: 2%;
 }
 
+.Post{
+    text-align:center;
+    width:500px;
+    margin-left:auto;
+    margin-right:auto;
+}
+
 .Postabout
   {
     margin-top:10px;
     border-style:solid;
-    border-bottom-color:blue;
+    border-color:black;
     border-width:thin;
     text-align:center;
     width:500px;
     margin-left:auto;
     margin-right:auto;
+    margin-bottom:50px;
   }
+
+.postpicture{
+    border-style:solid;
+    border-color:black;
+    border-width:thin;
+    width:500px;
+    height:500px;
+}
+
+.Postuser{
+    text-align: right;
+    margin-right: 40px;
+    font-size:larger;
+}
+
+.Posttime{
+    text-align: right;
+    margin-right: 40px;
+}
 
 .Commentsection
 {
@@ -344,12 +371,13 @@ border-bottom:3px solid rgba(255,255,255,0.6);
 .wrapper
 {
     width:100%;
+    background-color: #F9F9F9;
 }
 
 .navleft
 {
     float:left;
-    width:30%;
+    width:28%;
 }
 
 
@@ -357,4 +385,10 @@ border-bottom:3px solid rgba(255,255,255,0.6);
 {
     width:70%;
     float:right;
+}
+
+.navright
+{
+    float:right;
+    width: 30%;
 }
