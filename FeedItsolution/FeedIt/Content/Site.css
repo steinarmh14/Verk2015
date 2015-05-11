@@ -340,3 +340,21 @@ border-bottom:3px solid rgba(255,255,255,0.6);
     border: 4px solid #EEEEEE !important;
     border-radius:10px;
 }
+
+.wrapper
+{
+    width:100%;
+}
+
+.navleft
+{
+    float:left;
+    width:30%;
+}
+
+
+.navcenter
+{
+    width:70%;
+    float:right;
+}
