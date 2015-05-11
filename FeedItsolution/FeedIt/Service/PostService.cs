@@ -98,7 +98,7 @@ namespace FeedIt.Service
                                 where s.postID == ID
                                 select s).ToList();
 
-               var dateOrdered = comments.OrderBy(x => x.date).Take(15).ToList();
+               var dateOrdered = comments.OrderByDescending(x => x.date).Take(15).ToList();
 
                return dateOrdered;
             }
