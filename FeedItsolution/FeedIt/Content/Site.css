@@ -130,7 +130,6 @@ input[type="checkbox"].input-validation-error {
     float: right;
 }
 
-<!--Layout1-->
 .body{
 	position: absolute;
 	top: -20px;
@@ -309,4 +308,8 @@ margin-top: 15%;
 border-bottom:3px solid rgba(255,255,255,0.6);
 
 
+}
+#postform
+{
+    margin-top: 2%;
 }
