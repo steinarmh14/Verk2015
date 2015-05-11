@@ -5,12 +5,16 @@
 
 <h2>Profile page</h2>
 
-<h2>@Model.user.fullName</h2>
+<body>
+    <div class="text-center">
+        <h2>@Model.user.fullName</h2>
 
-<div>
-    <p>@Model.user.aboutMe</p>
-</div>
+        <div>
+            <p>@Model.user.aboutMe</p>
+        </div>
 
-<div>
-    @Html.Partial("UserFeed", Model.feed)
-</div>
+        <div>
+            @Html.Partial("UserFeed", Model.feed)
+        </div>
+    </div>
+</body>
