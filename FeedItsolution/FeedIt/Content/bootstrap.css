@@ -43,14 +43,9 @@ video {
   display: inline-block;
 }
 
-.postpicture{
-    width:500px;
-    height:500px;
-}
 
 .recipe{
     font-size:larger;
-    text-align:right;
 }
 
 .wholepage{
@@ -6862,5 +6857,4 @@ td.visible-print {
       height: 200px;
       background-color: #000
   }
-
 }
