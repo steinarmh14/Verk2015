@@ -8,7 +8,25 @@ namespace FeedIt.Models
     {
         public string fullName { get; set; }
         public string aboutMe { get; set; }
-        public string profilePicture { get; set; }
+        private string _profilePicture { get; set; }
+        public string profilePicture {
+            get
+            {
+                return _profilePicture;
+            }
+            set
+            {
+                if(string.IsNullOrEmpty(value))
+                {
+                    _profilePicture = "http://img1.wikia.nocookie.net/__cb20121001202731/theslenderman/images/c/ce/Question-mark-face.jpg";
+                }
+                else
+                {
+                    _profilePicture = value;
+                }
+                
+            }
+        }
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>

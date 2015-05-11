@@ -79,7 +79,7 @@ namespace FeedIt.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser() { UserName = model.UserName, fullName = model.FullName};
+                var user = new ApplicationUser() { UserName = model.UserName, fullName = model.FullName, profilePicture = String.Empty};
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -149,7 +149,7 @@ namespace FeedIt.Controllers
 
         public ActionResult ChangeUserInfo()
         {
-            ApplicationUser model = UserService.Instance.getProfileByID(User.Identity.GetUserId());
+            ApplicationUser model = ProfileService.Instance.getProfileByID(User.Identity.GetUserId());
             return View(model);
         }
 

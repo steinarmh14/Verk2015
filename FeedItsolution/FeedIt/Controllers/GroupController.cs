@@ -34,7 +34,7 @@ namespace FeedIt.Controllers
                 {
                     UserFeed singleUserFeed = new UserFeed();
                     singleUserFeed.post = post;
-                    singleUserFeed.user = UserService.Instance.getProfileByID(post.owner);
+                    singleUserFeed.user = ProfileService.Instance.getProfileByID(post.owner);
                     groupFeed.Add(singleUserFeed);
                 }
                 GroupViewModel model = new GroupViewModel();
