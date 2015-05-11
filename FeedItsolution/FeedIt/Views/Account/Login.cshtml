@@ -77,7 +77,7 @@
             @Html.LabelFor(m => m.Password)
         </div>
         <div class="col-md-12">
-            @Html.TextBoxFor(m => m.Password, new { @class = "form-control" })
+            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
             @Html.ValidationMessageFor(m => m.Password)<br>
         </div>     
         <div class="col-md-12 fontRemember">

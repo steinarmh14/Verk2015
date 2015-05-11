@@ -6,36 +6,40 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>EditGroupView</h2>
 
 @using (Html.BeginForm("Manage", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
-    <h3><strong>Edit Group</strong></h3>
-    <hr />
-
-    <div class="form-group">
-        <div>
-            <p class="col-md-offset-1 col-md-1">About Me</p>
-            <div class="col-md-10">
+    <div class="line-separator"></div>
+    <div class="grad"></div>
+    <div class="header">
+        <div>feed<span>It</span></div>
+    </div>
+    <br>
+    <div class="login">
+        <div class="form-group">
+            <div>
+                <p class="fontLogin col-md-12">About Me</p>
+            </div>
+            <div class="col-md-12">
                 <textarea cols="45" rows="6" placeholder="About me..."></textarea>
             </div>
         </div>
-    </div>
-    <div class="form-group">
-        <div>
-            <p class="col-md-offset-1 col-md-1">Group Picture</p>
-            <div class="col-md-10">
+        <div class="form-group">
+            <div>
+                <p class="fontLogin col-md-12">Group Picture</p>
+            </div>
+            <div class="col-md-12">
                 <form action="upload-script-url" method="post" enctype="multipart/form-data">
                     <input type="file" name="file">
                 </form>
             </div>
         </div>
-    </div>
 
-    <div class="form-group">
-        <div class="col-md-offset-8">
-            <input type="button" value="Delete Profile" onclick="location.href = 'Login';" class="btn btn-default" />
-            <input type="submit" value="Save Changes" class="btn btn-default" />
+        <div class="form-group">
+            <div class="col-md-12 editGroupButton">
+                <input type="button" value="Delete Profile" onclick="location.href = 'Login';" class="btn btn-default" />
+                <input type="submit" value="Save Changes" class="btn btn-default" />
+            </div>
         </div>
     </div>
 }
