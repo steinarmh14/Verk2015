@@ -34,20 +34,19 @@ namespace FeedIt.Service
                 return user;
             }
         }
-        /*
-        public void editUser(string userID)
+
+        public void editUser(string userID, string about, string picture)
         {
            using (var db = new ApplicationDbContext())
            {
                  var edit = (from s in db.Users
                             where s.Id == userID
                            select s).SingleOrDefault();
-           }
-          
-
-            
+                 edit.aboutMe = about;
+                 edit.profilePicture = picture;
+                 db.SaveChanges();
+           }          
         }
-        */
        
         public void deleteUser(int userID)
         {
