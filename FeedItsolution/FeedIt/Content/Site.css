@@ -377,14 +377,12 @@ border-bottom:3px solid rgba(255,255,255,0.6);
 }
 
 .Postuser{
-    background-color:#E0E0E0;
     text-align: right;
     margin-right: 40px;
     font-size:larger;
 }
 
 .Posttime{
-    background-color:#E0E0E0;
     text-align: right;
     margin-right: 40px;
 }
@@ -407,29 +405,26 @@ border-bottom:3px solid rgba(255,255,255,0.6);
 .wrapper
 {
     width:100%;
-    background-color:#E0E0E0;
 }
 
 .navleft
 {
     float:left;
     width:28%;
-     background-color:#E0E0E0;
 }
 
 
 .navcenter
 {
+    background-color:#E0E0E0;
     width:70%;
     float:right;
-    background-color:#E0E0E0;
 }
 
 .navright
 {
     float:right;
     width: 30%;
-    background-color:#E0E0E0;
 }
 
 .createpostforms 
