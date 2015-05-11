@@ -130,6 +130,29 @@ namespace FeedIt.Controllers
             return View();
         }
 
+        [HttpPost]
+        public ActionResult ChangeUserInfo(FormCollection collection)
+        {
+            string about = collection["picture"];
+            string picture = collection["picture"];
+            if (about == null)
+            {
+                about = "";
+            }
+            if (picture == null)
+            {
+                picture = "";
+            }
+            ProfileService.Instance.editUser(User.Identity.GetUserId(), about, picture);
+            return(RedirectToAction("ChangeUserInfo"));
+        }
+
+        public ActionResult ChangeUserInfo()
+        {
+            ApplicationUser model = UserService.Instance.getProfileByID(User.Identity.GetUserId());
+            return View(model);
+        }
+
         //
         // POST: /Account/Manage
         [HttpPost]

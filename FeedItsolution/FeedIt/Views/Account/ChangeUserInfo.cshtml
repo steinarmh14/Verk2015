@@ -1,0 +1,38 @@
+﻿@model FeedIt.Models.ApplicationUser
+@{
+    ViewBag.Title = "ChangeUserInfo";
+}
+
+<p>You're logged in as <strong>@Model.UserName</strong></p>
+<hr />
+
+@using (Html.BeginForm("ChangeUserInfo", "Account", FormMethod.Post, new { id = "formpost" }))
+{
+    <h3><strong>Edit Profile</strong></h3>
+    <hr />
+
+    <div class="form-group">
+        <div>
+            <p class="col-md-offset-1 col-md-1">About Me</p>
+            <div class="col-md-10">
+                <textarea cols="45" rows="6" placeholder="About me..." name="about" id="about"></textarea>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div>
+            <p class="col-md-offset-1 col-md-1">Profile Pic</p>
+            <div class="col-md-10">
+                <form action="upload-script-url" method="post" enctype="multipart/form-data">
+                    <input type="text" name="picture" id="picture">
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-8">
+            <input type="submit" value="Save Changes" class="btn btn-default" />
+        </div>
+    </div>
+    <hr />
+}
