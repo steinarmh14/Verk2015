@@ -32,6 +32,24 @@ namespace FeedIt.Service
             }
         }
 
+        public bool isFollower(string followerID, string followingID)
+        {
+            using(var db = new ApplicationDbContext())
+            {
+                var follower = (from s in db.Followers
+                                where s.following == followingID && s.follower == followerID
+                                select s).FirstOrDefault();
+                if(follower == null)
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
+            }
+        }
+
         public void removeFollower(string followerID, string followingID)
         {
             using (var db = new ApplicationDbContext())

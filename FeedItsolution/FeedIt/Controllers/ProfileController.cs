@@ -43,6 +43,11 @@ namespace FeedIt.Controllers
         {
             if(!String.IsNullOrEmpty(userID))
             {
+                string theUser = User.Identity.GetUserId();
+                if(userID == theUser)
+                {
+                    return RedirectToAction("Index");
+                }
                 List<UserFeed> profileFeed = new List<UserFeed>();
                 ApplicationUser user = new ApplicationUser();
                 user = ProfileService.Instance.getProfileByID(userID);
