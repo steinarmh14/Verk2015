@@ -152,7 +152,7 @@ input[type="checkbox"].input-validation-error {
 	right: -40px;
 	bottom: -40px;
 	width: auto;
-	height: auto;
+	height: 125%;
 	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0)), color-stop(100%,rgba(0,0,0,0.65))); /* Chrome,Safari4+ */
 	z-index: 1;
 	opacity: 0.7;
@@ -446,4 +446,9 @@ border-bottom:3px solid rgba(255,255,255,0.6);
 .margintop
 {
     margin-top:15px;
+}
+
+.marginPassword
+{
+    margin-top: -1px;
 }
