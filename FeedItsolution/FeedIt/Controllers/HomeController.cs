@@ -46,6 +46,11 @@ namespace FeedIt.Controllers
             string strID = User.Identity.GetUserId();
             //Console.WriteLine(strID);
 
+            if(!FollowerService.Instance.isFollower(strID, strID))
+            {
+                    FollowerService.Instance.addFollower(strID, strID);
+            }
+
             PostService.Instance.createPost(post, strID);
             //RedirectToAction("~Controllers/Home/Index");
             return RedirectToAction("Index", "Home");
