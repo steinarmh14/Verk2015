@@ -13,16 +13,17 @@
             <div class="text-center">
                 <div class="bodydiv">
                     <h2>News Feed</h2>
-                    <div>
+                    <div class="createpostforms">
                         @using (Html.BeginForm("createPost", "Home", FormMethod.Post, new { id = "makePostForm" }))
                         {
                             <div>
+                                <label>Insert photo URL</label>
                                 <input class="col-xs-12" type="text" name="picture" id="picture" />
-                                <div>
+                                <div class="margintop">
                                     <textarea rows="7" cols="75" placeholder="Description/recipe" name="description" id="description"></textarea>
                                 </div>
-                                <div>
-                                    <input type="submit" class="text-right" value="Post" />
+                                <div class="postbutton">
+                                    <input type="submit" value="Feed it" />
                                 </div>
                             </div>
                         }

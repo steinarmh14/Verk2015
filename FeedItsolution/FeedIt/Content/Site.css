@@ -350,13 +350,25 @@ border-bottom:3px solid rgba(255,255,255,0.6);
     height:50px;
 }
 
+.groupprofilepicture
+{
+    border-style:solid;
+    border-color:black;
+    border-width:thin;
+    width:75px;
+    height:75px;
+
+}
+
 .Postuser{
+    background-color:#E0E0E0;
     text-align: right;
     margin-right: 40px;
     font-size:larger;
 }
 
 .Posttime{
+    background-color:#E0E0E0;
     text-align: right;
     margin-right: 40px;
 }
@@ -379,13 +391,14 @@ border-bottom:3px solid rgba(255,255,255,0.6);
 .wrapper
 {
     width:100%;
-    background-color: #F9F9F9;
+    background-color:#E0E0E0;
 }
 
 .navleft
 {
     float:left;
     width:28%;
+     background-color:#E0E0E0;
 }
 
 
@@ -393,10 +406,34 @@ border-bottom:3px solid rgba(255,255,255,0.6);
 {
     width:70%;
     float:right;
+    background-color:#E0E0E0;
 }
 
 .navright
 {
     float:right;
     width: 30%;
+    background-color:#E0E0E0;
 }
+
+.createpostforms 
+{
+    margin-bottom:13px;
+}
+
+.groupabout
+{
+   margin-top:20px;
+}
+
+.postbutton
+{
+    text-align:center;
+    margin-top:8px;
+}
+
+.margintop
+{
+    margin-top:15px;
+}
+
