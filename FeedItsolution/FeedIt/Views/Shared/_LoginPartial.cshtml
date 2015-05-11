@@ -1,27 +1,33 @@
-﻿@using Microsoft.AspNet.Identity
-@if (Request.IsAuthenticated)
-{
-    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
-    {
-    @Html.AntiForgeryToken()
-    <div style="display:none" class="username">@User.Identity.GetUserName()</div>
+﻿@*using Microsoft.AspNet.Identity*@
+@*if (Request.IsAuthenticated)*@
+<!--{
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @*class*@ = "navbar-right" }))
+    {-->
+    @*Html.AntiForgeryToken()*@
+    <!--<div style="display:none" class="username">@*User.Identity.GetUserName()*@</div>
     <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">
             <a href="#" class="dropdown-toggle dropdown-header" data-toggle="dropdown" role="button" aria-expanded="false" style="font-size:large"> </a>
+<<<<<<< HEAD
             <ul class="dropdown-menu" role="menu">
                 <li>@Html.ActionLink("My Profile", "Index", "Profile")</li>
                 <li>@Html.ActionLink("Edit My Password", "Manage", "Account")</li>
                 <li>@Html.ActionLink("Edit My User Info", "ChangeUserInfo", "Account")</li>
+=======
+            <ul class="dropdown-menu" role="menu">-->
+                <!--<li>@*Html.ActionLink*@("My Profile", "Index", "Profile")</li>
+                <li>@*Html.ActionLink("Edit My Account", "Manage", "Account")</li>
+>>>>>>> bac1b3ec369b7329a0e80839d08e083b8f8ee587
                 <li class="divider"></li>
                 <li>@Html.ActionLink("My Groups", "MyGroupsView", "Group")</li>
                 <li>@Html.ActionLink("Create Group", "CreateGroup", "Group")</li>
                 <li>@Html.ActionLink("Edit My Group", "EditGroupView", "Group")</li>
                 <li class="divider"></li>
-                <li><a href="javascript:document.getElementById('logoutForm').submit()">Log Out</a></li>
+                <li><a href="javascript:document.getElementById('logoutForm').submit()">Log Out</a></li>*@
             </ul>
         </li>
     </ul>
-    
+    -->
    <!-- <a class="dropdown-toggle" data-toggle="dropdown" href="#">
         
         <span class="caret"></span>
@@ -31,10 +37,9 @@
         <li><a href="javascript:document.getElementById('Register').submit()">Edit My Account</a></li>
     </ul>-->
     
-    }
-}
 
-<script type="text/javascript">
+
+<!--<script type="text/javascript">
     var user = $(".username").html();
     $(".dropdown-header").html(user + " <span class='caret'></span>");
-</script>
+</script>-->

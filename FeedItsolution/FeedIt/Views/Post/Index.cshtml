@@ -33,14 +33,15 @@
     <input type="submit" class="col-md-offset-1 col-md-1" value="Post" />
     }
 </div>
-@foreach(var comment in Model.comments)
+@foreach (var comment in Model.comments)
 {
-    <div>
-        <p>
-            @comment.user.UserName
-            @comment.comment.comment
-            @comment.comment.date
-        </p>
-    </div>
+    <blockquote>
+        <div>
+            <p>
+                @comment.comment.comment
+            </p>
+            <footer> - @comment.user.UserName at @comment.comment.date</footer>
+        </div>
+    </blockquote>
 }
 
