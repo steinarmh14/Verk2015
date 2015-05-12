@@ -3242,6 +3242,7 @@ input[type="button"].btn-block {
 
 .dropdown {
   position: relative;
+  margin-top: -35%;
 }
 
 .dropdown-toggle:focus {
@@ -3336,6 +3337,7 @@ input[type="button"].btn-block {
   font-size: 12px;
   line-height: 1.428571429;
   color: #999999;
+
 }
 
 .dropdown-backdrop {
