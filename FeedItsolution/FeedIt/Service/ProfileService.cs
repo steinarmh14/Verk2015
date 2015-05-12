@@ -47,15 +47,25 @@ namespace FeedIt.Service
             
         }
 
-        public void editUser(string userID, string about, string picture)
+        public void editUser(string userID, string about, string fullName, string profilePicture)
         {
             using (var db = new ApplicationDbContext())
             {
                 var edit = (from s in db.Users
                             where s.Id == userID
                             select s).SingleOrDefault();
-                edit.aboutMe = about;
-                edit.profilePicture = picture;
+                if(!String.IsNullOrEmpty(about))
+                {
+                    edit.aboutMe = about;
+                }
+                if (!String.IsNullOrEmpty(fullName))
+                {
+                    edit.fullName = fullName;
+                }
+                if (!String.IsNullOrEmpty(profilePicture))
+                {
+                    edit.profilePicture = profilePicture;
+                }
                 db.SaveChanges();
             }
         }

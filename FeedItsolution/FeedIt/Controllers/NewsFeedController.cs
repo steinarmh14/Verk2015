@@ -42,7 +42,7 @@ namespace FeedIt.Controllers
             if(groupID.HasValue)
             {
                 int realGroupID = groupID.Value;
-                List<Post> model = NewsFeedService.Instance.getFeedForGroup(realGroupID);
+                List<UserFeed> model = NewsFeedService.Instance.getFeedForGroup(realGroupID);
                 return View(model);
             }
             return View("Error");

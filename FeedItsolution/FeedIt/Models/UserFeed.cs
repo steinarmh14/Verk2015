@@ -9,5 +9,6 @@ namespace FeedIt.Models
     {
         public ApplicationUser user { get; set; }
         public Post post { get; set; }
+        public Group group { get; set; }
     }
 }

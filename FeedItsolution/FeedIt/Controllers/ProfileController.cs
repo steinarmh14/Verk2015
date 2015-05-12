@@ -76,10 +76,21 @@ namespace FeedIt.Controllers
         }
 
         [HttpPost]
-        public ActionResult editProfile(ApplicationUser user)
+        public ActionResult EditProfile(FormCollection collection)
         {
+            string userID = User.Identity.GetUserId();
+            string aboutMe = collection["aboutMe"];
+            string profilePicture = collection["profilePicture"];
+            string fullName = collection["fullName"];
 
-            return View("Error");
+            ProfileService.Instance.editUser(userID, aboutMe, fullName, profilePicture);
+
+            return RedirectToAction("Profile", new { userID = userID });
+        }
+
+        public ActionResult EditProfile()
+        {
+            return View();
         }
 
         [HttpPost]

@@ -1,0 +1,57 @@
+﻿@using FeedIt.Models;
+@using Microsoft.AspNet.Identity;
+@{
+    ViewBag.Title = "EditProfile";
+}
+
+<h2>EditProfile</h2>
+
+@using (Html.BeginForm("EditProfile", "Profile", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    <div class="line-separatorEdit"></div>
+
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary()
+    <div class="grad2"></div>
+    <div class="editProfile2">
+        <div>feed<span>It</span></div>
+    </div>
+    <br>
+    <div class="login">
+        <div class="editProfile leftmarginEdit">
+            <div>Edit<span>Profile</span></div>
+        </div>
+        <br><br><br>
+        <div class="form-group">
+            <div>
+                <p class="fontLogin col-md-12">Full name</p>
+            </div>
+            <div class="col-md-12">
+                <input type="text" id="fullName" name="fullName" />
+            </div>
+        </div>
+        <div class="form-group">
+            <div>
+                <p class="fontLogin col-md-12">About Me</p>
+            </div>
+            <div class="col-md-12">
+                <textarea rows="7" cols="65" placeholder="Write description..." name="aboutMe" id="aboutMe"></textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <div>
+                <p class="fontLogin col-md-12">Profile Picture</p>
+            </div>
+            <div class="col-md-12">
+                <input type="text" id="profilePicture" name="profilePicture" />
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-12">
+                <input type="button" value="Cancel" class="btn btn-default" onclick="@("window.location.href='" + @Url.Action("Index", "Home") + "'");" />
+                <input type="submit" value="Save Changes" class="btn btn-default" />
+                <input type="button" value="Delete profile" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
