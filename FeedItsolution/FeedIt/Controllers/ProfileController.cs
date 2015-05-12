@@ -94,6 +94,12 @@ namespace FeedIt.Controllers
         }
 
         [HttpPost]
+        public ActionResult deleteProfile(FormCollection collection)
+        {
+
+        }
+
+        [HttpPost]
         public ActionResult Follow(FormCollection collection)
         {
             string userID = collection["userID"];

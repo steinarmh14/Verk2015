@@ -69,5 +69,9 @@ namespace FeedIt.Service
                 db.SaveChanges();
             }
         }
+        public void deleteUser(string userID)
+        {
+
+        }
     }
 }
