@@ -70,11 +70,12 @@ namespace FeedIt.Service
                int rateCount = post.rateCount;
 
               double allRatings = currentRating * rateCount;
+              allRatings = allRatings + rating;
               rateCount++;
               currentRating = allRatings / rateCount;
 
                post.rateCount = rateCount;
-               post.rating = rating;
+               post.rating = currentRating;
                db.SaveChanges();
             }           
         }
