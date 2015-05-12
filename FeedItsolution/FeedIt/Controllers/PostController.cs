@@ -33,13 +33,17 @@ namespace FeedIt.Controllers
         }
 
         [HttpPost]
-        public ActionResult ratePost(int? postID, int rating)
+        public ActionResult ratePost(FormCollection collection)
         {
-            if (postID.HasValue)
+            string postId = collection["postid"];
+            string rateInfo = collection["rateinfo"];
+            if (!string.IsNullOrEmpty(postId))
             {
-                int realPostID = postID.Value;
-                PostService.Instance.rate(realPostID, rating);
-                return View();
+                int id = Int32.Parse(postId);
+                int rating = Int32.Parse(rateInfo);
+                PostService.Instance.rate(id, rating);
+                Post post = PostService.Instance.getPostById(id);
+                return Json(post, JsonRequestBehavior.AllowGet);
             }
             return View("Error");
         }
