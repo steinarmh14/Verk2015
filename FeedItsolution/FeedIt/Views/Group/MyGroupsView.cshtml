@@ -1,61 +1,34 @@
-<<<<<<< HEAD
+
 @model FeedIt.Models.GroupList
-=======
-﻿@model FeedIt.Models.GroupList
->>>>>>> 52a47cb87a840a9e991cc79ffb889f34e32c2f54
 
 @{
     ViewBag.Title = "Group Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<<<<<<< HEAD
-
-=======
->>>>>>> 52a47cb87a840a9e991cc79ffb889f34e32c2f54
 <body>
-    <h2>My groups</h2>
+    <h2 style="text-align:center">My groups</h2>
     <div class="wrapper">
         <div class="navleft">
-<<<<<<< HEAD
-        <p>My groups<p>
-    </div>
-        <div class="navcentermygropus">
-            @foreach (var item in Model.myGroups)
-            {
-                <div class="mygroups">
-=======
-            <p>My groups<p>
-        </div>
+         </div>
         <div class="navcentermygroups">
             @foreach (var item in Model.myGroups)
             {
                 if(item != null)
                 {
                    <div class="mygroups">
->>>>>>> 52a47cb87a840a9e991cc79ffb889f34e32c2f54
                     <div>
                         <a href="@Url.Action("GroupView", "Group", new { id = item.ID})">
-                            <img src="@Url.Content(item.picture)" alt="picture" class="groupprofilepicture" />
+                            <img src="@Url.Content(item.picture)" alt="picture" class="mygroupspicture" />
                         </a>
                     </div>
-                    <div>
+                    <div class="mygroupsname">
                         <a href=@Url.Action("GroupView", "Group", new { id = item.ID })>@item.name</a>
                     </div>
-<<<<<<< HEAD
                 </div>
-            }
-        </div>
-        <div class="navright">
-            <h3>Einar</h3>
-=======
-                </div> 
                 }
-                
             }
         </div>
         <div class="navright">
-            
->>>>>>> 52a47cb87a840a9e991cc79ffb889f34e32c2f54
+                </div> 
         </div>
-    </div>
 </body>

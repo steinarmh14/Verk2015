@@ -462,7 +462,6 @@ border-bottom:3px solid rgba(255,255,255,0.6);
     border-width:thin;
     width:75px;
     height:75px;
-
 }
 
 .Postuser{
@@ -582,8 +581,6 @@ border-bottom:3px solid rgba(255,255,255,0.6);
 .unfollowtakki
  {
 }
-<<<<<<< HEAD
-=======
 
 .mygroups
 {
@@ -591,6 +588,14 @@ border-bottom:3px solid rgba(255,255,255,0.6);
     margin-bottom:10px;
 }
 
+.mygroupspicture
+{
+    border-style:solid;
+    border-color:black;
+    border-width:thin;
+    width:75px;
+    height:75px;
+}
 .groupprofilepicture
 {
     border-style:solid;
@@ -604,6 +609,7 @@ border-bottom:3px solid rgba(255,255,255,0.6);
 .navcentermygroups
 {
     width:50%;
+    margin-left:320px;
 }
 
 .star-rating {
@@ -704,7 +710,15 @@ border-bottom:3px solid rgba(255,255,255,0.6);
 .mygroups
 {
     border-style:solid;
+    border-width:thin;
+    border-color: lightgray;
     margin-bottom:10px;
+}
+
+.mygroupsname
+{
+    text-align:center;
+    font-size:14px;
 }
 
 .navcentermygropus
