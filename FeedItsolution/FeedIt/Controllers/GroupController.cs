@@ -128,6 +128,11 @@ namespace FeedIt.Controllers
             string groupID = collection["groupID"];
             int ID = Int32.Parse(groupID);
 
+            if (String.IsNullOrEmpty(about) || String.IsNullOrEmpty(picture))
+            {
+                return RedirectToAction("GroupView", new { id = ID });
+            }
+
             Post post = new Post();
 
             // til að byrja með er ratingið alltaf 0!!!!! fix later

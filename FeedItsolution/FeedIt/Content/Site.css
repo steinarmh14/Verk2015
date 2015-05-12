@@ -582,6 +582,31 @@ border-bottom:3px solid rgba(255,255,255,0.6);
 .unfollowtakki
  {
 }
+<<<<<<< HEAD
+=======
+
+.mygroups
+{
+    border-style:solid;
+    margin-bottom:10px;
+}
+
+.groupprofilepicture
+{
+    border-style:solid;
+    border-color:black;
+    border-width:thin;
+    width:75px;
+    height:75px;
+
+}
+
+.navcentermygroups
+{
+    width:50%;
+}
+
+>>>>>>> 52a47cb87a840a9e991cc79ffb889f34e32c2f54
 .star-rating {
   font-size: 0;
   white-space: nowrap;

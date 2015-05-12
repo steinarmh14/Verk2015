@@ -70,7 +70,10 @@ namespace FeedIt.Controllers
             string strID = User.Identity.GetUserId();
             comment.ownerID = strID;
             PostService.Instance.addComment(comment, realPostID);
-            return RedirectToAction("Index", new { id = @realPostID });
+            CommentUser commentUser = new CommentUser();
+            commentUser.comment = comment;
+            commentUser.user = ProfileService.Instance.getProfileByID(strID);
+            return Json(commentUser, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult getComments(int? postID)

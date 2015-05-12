@@ -47,9 +47,9 @@
             }
         </div>
         <div>
-        @using (Html.BeginForm("Comment", "Post", FormMethod.Post, new { id = "commentForm" }))
+        @using (Html.BeginForm("Comment", "Post", FormMethod.Post, new { id = "commentform" }))
         {
-        <input type="hidden" name="postID" id="postID" value=@Model.post.ID />
+        <input type="hidden" name="postid" id="postid" value=@Model.post.ID />
         <div>
             <textarea placeholder="Comment" cols="75" rows="5" name="content" id="content"></textarea>
         </div>
@@ -58,6 +58,7 @@
         </div>
         }
         </div>
+<<<<<<< HEAD
         @foreach (var comment in Model.comments)
 {
     <blockquote class="Commentsection">
@@ -69,6 +70,21 @@
         </div>
     </blockquote>
 }
+=======
+        <div id="commentlist">
+            @foreach (var comment in Model.comments)
+            {
+                <blockquote id="comment">
+                    <div class="Commentsection">
+                        <p>
+                            @comment.comment.comment
+                        </p>
+                        <footer> - @comment.user.UserName at @comment.comment.date</footer>
+                    </div>
+                </blockquote>
+            }
+        </div>
+>>>>>>> 52a47cb87a840a9e991cc79ffb889f34e32c2f54
     </div>
 </body>
 

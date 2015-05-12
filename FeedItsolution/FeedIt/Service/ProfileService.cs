@@ -24,15 +24,14 @@ namespace FeedIt.Service
 
         public ApplicationUser getProfileByID(string userID)
         {
+            ApplicationUser user;
             using (var db = new ApplicationDbContext())
             {
-                var user = (from s in db.Users
+                user = (from s in db.Users
                             where s.Id == userID
                             select s).SingleOrDefault();
-
-                            return user;
             }
-  
+            return user;
         }
 
         public List<ApplicationUser> getProfilesByName(string name)
