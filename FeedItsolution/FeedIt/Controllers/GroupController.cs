@@ -48,6 +48,7 @@ namespace FeedIt.Controllers
 
         public ActionResult MyGroupsView()
         {
+            IEnumerable<>
             return View();
         }
 
