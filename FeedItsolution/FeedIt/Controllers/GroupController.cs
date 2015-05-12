@@ -71,6 +71,11 @@ namespace FeedIt.Controllers
             group.owner = strID;
             group.picture = picture;
 
+            if(String.IsNullOrEmpty(group.picture))
+            {
+                group.picture = "http://www.abc.net.au/news/image/954416-3x2-940x627.jpg";
+            }
+
             GroupService.Instance.createGroup(group);
 
             return RedirectToAction("GroupView", new { id = group.ID });
