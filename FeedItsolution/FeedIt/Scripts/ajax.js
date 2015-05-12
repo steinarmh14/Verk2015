@@ -64,6 +64,26 @@
         $("#friendfeed").addClass("hidden");
     });
 
+    $('body').on('submit', '#commentform', function () {
+        var post = $('#postid').val();
+        var comment = $('#content').val();
+
+        var theForm = $(this);
+
+        $.ajax({
+            type: 'POST',
+            url: 'Post/Comment',
+            data: {
+                postId: post,
+                comment: comment
+            }
+        }).done(function (data) {
+            $('#commentlist').prepend(
+               '<blockquote id="comment"> <div class="Commentsection"> <p>'
+                     + data.comment.comment + '</p> <footer> - ' + data.user.Id + ' at '
+                     + data.comment.date + '</footer> </div> </blockquote>')
+        });
+    });
 
     $('body').on('click', '#rateform', function () {
         var post = $('#postid').val();
@@ -81,17 +101,7 @@
         }).done(function (data) {
             if (data == "") { }
             else {
-                //$('#rating').html(data.result.RatingOverall);
                 $('#currentrating').html(data.rating);
-                //$('#yourrating').html('I rated ' + rate + ' Stars');
-                /*for(var i = 1; i <= rate; i++)
-	            {
-	                $(".star").removeClass("golden");
-	            }
-	            for(var i = rate + 1; i < 11; i++)
-	            {
-	                $(".star").addClass("golden");
-	            }*/
             }
         })
     });
