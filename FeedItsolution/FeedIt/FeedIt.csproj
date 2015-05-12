@@ -262,6 +262,8 @@
     <Content Include="Views\Search\Search.cshtml" />
     <Content Include="Views\Group\GroupView.cshtml" />
     <Content Include="Views\Account\ChangeUserInfo.cshtml" />
+    <Content Include="Views\Shared\ProfileFeed.cshtml" />
+    <Content Include="Views\Shared\GroupFeed.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

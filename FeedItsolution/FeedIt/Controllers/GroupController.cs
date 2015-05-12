@@ -27,16 +27,8 @@ namespace FeedIt.Controllers
             if (id.HasValue)
             {
                 int realID = id.Value;
-                List<UserFeed> groupFeed = new List<UserFeed>();
-                IEnumerable<Post> posts = NewsFeedService.Instance.getFeedForGroup(realID);
+                IEnumerable<UserFeed> groupFeed = NewsFeedService.Instance.getFeedForGroup(realID);
 
-                foreach (var post in posts)
-                {
-                    UserFeed singleUserFeed = new UserFeed();
-                    singleUserFeed.post = post;
-                    singleUserFeed.user = ProfileService.Instance.getProfileByID(post.owner);
-                    groupFeed.Add(singleUserFeed);
-                }
                 GroupViewModel model = new GroupViewModel();
                 model.feed = groupFeed;
                 model.group = GroupService.Instance.getGroupByID(realID);
