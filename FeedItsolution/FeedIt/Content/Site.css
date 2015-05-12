@@ -158,6 +158,19 @@ input[type="checkbox"].input-validation-error {
 	opacity: 0.7;
 }
 
+.grad2{
+	position: absolute;
+	top: -20px;
+	left: -20px;
+	right: -40px;
+	bottom: -40px;
+	width: auto;
+	height: 170%;
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0)), color-stop(100%,rgba(0,0,0,0.65))); /* Chrome,Safari4+ */
+	z-index: 1;
+	opacity: 0.7;
+}
+
 .header{
 	position: absolute;
 	top: calc(50% - 35px);
@@ -308,6 +321,16 @@ border-bottom:3px solid rgba(255,255,255,0.6);
 
 
 }
+
+.line-separatorEdit{
+
+height:1px;
+background:#717171;
+margin-top: 12%;
+border-bottom:3px solid rgba(255,255,255,0.6);
+
+
+}
 #postform
 {
     margin-top: 2%;
@@ -322,7 +345,7 @@ border-bottom:3px solid rgba(255,255,255,0.6);
 	float: left;
 	color: #fff;
 	font-family: 'Exo', sans-serif;
-	font-size: 25px;
+	font-size: 30px;
 	font-weight: 200;
 }
 
@@ -330,6 +353,24 @@ border-bottom:3px solid rgba(255,255,255,0.6);
 	color: #5379fa !important;
 }
 
+.editProfile2{
+	position: absolute;
+	top: calc(57% - 35px);
+	left: calc(47% - 255px);
+	z-index: 2;
+}
+
+.editProfile2 div{
+	float: left;
+	color: #fff;
+	font-family: 'Exo', sans-serif;
+	font-size: 60px;
+	font-weight: 200;
+}
+
+.editProfile2 div span{
+	color: #5379fa !important;
+}
 .Post{
     text-align:center;
     width:500px;
@@ -451,4 +492,14 @@ border-bottom:3px solid rgba(255,255,255,0.6);
 .marginPassword
 {
     margin-top: -1px;
+}
+
+.marginEditAccount
+{
+    margin-top: 1%;
+}
+
+.leftmarginEdit
+{
+    margin-left: -20%;
 }

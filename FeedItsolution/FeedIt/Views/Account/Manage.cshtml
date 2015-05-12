@@ -1,25 +1,93 @@
 ﻿@using FeedIt.Models;
 @using Microsoft.AspNet.Identity;
+@model FeedIt.Models.ManageUserViewModel
 @{
     ViewBag.Title = "Edit My Account";
 }
 
-<h2>@ViewBag.Title</h2>
-<div class="grad"></div>
-<p class="col-md-offset-5 text-success">@ViewBag.StatusMessage</p>
 
-<div class="row">
-    <div class="col-md-12">
-        @if (ViewBag.HasLocalPassword)
-        {
-            @Html.Partial("_ChangePasswordPartial")
-        }
-        else
-        {
-            @Html.Partial("_SetPasswordPartial")
-        }
+<p class="marginEditAccount fontLogin">You're logged in as <strong>@User.Identity.GetUserName()</strong></p>
+
+@using (Html.BeginForm("Manage", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    <div class="line-separatorEdit"></div>
+    
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary()
+    <div class="grad2"></div>
+    <div class="editProfile2">
+        <div>feed<span>It</span></div>
     </div>
-</div>
+    <br>
+    <div class="login">
+        <div class="editProfile leftmarginEdit">
+            <div>Edit<span>Profile</span></div>
+        </div>
+        <br><br><br>
+        <div class="form-group">
+            <div>
+                <p class="fontLogin col-md-12">About Me</p>
+            </div>
+            <div class="col-md-12">
+                <textarea cols="45" rows="6" placeholder="About me..."></textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <div>
+                <p class="fontLogin col-md-12">Profile Pic</p>
+            </div>
+            <div class="col-md-12">
+                <form action="upload-script-url" method="post" enctype="multipart/form-data">
+                    <input type="file" name="file">
+                </form>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-12">
+                <input type="button" value="Cancel" class="btn btn-default" />
+                <input type="submit" value="Save Changes" class="btn btn-default" />
+            </div><br><br>
+        </div>
+        <div class="editProfile leftmarginEdit">
+            <div>Change<span>Password</span></div>
+        </div>
+        <br><br><br>
+        <div class="form-group">
+            <div class="fontLogin col-md-12">
+                @Html.LabelFor(m => m.OldPassword)
+            </div>
+
+            <div class="col-md-12">
+                @Html.PasswordFor(m => m.OldPassword, new { @class = "form-control" })<br>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="fontLogin col-md-12">
+                @Html.LabelFor(m => m.NewPassword)
+            </div>
+            <div class="col-md-12">
+                @Html.PasswordFor(m => m.NewPassword, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="fontLogin col-md-12">
+                @Html.LabelFor(m => m.ConfirmPassword)
+            </div>
+            <div class="col-md-12">
+                @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-12">
+                <input type="button" value="Delete Profile" onclick="location.href = 'Login';" class="btn btn-default" />
+                <input type="submit" value="Save Changes" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+
+
+}
+
 
 
 
