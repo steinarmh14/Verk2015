@@ -48,7 +48,12 @@ namespace FeedIt.Controllers
 
         public ActionResult MyGroupsView()
         {
-            return View();
+            string userId = User.Identity.GetUserId();
+
+            GroupList myGroups = new GroupList();
+            myGroups.myGroups = GroupService.Instance.getGroups(userId);
+
+            return View(myGroups);
         }
 
         public ActionResult EditGroupView()

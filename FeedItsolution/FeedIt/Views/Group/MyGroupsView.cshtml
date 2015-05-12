@@ -1,4 +1,4 @@
-﻿
+﻿@model FeedIt.Models.GroupList
 @{
     ViewBag.Title = "Group Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -6,3 +6,7 @@
 
 <h2>View1</h2>
 
+@foreach (var item in Model.myGroups)
+{
+    <a href=@Url.Action("MyGroupsView", "Group", new { id = item.ID })>@item.name</a>
+}

@@ -29,6 +29,7 @@ namespace FeedIt.Service
             {
                 db.Groups.Add(group);
                 db.SaveChanges();
+                followGroup(group.ID, group.owner);
             }    
         }
 

@@ -2,16 +2,16 @@
 @{
     ViewBag.Title = "Search";
 }
+<center>
+    <h2>Search result</h2>
 
-<h2>Search</h2>
+    @foreach (var item in Model.users)
+    {
+        <a href=@Url.Action("Profile", "Profile", new { userID = item.Id })>@item.UserName</a>
+    }
 
-@foreach (var item in Model.users)
-{
-    <a href=@Url.Action("Profile", "Profile", new { userID = item.Id })>@item.UserName</a>
-}
-
-@foreach (var item in Model.groups)
-{
-    <a href=@Url.Action("GroupView", "Group", new { id = item.ID })>@item.name</a>
-}
-
+    @foreach (var item in Model.groups)
+    {
+        <a href=@Url.Action("GroupView", "Group", new { id = item.ID })>@item.name</a>
+    }
+</center>
