@@ -48,8 +48,12 @@ namespace FeedIt.Controllers
 
         public ActionResult MyGroupsView()
         {
-            IEnumerable<>
-            return View();
+            string userId = User.Identity.GetUserId();
+
+            GroupList groups = new GroupList();
+            groups.myGroups = GroupService.Instance.getGroups(userId);
+
+            return View(groups);
         }
 
         public ActionResult EditGroupView()
@@ -71,6 +75,11 @@ namespace FeedIt.Controllers
             group.name = name;
             group.owner = strID;
             group.picture = picture;
+
+            if(String.IsNullOrEmpty(group.picture))
+            {
+                group.picture = "http://www.abc.net.au/news/image/954416-3x2-940x627.jpg";
+            }
 
             GroupService.Instance.createGroup(group);
 

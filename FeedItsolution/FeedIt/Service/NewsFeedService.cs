@@ -36,7 +36,7 @@ namespace FeedIt.Service
                 foreach(var s in followings)
                 {
                     var posts = (from b in db.Posts
-                                 where b.owner == s.following
+                                 where b.owner == s.following && b.groupID == -1
                                  select b).ToList();
                     foreach (var c in posts)
                     {
@@ -70,12 +70,16 @@ namespace FeedIt.Service
                 {
                     UserFeed userFeed = new UserFeed();
                     userFeed.post = (from n in db.Posts
-                                     where n.ID == d.groupID
+                                     where n.groupID == d.groupID
                                      select n).SingleOrDefault();
-                    userFeed.user = (from h in db.Users
+                    if(userFeed.post != null)
+                    {
+                        userFeed.user = (from h in db.Users
                                      where h.Id == userFeed.post.owner
                                      select h).SingleOrDefault();
-                    postsList.Add(userFeed);
+                        postsList.Add(userFeed);
+                    }
+                    
                 }
                 var dateOrdered = postsList.OrderByDescending(x => x.post.date).Take(15).ToList();
                 return dateOrdered;

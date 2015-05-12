@@ -63,8 +63,7 @@ input[type="checkbox"].input-validation-error {
 
 .searchTerm {
   padding-top: 200px;
-  float: left;
-  width: 50%;
+  width: 70%;
   border: 3px solid #00B4CC;
   padding: 5px;
   height: 30px;
@@ -114,7 +113,6 @@ input[type="checkbox"].input-validation-error {
 #postform
 {
     float: left;
-    margin-left: 450px;
 }
 .logo
 {
@@ -122,13 +120,19 @@ input[type="checkbox"].input-validation-error {
     width: 60px;
     height: 60px;
 }
-.TheSearch
+.centerform
 {
-    display: inline;
+    width: 86%;
+}
+
+.searchContainer
+{
+    text-align: center;
+ 
 }
 .Searchbtn  
 {
-    float: right;
+    margin-right: 10px;
 }
 
 .frontPagebody{
@@ -153,6 +157,19 @@ input[type="checkbox"].input-validation-error {
 	bottom: -40px;
 	width: auto;
 	height: 125%;
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0)), color-stop(100%,rgba(0,0,0,0.65))); /* Chrome,Safari4+ */
+	z-index: 1;
+	opacity: 0.7;
+}
+
+.grad2{
+	position: absolute;
+	top: -20px;
+	left: -20px;
+	right: -40px;
+	bottom: -40px;
+	width: auto;
+	height: 170%;
 	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0)), color-stop(100%,rgba(0,0,0,0.65))); /* Chrome,Safari4+ */
 	z-index: 1;
 	opacity: 0.7;
@@ -308,9 +325,24 @@ border-bottom:3px solid rgba(255,255,255,0.6);
 
 
 }
+
+.line-separatorEdit{
+
+height:1px;
+background:#717171;
+margin-top: 12%;
+border-bottom:3px solid rgba(255,255,255,0.6);
+
+
+}
 #postform
 {
     margin-top: 2%;
+}
+
+.CenteringSearch {
+    width: 100%;
+    text-align: center;
 }
 
 .editProfile{
@@ -322,7 +354,7 @@ border-bottom:3px solid rgba(255,255,255,0.6);
 	float: left;
 	color: #fff;
 	font-family: 'Exo', sans-serif;
-	font-size: 25px;
+	font-size: 30px;
 	font-weight: 200;
 }
 
@@ -330,6 +362,24 @@ border-bottom:3px solid rgba(255,255,255,0.6);
 	color: #5379fa !important;
 }
 
+.editProfile2{
+	position: absolute;
+	top: calc(57% - 35px);
+	left: calc(47% - 255px);
+	z-index: 2;
+}
+
+.editProfile2 div{
+	float: left;
+	color: #fff;
+	font-family: 'Exo', sans-serif;
+	font-size: 60px;
+	font-weight: 200;
+}
+
+.editProfile2 div span{
+	color: #5379fa !important;
+}
 .Post{
     text-align:center;
     width:500px;
@@ -458,16 +508,14 @@ border-bottom:3px solid rgba(255,255,255,0.6);
     margin-top: -1px;
 }
 
-<<<<<<< HEAD
+
 .followtakki
 {
   
 }
 
-.unfollowtakki
-{
-
-=======
+.unfollowtakki {
+}
 .star-rating {
   font-size: 0;
   white-space: nowrap;
@@ -527,20 +575,43 @@ border-bottom:3px solid rgba(255,255,255,0.6);
 .star-rating i ~ i ~ i ~ i ~ i ~ i ~ i ~ i {
   width: 80%;
 }
-.star-rating i ~ i ~ i ~ i ~ i ~ i ~ i ~ i ~ i {
-  width: 90%;
-}
-.star-rating i ~ i ~ i ~ i ~ i ~ i ~ i ~ i ~ i ~ i {
-  width: 100%;
+    .star-rating i ~ i ~ i ~ i ~ i ~ i ~ i ~ i ~ i {
+        width: 90%;
+    }
+.marginEditAccount
+{
+    margin-top: 1%;
+
 }
 
-::after,
+.leftmarginEdit
+{
+    margin-left: -20%;
+}
+
+
 ::before {
-  height: 100%;
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-  text-align: center;
-  vertical-align: middle;
->>>>>>> f09f9b3d926e69798c64c5919d0f19a92e370d5e
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    text-align: center;
+    vertical-align: middle;
+}
+.editAccountHeader
+{
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5%;
+}
+
+.mygroups
+{
+    border-style:solid;
+    margin-bottom:10px;
+}
+
+.navcentermygropus
+{
+    width:42%;
 }

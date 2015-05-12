@@ -4163,6 +4163,12 @@ textarea.input-group-sm > .input-group-btn > .btn {
   margin-left: -15px;
 }
 
+.container > .navbar-header{
+
+    width: 100%;
+
+}
+
 @media (min-width: 768px) {
   .container > .navbar-header,
   .container > .navbar-collapse {

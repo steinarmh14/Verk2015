@@ -184,6 +184,7 @@
     <Compile Include="Models\Follower.cs" />
     <Compile Include="Models\Group.cs" />
     <Compile Include="Models\GroupFollower.cs" />
+    <Compile Include="Models\GroupList.cs" />
     <Compile Include="Models\GroupViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Post.cs" />
