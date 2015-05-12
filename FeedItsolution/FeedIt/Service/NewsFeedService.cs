@@ -36,7 +36,7 @@ namespace FeedIt.Service
                 foreach(var s in followings)
                 {
                     var posts = (from b in db.Posts
-                                 where b.owner == s.following
+                                 where b.owner == s.following && b.groupID == -1
                                  select b).ToList();
                     foreach (var c in posts)
                     {
