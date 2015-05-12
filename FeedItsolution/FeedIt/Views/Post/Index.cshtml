@@ -1,10 +1,17 @@
 ﻿@model FeedIt.Models.PostViewModel
+@using Microsoft.AspNet.Identity
+
 @{
     ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Post</h2>
+
 <body>
+    <a href='@Url.Action("Index", "Home")'>
+        <img class="logo" src="../Images/feeditLOGO.jpg" />
+    </a>
     <div class="text-center">
         <div class="col-md-12">
             <div>

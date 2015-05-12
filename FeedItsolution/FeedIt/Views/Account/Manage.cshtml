@@ -29,24 +29,22 @@
                 <p class="fontLogin col-md-12">About Me</p>
             </div>
             <div class="col-md-12">
-                <textarea cols="45" rows="6" placeholder="About me..."></textarea>
+                <textarea placeholder="Write description..."></textarea>
             </div>
         </div>
         <div class="form-group">
             <div>
-                <p class="fontLogin col-md-12">Profile Pic</p>
+                <p class="fontLogin col-md-12">Profile Picture</p>
             </div>
             <div class="col-md-12">
-                <form action="upload-script-url" method="post" enctype="multipart/form-data">
-                    <input type="file" name="file">
-                </form>
+                    <input type="text" id="groupPicture" name="groupPicture" />
             </div>
         </div>
         <div class="form-group">
             <div class="col-md-12">
-                <input type="button" value="Cancel" class="btn btn-default" />
+                <input type="button" value="Cancel" class="btn btn-default" onclick="@("window.location.href='" + @Url.Action("Index", "Home") + "'");"/>
                 <input type="submit" value="Save Changes" class="btn btn-default" />
-            </div><br><br>
+            </div>
         </div>
         <div class="editProfile leftmarginEdit">
             <div>Change<span>Password</span></div>
