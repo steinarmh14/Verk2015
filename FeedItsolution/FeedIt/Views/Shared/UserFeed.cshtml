@@ -1,28 +1,28 @@
 ﻿@model IEnumerable<FeedIt.Models.UserFeed>
-<body>
+<body >
     @if (Model != null)
+{
+    foreach (var item in Model)
     {
-        foreach (var item in Model)
-        {
-            <div class="wrapper">
-                <div class="navleft">
-                    <p class="Postuser">
-                        <a href=@Url.Action("Profile", "Profile", new { userID = item.user.Id })>@item.user.UserName</a>
-                    </p>
-                    <p class="Posttime">
-                        @item.post.date
-                    </p>
-                </div>
-                <div class="Post">
-                    <a href="@Url.Action("Index", "Post", new { id = item.post.ID})">
-                        <img src="@Url.Content(item.post.picture)" alt="picture" class="postpicture"/>
-                    </a>
-                    <p class="Postabout">@item.post.about</p>
-                </div>
-                <div class="navright">
+        <div class="wrapper">
+            <div class="navleft">
+                <p class="Postuser">
+                    <a href=@Url.Action("Profile", "Profile", new { userID = item.user.Id })>@item.user.UserName</a>
+                </p>
+                <p class="Posttime">
+                    @item.post.date
+                </p>
+            </div>
+            <div class="Post">
+                <a href="@Url.Action("Index", "Post", new { id = item.post.ID})">
+                    <img src="@Url.Content(item.post.picture)" alt="picture" class="postpicture" />
+                </a>
+                <p class="Postabout">@item.post.about</p>
+            </div>
+                    <div class="navright">
                 </div>
                 </div>
-        }
+    }
     }
 
 </body>

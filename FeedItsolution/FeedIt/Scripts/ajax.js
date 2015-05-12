@@ -45,6 +45,26 @@
         // Það er einmitt það sem við erum að reyna að koma í veg fyrir að gerist.
         return false;
     });*/
+
+    $('body').on('click', '#friendsfeedbutton', function () {
+        $("#groupfeed").addClass("hidden");
+        $("#allfeed").addClass("hidden");
+        $("#friendfeed").removeClass("hidden");
+    });
+
+    $('body').on('click', '#groupfeedbutton', function () {
+        $("#groupfeed").removeClass("hidden");
+        $("#allfeed").addClass("hidden");
+        $("#friendfeed").addClass("hidden");
+    });
+
+    $('body').on('click', '#allfeedbutton', function () {
+        $("#groupfeed").addClass("hidden");
+        $("#allfeed").removeClass("hidden");
+        $("#friendfeed").addClass("hidden");
+    });
+
+
     $('body').on('click', '#rateform', function () {
         var post = $('#postid').val();
         var rate = $('#rateinfo:checked').val();

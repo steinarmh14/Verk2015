@@ -64,7 +64,7 @@ input[type="checkbox"].input-validation-error {
 .searchTerm {
   padding-top: 200px;
   width: 70%;
-  border: 3px solid #00B4CC;
+  border: 3px solid #5379fa;
   padding: 5px;
   height: 30px;
   border-radius: 5px;
@@ -207,6 +207,19 @@ input[type="checkbox"].input-validation-error {
 .login input[type=text]{
 	width: 250px;
 	height: 30px;
+	background: transparent;
+	border: 2px solid #fff;
+	border-radius: 2px;
+	color: #fff;
+	font-family: 'Exo', sans-serif;
+	font-size: 16px;
+	font-weight: 400;
+	padding: 4px;
+}
+
+.login textarea{
+	width: 300px;
+	height: 130px;
 	background: transparent;
 	border: 2px solid #fff;
 	border-radius: 2px;
@@ -380,11 +393,36 @@ border-bottom:3px solid rgba(255,255,255,0.6);
 .editProfile2 div span{
 	color: #5379fa !important;
 }
-.Post{
+.Post
+{
+    border-left:solid;
+    border-left-width:thin;
+    border-left-color:lightgrey;
+    border-right:solid;
+    border-right-width:thin;
+    border-right-color:lightgray;
+    border-top-style:solid;
+    border-top-width:thin;
+    border-top-color:lightgray;
+    border-bottom-style:solid;
+    border-bottom-width:thin;
+    border-bottom-color:lightgray;
+    border-radius:10px;
     text-align:center;
-    width:500px;
-    margin-left:auto;
-    margin-right:auto;
+    width:540px;
+    margin-left:28%;
+    margin-right:30%;
+    background-color: white;
+}
+
+.borderleftright
+{
+    border-left:solid;
+    border-left-width:thin;
+    border-left-color:lightgrey;
+    border-right:solid;
+    border-right-width:thin;
+    border-right-color:lightgray;
 }
 
 .Postabout
@@ -393,25 +431,26 @@ border-bottom:3px solid rgba(255,255,255,0.6);
     border-style:solid;
     border-color:black;
     border-width:thin;
+    border-radius:5px;
     text-align:center;
     width:500px;
     margin-left:auto;
     margin-right:auto;
-    margin-bottom:50px;
   }
 
 .postpicture{
-    border-style:solid;
-    border-color:black;
-    border-width:thin;
+    
     width:500px;
     height:500px;
+    margin-top:12px;
+    border-radius:10px;
 }
 
 .profilepicture{
     border-style:solid;
     border-color:black;
     border-width:thin;
+    border-radius:10px;
     width:50px;
     height:50px;
 }
@@ -447,22 +486,30 @@ border-bottom:3px solid rgba(255,255,255,0.6);
     color: #555;
     box-shadow: 0 4px 10px #EEEEEE;
     position: relative;
-    padding: 10px;
+    padding: 5px;
     border: 4px solid #EEEEEE !important;
     border-radius:10px;
+    margin-bottom:0px;
 }
 
 .wrapper
 {
     width:100%;
+    height:100%;
+    background-color: #EEE;
 }
 
 .navleft
 {
+    background-color: #EEE;
     float:left;
     width:28%;
 }
 
+.navleftmyprofile
+{
+    background-color:#EEE;
+}
 .navleftprofile
 {
     float:left;
@@ -471,6 +518,7 @@ border-bottom:3px solid rgba(255,255,255,0.6);
 
 .navcenter
 {
+    background-color: #EEE;
     background-color:#E0E0E0;
     width:70%;
     float:right;
@@ -478,15 +526,31 @@ border-bottom:3px solid rgba(255,255,255,0.6);
 
 .navright
 {
+    background-color: #EEE;
     float:right;
     width: 30%;
 }
 
-.createpostforms 
+.feedbuttons
 {
-    margin-bottom:13px;
+    background-color: #EEE;
+    text-align:center;
 }
 
+.posts
+{
+    background-color: #EEE;
+}
+
+.createpostforms 
+{
+    background-color: #EEE;
+}
+
+.bodydiv
+{
+     background-color: #EEE;
+}
 .groupabout
 {
    margin-top:20px;
@@ -496,6 +560,7 @@ border-bottom:3px solid rgba(255,255,255,0.6);
 {
     text-align:center;
     margin-top:8px;
+    margin-bottom:10px;
 }
 
 .margintop
@@ -514,7 +579,8 @@ border-bottom:3px solid rgba(255,255,255,0.6);
   
 }
 
-.unfollowtakki {
+.unfollowtakki
+ {
 }
 .star-rating {
   font-size: 0;
@@ -575,9 +641,11 @@ border-bottom:3px solid rgba(255,255,255,0.6);
 .star-rating i ~ i ~ i ~ i ~ i ~ i ~ i ~ i {
   width: 80%;
 }
-    .star-rating i ~ i ~ i ~ i ~ i ~ i ~ i ~ i ~ i {
+
+.star-rating i ~ i ~ i ~ i ~ i ~ i ~ i ~ i ~ i {
         width: 90%;
-    }
+}
+
 .marginEditAccount
 {
     margin-top: 1%;
@@ -615,3 +683,5 @@ border-bottom:3px solid rgba(255,255,255,0.6);
 {
     width:42%;
 }
+
+

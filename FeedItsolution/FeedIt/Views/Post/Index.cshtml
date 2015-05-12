@@ -1,9 +1,13 @@
 ﻿@model FeedIt.Models.PostViewModel
+@using Microsoft.AspNet.Identity
+
 @{
     ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Post</h2>
+
 <body>
     <div class="text-center">
         <div class="col-md-12">
@@ -55,16 +59,16 @@
         }
         </div>
         @foreach (var comment in Model.comments)
-        {
-            <blockquote>
-                <div class="Commentsection">
-                    <p>
-                        @comment.comment.comment
-                    </p>
-                    <footer> - @comment.user.UserName at @comment.comment.date</footer>
-                </div>
-            </blockquote>
-        }
+{
+    <blockquote class="Commentsection">
+        <div>
+            <p>
+                @comment.comment.comment
+            </p>
+            <footer> - @comment.user.UserName at @comment.comment.date</footer>
+        </div>
+    </blockquote>
+}
     </div>
 </body>
 

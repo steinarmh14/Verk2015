@@ -19,34 +19,41 @@
                                 <label>Insert photo URL</label>
                                 <input class="col-xs-12" type="text" name="picture" id="picture" />
                                 <div class="margintop">
-                                    <textarea rows="7" cols="75" placeholder="Description/recipe" name="description" id="description"></textarea>
+                                    <textarea rows="7" cols="65" placeholder="Description/recipe" name="description" id="description"></textarea>
                                 </div>
-                                <div class="postbutton">
-                                    <input type="submit" value="Feed it" />
+                                <div>
+                                    <input type="submit" class="postbutton" value="Feed it" />
                                 </div>
                             </div>
                         }
                     </div>
-                    <div class="posts">
+                </div>
+                <div class="wrapper">
+                    <span class="feedbuttons">
+                        <button id="friendsfeedbutton">Friends</button>
+                        <button id="allfeedbutton">All</button>
+                        <button id="groupfeedbutton">Groups</button>
+                    </span>
+                </div>
+                    <div class="posts" id="friendfeed">
                         <p>
                             Feed from friends
                         </p>
                         @Html.Partial("UserFeed", Model.userFeed)
                     </div>
-                    <div class="posts">
+                    <div class="posts hidden" id="groupfeed">
                         <p>
                             Feed from groups
                         </p>
                         @Html.Partial("UserFeed", Model.groupsFeed)
                     </div>
-                    <div class="posts">
+                    <div class="posts hidden" id="allfeed">
                         <p>
                             Feed from friends and groups
                         </p>
                         @Html.Partial("UserFeed", Model.allFeed)
                     </div>
                 </div>
-            </div>
 
 </body>
 </html>
