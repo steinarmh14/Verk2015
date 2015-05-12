@@ -41,7 +41,15 @@ namespace FeedIt.Controllers
             {
                 int id = Int32.Parse(postId);
                 int rating = Int32.Parse(rateInfo);
-                PostService.Instance.rate(id, rating);
+                int currentRating = PostService.Instance.getCurrentRatingFromUser(User.Identity.GetUserId(), id);
+                if (currentRating == -1)
+                {
+                    PostService.Instance.rate(id, rating, User.Identity.GetUserId());
+                }
+                else
+                {
+                    PostService.Instance.updateRatingFromUser(User.Identity.GetUserId(), id, rating, currentRating);
+                }
                 Post post = PostService.Instance.getPostById(id);
                 post.rating = System.Math.Round(post.rating, 1);
                 return Json(post, JsonRequestBehavior.AllowGet);

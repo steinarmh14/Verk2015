@@ -193,6 +193,7 @@
     <Compile Include="Models\SearchViewModel.cs" />
     <Compile Include="Models\UserFeed.cs" />
     <Compile Include="Models\UserInfo.cs" />
+    <Compile Include="Models\UserRating.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service\FollowerService.cs" />
     <Compile Include="Service\GroupService.cs" />
