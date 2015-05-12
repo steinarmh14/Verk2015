@@ -77,6 +77,9 @@ namespace FeedIt.Service
                         userFeed.user = (from h in db.Users
                                      where h.Id == userFeed.post.owner
                                      select h).SingleOrDefault();
+                        userFeed.group = (from x in db.Groups
+                                          where x.ID == userFeed.post.groupID
+                                          select x).SingleOrDefault();
                         postsList.Add(userFeed);
                     }
                     
@@ -112,15 +115,34 @@ namespace FeedIt.Service
             }
         }
 
-        public List<Post> getFeedForGroup(int groupID)
+        public List<UserFeed> getFeedForGroup(int groupID)
         {
             using (var db = new ApplicationDbContext())
             {
+
                 var posts = (from b in db.Posts
                              where b.groupID == groupID
                              select b).ToList();
+                List<UserFeed> postsList = new List<UserFeed>();
 
-                var dateOrdered = posts.OrderByDescending(x => x.date).ToList();
+                foreach (var d in posts)
+                {
+                    UserFeed userFeed = new UserFeed();
+                    userFeed.post = d;
+                    if (userFeed.post != null)
+                    {
+                        userFeed.user = (from h in db.Users
+                                         where h.Id == userFeed.post.owner
+                                         select h).SingleOrDefault();
+                        userFeed.group = (from x in db.Groups
+                                          where x.ID == userFeed.post.groupID
+                                          select x).SingleOrDefault();
+                        postsList.Add(userFeed);
+                    }
+
+                }
+
+                var dateOrdered = postsList.OrderByDescending(x => x.post.date).ToList();
                 return dateOrdered;
             }
         }
