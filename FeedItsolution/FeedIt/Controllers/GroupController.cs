@@ -50,10 +50,10 @@ namespace FeedIt.Controllers
         {
             string userId = User.Identity.GetUserId();
 
-            GroupList myGroups = new GroupList();
-            myGroups.myGroups = GroupService.Instance.getGroups(userId);
+            GroupList groups = new GroupList();
+            groups.myGroups = GroupService.Instance.getGroups(userId);
 
-            return View(myGroups);
+            return View(groups);
         }
 
         public ActionResult EditGroupView()
@@ -127,6 +127,11 @@ namespace FeedIt.Controllers
             string picture = collection["picture"];
             string groupID = collection["groupID"];
             int ID = Int32.Parse(groupID);
+
+            if (String.IsNullOrEmpty(about) || String.IsNullOrEmpty(picture))
+            {
+                return RedirectToAction("GroupView", new { id = ID });
+            }
 
             Post post = new Post();
 

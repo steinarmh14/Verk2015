@@ -71,7 +71,7 @@ namespace FeedIt.Service
                     UserFeed userFeed = new UserFeed();
                     userFeed.post = (from n in db.Posts
                                      where n.groupID == d.groupID
-                                     select n).SingleOrDefault();
+                                     select n).FirstOrDefault();
                     if(userFeed.post != null)
                     {
                         userFeed.user = (from h in db.Users
