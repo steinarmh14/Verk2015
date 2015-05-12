@@ -4,52 +4,6 @@
     ViewBag.Title = "Log in";
 }
 
-    <!--<div class="row" id="border">
-        <div class="col-md-12">
-            <section id="loginForm">
-                @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-                {
-                    <div class="col-md-12" id="backgroundFrontPage">
-                    @Html.AntiForgeryToken()
-                        
-                    <h4 class="col-md-offset-5 col-md-7"> Welcome! </h4>
-                    @Html.ValidationSummary(true)
-                    <div class="form-group">
-                        @Html.LabelFor(m => m.UserName, new { @class = "col-md-4 control-label" })
-                        <div class="col-md-8">
-                            @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
-                            @Html.ValidationMessageFor(m => m.UserName)
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        @Html.LabelFor(m => m.Password, new { @class = "col-md-4 control-label" })
-                        <div class="col-md-8">
-                            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-                            @Html.ValidationMessageFor(m => m.Password)
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-md-offset-4 col-md-8">
-                            <div class="checkbox">
-                                @Html.CheckBoxFor(m => m.RememberMe)
-                                @Html.LabelFor(m => m.RememberMe)
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-md-offset-6 col-md-6">
-                            <input type="button" value="Sign Up!" onclick="location.href = 'Register';" class="btn btn-default" />
-                            <input type="submit" value="Log in" class="btn btn-default" />
-                        </div>
-                    </div>
-                    </div>
-               
-                }
-        
-            </section>
-        </div>
-
-    </div>-->
 
 <body>
     <a href='@Url.Action("Index", "Home")'>

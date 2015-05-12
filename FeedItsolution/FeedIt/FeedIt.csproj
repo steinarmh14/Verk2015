@@ -209,6 +209,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\feeditLOGO.jpg" />
     <Content Include="Images\image.png" />
     <Content Include="Scripts\ajax.js" />
     <Content Include="Scripts\bootstrap.js" />
