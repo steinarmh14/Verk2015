@@ -5,7 +5,6 @@
     ViewBag.Title = "Edit My Account";
 }
 
-
 <p class="marginEditAccount fontLogin">You're logged in as <strong>@User.Identity.GetUserName()</strong></p>
 
 @using (Html.BeginForm("Manage", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
@@ -20,32 +19,6 @@
     </div>
     <br>
     <div class="login">
-        <div class="editProfile leftmarginEdit">
-            <div>Edit<span>Profile</span></div>
-        </div>
-        <br><br><br>
-        <div class="form-group">
-            <div>
-                <p class="fontLogin col-md-12">About Me</p>
-            </div>
-            <div class="col-md-12">
-                <textarea placeholder="Write description..."></textarea>
-            </div>
-        </div>
-        <div class="form-group">
-            <div>
-                <p class="fontLogin col-md-12">Profile Picture</p>
-            </div>
-            <div class="col-md-12">
-                    <input type="text" id="groupPicture" name="groupPicture" />
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="col-md-12">
-                <input type="button" value="Cancel" class="btn btn-default" onclick="@("window.location.href='" + @Url.Action("Index", "Home") + "'");"/>
-                <input type="submit" value="Save Changes" class="btn btn-default" />
-            </div>
-        </div>
         <div class="editProfile leftmarginEdit">
             <div>Change<span>Password</span></div>
         </div>

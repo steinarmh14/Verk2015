@@ -262,6 +262,7 @@
     <Content Include="Views\Search\Search.cshtml" />
     <Content Include="Views\Group\GroupView.cshtml" />
     <Content Include="Views\Account\ChangeUserInfo.cshtml" />
+    <Content Include="Views\Profile\EditProfile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
