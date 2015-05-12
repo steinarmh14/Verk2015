@@ -93,11 +93,11 @@ namespace FeedIt.Controllers
             return View();
         }
 
-        [HttpPost]
+        /*[HttpPost]
         public ActionResult deleteProfile(FormCollection collection)
         {
 
-        }
+        }*/
 
         [HttpPost]
         public ActionResult Follow(FormCollection collection)
