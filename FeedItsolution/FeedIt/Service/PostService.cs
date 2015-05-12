@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-
 using FeedIt.Models;
 using System.Data.SqlClient;
 
@@ -58,7 +57,7 @@ namespace FeedIt.Service
     
         }
 
-        public void rate(int postID,int rating)
+        public void rate(int postID,int rating, string userID)
         {
             using (var db = new ApplicationDbContext())
             {
@@ -76,6 +75,22 @@ namespace FeedIt.Service
 
                post.rateCount = rateCount;
                post.rating = currentRating;
+
+               var userRating = (from s in db.UserRatings
+                                 where s.postID == postID && s.userID == userID
+                                 select s).FirstOrDefault();
+               if (userRating == null)
+               {
+                   UserRating uRating = new UserRating();
+                   uRating.rating = rating;
+                   uRating.userID = userID;
+                   uRating.postID = postID;
+                   db.UserRatings.Add(uRating);
+               }
+               else
+               {
+                   userRating.rating = rating;
+               }   
                db.SaveChanges();
             }           
         }
@@ -136,6 +151,55 @@ namespace FeedIt.Service
             }
 
             
+        }
+
+        public int getCurrentRatingFromUser (string userID, int postID)
+        {
+            using (var db = new ApplicationDbContext())
+            {
+                var userRating = (from s in db.UserRatings
+                            where s.postID == postID && s.userID == userID
+                            select s).SingleOrDefault();
+                if (userRating == null)
+                {
+                    return -1;
+                }
+                else
+                {
+                    return userRating.rating;
+                }
+            }
+        }
+        public void updateRatingFromUser (string userID, int postID, int rating, int previousRating)
+        {
+            using (var db = new ApplicationDbContext())
+            {
+                var userRating = (from s in db.UserRatings
+                                  where s.postID == postID && s.userID == userID
+                                  select s).FirstOrDefault();
+                if (userRating == null)
+                {
+                    return;
+                }
+                else
+                {
+                    userRating.rating = rating;
+                    Post post = (from s in db.Posts
+                                 where s.ID == postID
+                                 select s).SingleOrDefault();
+
+                    double currentRating = post.rating;
+                    int rateCount = post.rateCount;
+
+                    double allRatings = currentRating * rateCount;
+                    allRatings = allRatings + rating - previousRating;
+                    currentRating = allRatings / rateCount;
+
+                    post.rateCount = rateCount;
+                    post.rating = currentRating;
+                    db.SaveChanges();
+                }
+            }
         }
 
     }

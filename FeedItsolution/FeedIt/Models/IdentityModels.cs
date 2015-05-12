@@ -39,6 +39,7 @@ namespace FeedIt.Models
         // link tables:
         public DbSet<Follower> Followers { get; set; }
         public DbSet<GroupFollower> GroupFollowers { get; set; }
+        public DbSet<UserRating> UserRatings { get; set; }
 
         public ApplicationDbContext()
             : base("DefaultConnection")
