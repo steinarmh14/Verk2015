@@ -27,19 +27,24 @@
                             </div>
                         }
                     </div>
-                    <div class="posts">
+                    <span class="text-center">
+                        <button id="friendsfeedbutton">Friends</button>
+                        <button id="allfeedbutton">All</button>
+                        <button id="groupfeedbutton">Groups</button>
+                    </span>
+                    <div class="posts" id="friendfeed">
                         <p>
                             Feed from friends
                         </p>
                         @Html.Partial("UserFeed", Model.userFeed)
                     </div>
-                    <div class="posts">
+                    <div class="posts hidden" id="groupfeed">
                         <p>
                             Feed from groups
                         </p>
                         @Html.Partial("UserFeed", Model.groupsFeed)
                     </div>
-                    <div class="posts">
+                    <div class="posts hidden" id="allfeed">
                         <p>
                             Feed from friends and groups
                         </p>
