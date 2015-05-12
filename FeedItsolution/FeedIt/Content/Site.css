@@ -596,6 +596,18 @@ border-bottom:3px solid rgba(255,255,255,0.6);
     width:75px;
     height:75px;
 }
+
+.feedprofilepic
+{
+    border-style:solid;
+    border-color:black;
+    border-width:thin;
+    border-radius:5px;
+    width:55px;
+    height:55px;
+    margin-left:50%;
+}
+
 .groupprofilepicture
 {
     border-style:solid;

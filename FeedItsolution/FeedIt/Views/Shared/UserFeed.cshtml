@@ -6,13 +6,18 @@
     {
         <div class="wrapper">
             <div class="navleft">
-                <p class="Postuser">
-                    <a href=@Url.Action("Profile", "Profile", new { userID = item.user.Id })>@item.user.UserName</a>
-                </p>
-                <p class="Posttime">
-                    @item.post.date
-                </p>
-            </div>
+                <div>
+                    <a href="@Url.Action("Profile", "Profile", new { userID = item.user.Id})">
+                        <img src="@Url.Content(item.user.profilePicture)" alt="picture" class="feedprofilepic" />
+                    </a>
+                </div>
+                    <p class="Postuser">
+                        <a href=@Url.Action("Profile", "Profile", new { userID = item.user.Id })>@item.user.UserName</a>
+                    </p>
+                    <p class="Posttime">
+                        @item.post.date.Day/@item.post.date.Month - @item.post.date.Hour:@item.post.date.Minute 
+                    </p>
+                </div>
             <div class="Post">
                 <a href="@Url.Action("Index", "Post", new { id = item.post.ID})">
                     <img src="@Url.Content(item.post.picture)" alt="picture" class="postpicture" />
