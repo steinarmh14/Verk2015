@@ -3,18 +3,19 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Profile page</h2>
-
+<h2>@Model.user.fullName</h2>
 <body>
-    <div class="text-center">
-        <h2>@Model.user.fullName</h2>
-
+    <div class="navleftmyprofile">
+        <fieldset>
         <div>
+            <img src="@Url.Content(Model.user.profilePicture)" alt="picture" class="groupprofilepicture" />
+        </div>
+        <div class="groupabout">
             <p>@Model.user.aboutMe</p>
         </div>
-
-        <div>
-            @Html.Partial("UserFeed", Model.feed)
-        </div>
+        </fieldset>
+    </div>
+    <div>
+        @Html.Partial("UserFeed", Model.feed)
     </div>
 </body>

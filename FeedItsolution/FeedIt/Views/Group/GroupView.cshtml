@@ -9,11 +9,10 @@
         <div>
             <img src="@Url.Content(Model.group.picture)" alt="picture" class="groupprofilepicture" />
         </div>
-        <div class="groupabout">
-            <p>@Model.group.about</p>
-            </divclass>
+            <div class="groupabout">
+                    <p>@Model.group.about</p>
+            </div>
         </div>
-    </div>
     <div class="createpostforms">
         @using (Html.BeginForm("createPost", "Group", FormMethod.Post, new { id = "makePostForm" }))
         {

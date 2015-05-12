@@ -413,6 +413,11 @@ border-bottom:3px solid rgba(255,255,255,0.6);
     width:28%;
 }
 
+.navleftprofile
+{
+    float:left;
+    width:15%;
+}
 
 .navcenter
 {
@@ -451,4 +456,14 @@ border-bottom:3px solid rgba(255,255,255,0.6);
 .marginPassword
 {
     margin-top: -1px;
+}
+
+.followtakki
+{
+  
+}
+
+.unfollowtakki
+{
+
 }

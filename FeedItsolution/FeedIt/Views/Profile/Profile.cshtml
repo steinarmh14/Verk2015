@@ -1,32 +1,32 @@
 ﻿@model FeedIt.Models.ProfileViewModel
 
 <body>
-    <div class="text-center">
+    <div class="wrapper"></div>
         <h2>@Model.user.fullName</h2>
-
-        <div>
-            <p>@Model.user.profilePicture</p>
+        <div class="navleft">
+            <div>
+                <img src="@Url.Content(Model.user.profilePicture)" alt="picture" class="groupprofilepicture" />
+            </div>
+            <div class="groupabout">
+                <p>@Model.user.aboutMe</p>
+            </div>
+            <div class="followtakki">
+                @using (Html.BeginForm("Follow", "Profile", FormMethod.Post, new { id = "postform" }))
+                {
+                    <input type="hidden" value=@Model.user.Id name="userID" id="userID" />
+                    <input type="submit" value="Follow" />
+                }
+            </div>
+            <div class="unfollowtakki">
+                @using (Html.BeginForm("Unfollow", "Profile", FormMethod.Post, new { id = "postform" }))
+                {
+                    <input type="hidden" value=@Model.user.Id name="userID" id="userID" />
+                    <input type="submit" value="Unfollow" />
+                }
+            </div>
         </div>
-        <div>
-            <p>@Model.user.aboutMe</p>
-        </div>
-        <div>
-            @using (Html.BeginForm("Follow", "Profile", FormMethod.Post, new { id = "postform" }))
-            {
-                <input type="hidden" value=@Model.user.Id name="userID" id="userID" />
-                <input type="submit" value="Follow" />
-            }
-        </div>
-        <div>
-            @using (Html.BeginForm("Unfollow", "Profile", FormMethod.Post, new { id = "postform" }))
-            {
-                <input type="hidden" value=@Model.user.Id name="userID" id="userID" />
-                <input type="submit" value="Unfollow" />
-            }
-        </div>
-
-        <div>
-            @Html.Partial("UserFeed", Model.feed)
-        </div>
+    </div>
+    <div>
+        @Html.Partial("UserFeed", Model.feed)
     </div>
 </body>
