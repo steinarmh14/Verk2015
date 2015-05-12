@@ -771,8 +771,8 @@ pre code {
 }
 
 .container {
-  padding-right: -100px;
-  padding-left: 150px;
+  padding-right: 0px;
+  padding-left: 0px;
   margin-right: auto;
   margin-left: auto;
 }
@@ -3242,6 +3242,7 @@ input[type="button"].btn-block {
 
 .dropdown {
   position: relative;
+  
 }
 
 .dropdown-toggle:focus {
