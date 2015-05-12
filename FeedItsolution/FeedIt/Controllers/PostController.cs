@@ -18,13 +18,13 @@ namespace FeedIt.Controllers
             PostViewModel model = new PostViewModel();
             model.post = post;
             IEnumerable<Comment> comments = PostService.Instance.getCommentsForPost(id);
-            model.user = UserService.Instance.getProfileByID(post.owner);
+            model.user = ProfileService.Instance.getProfileByID(post.owner);
             List<CommentUser> commentList = new List<CommentUser>();
             foreach (var item in comments)
             {
                 CommentUser commentUser = new CommentUser();
                 commentUser.comment = item;
-                ApplicationUser user = UserService.Instance.getProfileByID(item.ownerID);
+                ApplicationUser user = ProfileService.Instance.getProfileByID(item.ownerID);
                 commentUser.user = user;
                 commentList.Add(commentUser);
             }
@@ -33,13 +33,17 @@ namespace FeedIt.Controllers
         }
 
         [HttpPost]
-        public ActionResult ratePost(int? postID, int rating)
+        public ActionResult ratePost(FormCollection collection)
         {
-            if (postID.HasValue)
+            string postId = collection["postid"];
+            string rateInfo = collection["rateinfo"];
+            if (!string.IsNullOrEmpty(postId))
             {
-                int realPostID = postID.Value;
-                PostService.Instance.rate(realPostID, rating);
-                return View();
+                int id = Int32.Parse(postId);
+                int rating = Int32.Parse(rateInfo);
+                PostService.Instance.rate(id, rating);
+                Post post = PostService.Instance.getPostById(id);
+                return Json(post, JsonRequestBehavior.AllowGet);
             }
             return View("Error");
         }

@@ -9,15 +9,15 @@ namespace FeedIt.Service
 {
     public class UserService
     {
-        private static ProfileService instance;
+        private static UserService instance;
 
-        public static ProfileService Instance
+        public static UserService Instance
         {
             get
             {
                 if (instance == null)
                 {
-                    instance = new ProfileService();
+                    instance = new UserService();
                 }
                 return instance;
             }

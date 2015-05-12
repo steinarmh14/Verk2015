@@ -34,7 +34,7 @@ namespace FeedIt.Controllers
                 {
                     UserFeed singleUserFeed = new UserFeed();
                     singleUserFeed.post = post;
-                    singleUserFeed.user = UserService.Instance.getProfileByID(post.owner);
+                    singleUserFeed.user = ProfileService.Instance.getProfileByID(post.owner);
                     groupFeed.Add(singleUserFeed);
                 }
                 GroupViewModel model = new GroupViewModel();
@@ -76,9 +76,14 @@ namespace FeedIt.Controllers
             group.owner = strID;
             group.picture = picture;
 
+            if(String.IsNullOrEmpty(group.picture))
+            {
+                group.picture = "http://www.abc.net.au/news/image/954416-3x2-940x627.jpg";
+            }
+
             GroupService.Instance.createGroup(group);
 
-            return RedirectToAction("CreateGroup");
+            return RedirectToAction("GroupView", new { id = group.ID });
         }
 
         [HttpPost]

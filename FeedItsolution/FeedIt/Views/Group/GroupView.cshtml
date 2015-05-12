@@ -3,31 +3,34 @@
     ViewBag.Title = "GroupView";
 }
 
-<h2>GroupView</h2>
-
-<div>
-    <p>@Model.group.name</p>
-</div>
-
-<div>
-    <p>@Model.group.picture</p>
-</div>
-
-<div>
-    <p>@Model.group.about</p>
-</div>
-
-<div>
-    @using (Html.BeginForm("createPost", "Group", FormMethod.Post, new { id = "postform" }))
-    {
-        <input type="hidden" name="groupID" id="groupID" value="@Model.group.ID" />
-        <input type="text" name="picture" id="picture" />
-        <input type="text" placeholder="Description/recipe" name="description" id="description" />
-        <input type="submit" class="createpost" value="Post" />
-    }
-</div>
-
-<div>
-    @Html.Partial("UserFeed", Model.feed)
-</div>
-
+<h2>@Model.group.name</h2>
+<body>
+    <div class="navleft">
+        <div>
+            <img src="@Url.Content(Model.group.picture)" alt="picture" class="groupprofilepicture" />
+        </div>
+        <div class="groupabout">
+            <p>@Model.group.about</p>
+            </divclass>
+        </div>
+    </div>
+    <div class="createpostforms">
+        @using (Html.BeginForm("createPost", "Group", FormMethod.Post, new { id = "makePostForm" }))
+        {
+            <input type="hidden" name="groupID" id="groupID" value="@Model.group.ID" />
+             <div>
+                   <label>Insert photo URL</label>
+                   <input class="col-xs-12" type="text" name="picture" id="picture" />
+                 <div class="margintop">
+                     <textarea rows="7" cols="75" placeholder="Description/recipe" name="description" id="description"></textarea>
+                 </div>
+                 <div class="postbutton">
+                     <input type="submit" value="Feed to group" />
+                 </div>
+             </div>
+        }
+    </div>
+    <div>
+        @Html.Partial("UserFeed", Model.feed)
+    </div>
+</body>

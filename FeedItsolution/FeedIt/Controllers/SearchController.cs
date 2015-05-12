@@ -22,7 +22,7 @@ namespace FeedIt.Controllers
             SearchViewModel model = new SearchViewModel();
 
             model.groups = GroupService.Instance.getGroupsByName(search);
-            model.users = UserService.Instance.getProfilesByName(search);
+            model.users = ProfileService.Instance.getProfilesByName(search);
 
             return View(model);
         }

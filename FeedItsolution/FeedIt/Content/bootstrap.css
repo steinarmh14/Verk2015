@@ -43,14 +43,9 @@ video {
   display: inline-block;
 }
 
-.postpicture{
-    width:500px;
-    height:500px;
-}
 
 .recipe{
     font-size:larger;
-    text-align:right;
 }
 
 .wholepage{
@@ -803,7 +798,7 @@ pre code {
 
 .row {
   margin: auto;
-  margin-top: 20%;
+  margin-top: 0%;
   background-color: #fff;
 
 }
@@ -4534,7 +4529,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
 }
 
 .navbar-inverse {
-  background-color: #e6e6e6;
+  background-color: #AAA;
   border-color: #fff;
 }
 
@@ -6868,5 +6863,4 @@ td.visible-print {
       height: 200px;
       background-color: #000
   }
-
 }

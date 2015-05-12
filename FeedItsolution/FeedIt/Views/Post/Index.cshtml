@@ -18,6 +18,29 @@
 
         <div>
             <p class="recipe">@Model.post.about</p>
+            <p>Rating: <span id="currentrating">@Model.post.rating</span></p>
+
+            @using (Html.BeginForm("ratePost", "Post", FormMethod.Post, new { id = "rateform" }))
+            {
+                <input type="hidden" name="postid" id="postid" value="@Model.post.ID" />
+                <div class="form-horizontal">
+                    <label class="sr-only" for="rateinfo">Rate</label>
+                    <span class="star-rating">
+                        @for (int i = 1; i <= 10; i++)
+                        {
+                            if (i == Model.post.rating)
+                            {
+                                <input type="radio" name="rating" id="rateinfo" value="@i" checked /><i></i>
+                            }
+                            else
+                            {
+                                <input type="radio" name="rating" id="rateinfo" value="@i" /><i></i>
+                            }
+                        }
+                    </span>
+                </div>
+                @Html.ValidationSummary(false)
+            }
         </div>
         <div>
         @using (Html.BeginForm("Comment", "Post", FormMethod.Post, new { id = "commentForm" }))
@@ -34,7 +57,7 @@
         @foreach (var comment in Model.comments)
         {
             <blockquote>
-                <div>
+                <div class="Commentsection">
                     <p>
                         @comment.comment.comment
                     </p>

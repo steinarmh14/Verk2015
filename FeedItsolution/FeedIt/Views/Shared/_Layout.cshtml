@@ -21,7 +21,7 @@
                     @if (Request.IsAuthenticated)
                     {
                         <a href='@Url.Action("Index", "Home")'>
-                            <img class="logo" src="../Images/image.jpg" />
+                            <img class="logo" src="../Images/feeditLOGO.jpg" />
                         </a>
 
 
@@ -46,7 +46,7 @@
                                     <li class="divider"></li>
                                     <li>@Html.ActionLink("My Groups", "MyGroupsView", "Group")</li>
                                     <li>@Html.ActionLink("Create Group", "CreateGroup", "Group")</li>
-                                    <li>@Html.ActionLink("Edit My Group", "EditGroupView", "Group")</li>
+                                    <li>@Html.ActionLink("Edit My Groups", "EditGroupView", "Group")</li>
                                     <li class="divider"></li>
                                     <li><a href="javascript:document.getElementById('logoutForm').submit()">Log Out</a></li>
                                 </ul>

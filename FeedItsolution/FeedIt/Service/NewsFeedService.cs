@@ -70,7 +70,7 @@ namespace FeedIt.Service
                 {
                     UserFeed userFeed = new UserFeed();
                     userFeed.post = (from n in db.Posts
-                                     where n.ID == d.groupID
+                                     where n.groupID == d.groupID
                                      select n).SingleOrDefault();
                     userFeed.user = (from h in db.Users
                                      where h.Id == userFeed.post.owner
