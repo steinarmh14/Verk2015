@@ -467,13 +467,24 @@ border-bottom:3px solid rgba(255,255,255,0.6);
 
 .Postuser{
     text-align: right;
-    margin-right: 40px;
+    margin-right: 10%;
     font-size:larger;
+}
+
+.Groupostuser{
+    text-align: right;
+    margin-right: 10%;
+    font-size:larger;
+}
+
+.groupposttime{
+    text-align: right;
+    margin-right: 10%;
 }
 
 .Posttime{
     text-align: right;
-    margin-right: 40px;
+    margin-right: 10%;
 }
 
 .Commentsection
@@ -506,14 +517,16 @@ border-bottom:3px solid rgba(255,255,255,0.6);
     width:28%;
 }
 
+.navleftprofile
+{
+    background-color: #EEE;
+    float:left;
+    width:28%;
+}
+
 .navleftmyprofile
 {
     background-color:#EEE;
-}
-.navleftprofile
-{
-    float:left;
-    width:15%;
 }
 
 .navcenter
@@ -576,19 +589,39 @@ border-bottom:3px solid rgba(255,255,255,0.6);
 
 .followtakki
 {
-  
+  margin-right:1%;
 }
 
 .unfollowtakki
  {
+    margin-right:1%;
+}
+
+.mygroupspicturesearch
+{
+    margin-left:35%;
+    width:80px;
+    height:80px;
+    border-radius:8px;
 }
 
 
 .mygroupspicture
 {
-    padding-top:2%;
+    border-radius:8px;
     width:80px;
     height:80px;
+}
+
+.groupfeedprofilepic
+{
+    border-style:solid;
+    border-color:black;
+    border-width:thin;
+    border-radius:5px;
+    width:55px;
+    height:55px;
+    margin-left:70%;
 }
 
 .feedprofilepic
@@ -731,6 +764,11 @@ border-bottom:3px solid rgba(255,255,255,0.6);
     width:42%;
 }
 
+.groupnameingroups
+{
+    margin-left:70%;
+}
+
 .groupname
 {
     margin-left:50%;
@@ -738,7 +776,7 @@ border-bottom:3px solid rgba(255,255,255,0.6);
 
 .searchresult
 {
-    margin-left:40%;
+    margin-left:5%;
     font-size:25px;
 }
 

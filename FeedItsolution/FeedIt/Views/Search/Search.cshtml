@@ -18,6 +18,9 @@
             <div>
                 @foreach (var item in Model.groups)
                 {
+                    <a href="@Url.Action("GroupView", "Group", new { id = item.ID})">
+                            <img src="@Url.Content(item.picture)" alt="picture" class="mygroupspicturesearch" />
+                        </a>
                     <a href=@Url.Action("GroupView", "Group", new { id = item.ID }) class="searchresult">@item.name</a>
                 }
             </div>
