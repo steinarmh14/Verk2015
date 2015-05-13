@@ -92,9 +92,25 @@ namespace FeedIt.Controllers
             return View(groups);
         }
 
-        public ActionResult EditGroupView()
+        public ActionResult EditGroupView(int? groupID)
         {
-            return View();
+            if(groupID.HasValue)
+            {
+                int realGroupID = groupID.Value;
+                Group group = GroupService.Instance.getGroupByID(realGroupID);
+                return View(group);
+            }
+            return View("Error");
+        }
+
+        public ActionResult EditMyGroupsView()
+        {
+            string userID = User.Identity.GetUserId();
+
+            List<Group> group = new List<Group>();
+            group = GroupService.Instance.getMyGroups(userID);  
+
+            return View(group);
         }
 
 
@@ -139,7 +155,7 @@ namespace FeedIt.Controllers
             return RedirectToAction("Manage", "Account");
         }
 
-        public ActionResult editGroup(int? id)
+        public ActionResult editGroup()
         {
             return View();
                 
