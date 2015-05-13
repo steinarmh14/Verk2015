@@ -131,29 +131,27 @@ namespace FeedIt.Controllers
         [HttpPost]
         public ActionResult Follow(FormCollection collection)
         {
-            string groupID = collection["groupID"];
-            int realGroupID = Int32.Parse(groupID);
-            if(!String.IsNullOrEmpty(groupID))          
+            string userID = collection["userID"];
+            if(!String.IsNullOrEmpty(userID))          
             {
                 string strID = User.Identity.GetUserId();
 
-                GroupService.Instance.followGroup(realGroupID, strID);
+                FollowerService.Instance.addFollower(strID, userID);
             }
-            return RedirectToAction("GroupView", new { id =  realGroupID });
+            return RedirectToAction("Profile", new { userID =  userID });
         }
 
         [HttpPost]
         public ActionResult Unfollow(FormCollection collection)
         {
-            string groupID = collection["groupID"];
-            int realGroupID = Int32.Parse(groupID);
-            if (!String.IsNullOrEmpty(groupID))
+            string userID = collection["userID"];
+            if (!String.IsNullOrEmpty(userID))
             {
                 string strID = User.Identity.GetUserId();
 
-                GroupService.Instance.unfollowGroup(realGroupID, strID);
+                FollowerService.Instance.removeFollower(strID, userID);
             }
-            return RedirectToAction("GroupView", new { id = realGroupID });
+            return RedirectToAction("Profile", new { userID = userID });
         }
     }
 }

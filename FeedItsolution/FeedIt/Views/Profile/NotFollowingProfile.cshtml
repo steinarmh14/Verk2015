@@ -9,9 +9,6 @@
             <div>
                 <img src="@Url.Content(Model.user.profilePicture)" alt="picture" class="groupprofilepicture" />
             </div>
-            <div class="groupabout">
-                <p>@Model.user.aboutMe</p>
-            </div>
             <span class="followtakki">
                 @using (Html.BeginForm("Follow", "Profile", FormMethod.Post, new { id = "postform" }))
                 {
@@ -26,6 +23,9 @@
                     <input type="submit" value="Unfollow" />
                 }
             </span>
+            <div class="groupabout">
+                <p>@Model.user.aboutMe</p>
+            </div>
         </div>
     </div>
     <div>
