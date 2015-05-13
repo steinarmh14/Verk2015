@@ -8,16 +8,16 @@
                 <div class="navleft">
                     <div>
                         <a href="@Url.Action("Profile", "Profile", new { userID = item.user.Id})">
-                            <img src="@Url.Content(item.user.profilePicture)" alt="picture" class="feedprofilepic" />
+                            <img src="@Url.Content(item.user.profilePicture)" alt="picture" class="groupfeedprofilepic" />
                         </a>
                     </div>
-                    <p class="Postuser">
+                    <p class="Groupostuser">
                         <a href=@Url.Action("Profile", "Profile", new { userID = item.user.Id })>@item.user.UserName</a>
                     </p>
-                    <p class="Posttime">
+                    <p class="groupposttime">
                         @item.post.date.Day/@item.post.date.Month - @item.post.date.Hour:@item.post.date.Minute
                     </p>
-                    <p class="groupname">group:<a href=@Url.Action("GroupView", "Group", new { id = item.group.ID })>@item.group.name</a></p>
+                    <p class="groupnameingroups">group:<a href=@Url.Action("GroupView", "Group", new { id = item.group.ID })>@item.group.name</a></p>
                 </div>
                 <div class="Post">
                     <a href="@Url.Action("Index", "Post", new { id = item.post.ID})">
@@ -30,3 +30,4 @@
             </div>
         }
     }
+</body>

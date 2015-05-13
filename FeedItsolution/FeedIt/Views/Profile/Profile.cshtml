@@ -5,25 +5,27 @@
         <h2>@Model.user.fullName</h2>
         <div>
             <div>
+            <div>
                 <img src="@Url.Content(Model.user.profilePicture)" alt="picture" class="groupprofilepicture" />
+            </div>
+                <div class="followtakki hide">
+                    @using (Html.BeginForm("Follow", "Profile", FormMethod.Post, new { id = "postform" }))
+                    {
+                        <input type="hidden" value=@Model.user.Id name="userID" id="userID" />
+                        <input type="submit" value="Follow" />
+                    }
+                </div>
+                <div class="unfollowtakki">
+                    @using (Html.BeginForm("Unfollow", "Profile", FormMethod.Post, new { id = "postform" }))
+                    {
+                        <input type="hidden" value=@Model.user.Id name="userID" id="userID" />
+                        <input type="submit" value="Unfollow" />
+                    }
+                </div>
             </div>
             <div class="groupabout">
                 <p>@Model.user.aboutMe</p>
             </div>
-            <span class="followtakki hide">
-                @using (Html.BeginForm("Follow", "Profile", FormMethod.Post, new { id = "postform" }))
-                {
-                    <input type="hidden" value=@Model.user.Id name="userID" id="userID" />
-                    <input type="submit" value="Follow" />
-                }
-            </span>
-            <span class="unfollowtakki">
-                @using (Html.BeginForm("Unfollow", "Profile", FormMethod.Post, new { id = "postform" }))
-                {
-                    <input type="hidden" value=@Model.user.Id name="userID" id="userID" />
-                    <input type="submit" value="Unfollow" />
-                }
-            </span>
         </div>
     </div>
     <div>

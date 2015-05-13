@@ -5,7 +5,7 @@
         foreach (var item in Model)
         {
             <div class="wrapper">
-                <div class="navleft">
+                <div class="navleftprofile">
                     <p class="Postuser">
                         <a href=@Url.Action("Profile", "Profile", new { userID = item.user.Id })>@item.user.UserName</a>
                     </p>
