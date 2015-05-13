@@ -10,17 +10,25 @@
         </div>
         <div class="navcentermygroups">
             <div>
+                @if(Model.users.Count != 0)
+                {
+                    <p class="marginEditAccount fontLogin">Users:</p>
+                }
                 @foreach (var item in Model.users)
 {
     <div class="searchmargin">
         <a href="@Url.Action("Profile", "Profile", new { userID = item.Id})">
             <img src="@Url.Content(item.profilePicture)" alt="picture" class="mygroupspicturesearch" />
         </a>
-        <a href=@Url.Action("Profile", "Profile", new { userID = item.Id }) class="searchresult">@item.UserName</a>
+        <a href=@Url.Action("Profile", "Profile", new { userID = item.Id }) class="searchresult">@item.UserName <br/> @item.fullName</a>
     </div>
 }
             </div>
             <div>
+                @if(Model.groups.Count != 0)
+                {
+                    <p class="marginEditAccount fontLogin">Groups:</p>
+                }
                 @foreach (var item in Model.groups)
                 {
                     <div class="searchmargin">
