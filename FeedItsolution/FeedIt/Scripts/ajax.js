@@ -46,6 +46,16 @@
         return false;
     });*/
 
+    $('body').on('click', '#followersbutton', function () {
+        $("#followings").addClass("hidden");
+        $("#followers").removeClass("hidden");
+    });
+
+    $('body').on('click', '#followingbutton', function () {
+        $("#followings").removeClass("hidden");
+        $("#followers").addClass("hidden");
+    });
+
     $('body').on('click', '#friendsfeedbutton', function () {
         $("#groupfeed").addClass("hidden");
         $("#allfeed").addClass("hidden");
