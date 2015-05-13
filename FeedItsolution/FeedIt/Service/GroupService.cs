@@ -82,6 +82,16 @@ namespace FeedIt.Service
             }
             return result;
         }
+        public List<Group> getMyGroups(string userID)
+        {
+            using(var db = new ApplicationDbContext())
+            {
+                var group = (from s in db.Groups
+                             where s.owner == userID
+                             select s).ToList();
+                return group;
+            }
+        }
 
         public void deleteGroup(int groupID)
         {

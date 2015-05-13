@@ -265,6 +265,7 @@
     <Content Include="Views\Profile\EditProfile.cshtml" />
     <Content Include="Views\Shared\ProfileFeed.cshtml" />
     <Content Include="Views\Shared\GroupFeed.cshtml" />
+    <Content Include="Views\Group\EditMyGroupsView.cshtml" />
     <Content Include="Views\Profile\NotFollowingProfile.cshtml" />
   </ItemGroup>
   <ItemGroup>
