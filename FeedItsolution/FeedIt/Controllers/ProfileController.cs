@@ -120,7 +120,7 @@ namespace FeedIt.Controllers
         }
 
         [HttpPost]
-        public ActionResult DeleteProfile(FormCollection collection)
+        public ActionResult deleteProfile(FormCollection collection)
         {
             string userID = collection["userID"];
             ProfileService.Instance.deleteUser(userID);
