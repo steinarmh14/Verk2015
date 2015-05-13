@@ -12,7 +12,7 @@
             @using (Html.BeginForm("Follow", "Group", FormMethod.Post, new { id = "postform" }))
             {
                 <input type="hidden" value=@Model.group.ID name="groupID" id="groupID" />
-                <input type="submit" value="Follow" />
+                <input type="submit" value="Follow" class="btn btn-default" />
             }
         </span>
         <span class="unfollowtakki hide">
