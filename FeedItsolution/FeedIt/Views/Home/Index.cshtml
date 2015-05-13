@@ -11,7 +11,7 @@
 <body>
             <div class="text-center">
                 <div class="bodydiv">
-                    <h2>News Feed</h2>
+                    <h2><span>News</span><span class="newsfeed">Feed</span></h2>
                     <div class="createpostforms">
                         @using (Html.BeginForm("createPost", "Home", FormMethod.Post, new { id = "makePostForm" }))
                         {
@@ -36,19 +36,19 @@
                     </span>
                 </div>
                     <div class="posts" id="friendfeed">
-                        <p>
+                        <p class="borderbottom">
                             Feed from friends
                         </p>
                         @Html.Partial("UserFeed", Model.userFeed)
                     </div>
                     <div class="posts hidden" id="groupfeed">
-                        <p>
+                        <p class="borderbottom">
                             Feed from groups
                         </p>
                         @Html.Partial("GroupFeed", Model.groupsFeed)
                     </div>
                     <div class="posts hidden" id="allfeed">
-                        <p>
+                        <p class="borderbottom">
                             Feed from friends and groups
                         </p>
                         @Html.Partial("UserFeed", Model.allFeed)
