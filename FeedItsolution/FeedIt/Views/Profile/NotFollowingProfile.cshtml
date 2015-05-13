@@ -1,5 +1,7 @@
 ﻿@model FeedIt.Models.ProfileViewModel
-
+@{
+    ViewBag.Title = "NotFollowingProfile";
+}
 <body>
     <div class="wrapper">
         <h2>@Model.user.fullName</h2>
@@ -10,14 +12,14 @@
             <div class="groupabout">
                 <p>@Model.user.aboutMe</p>
             </div>
-            <span class="followtakki hide">
+            <span class="followtakki">
                 @using (Html.BeginForm("Follow", "Profile", FormMethod.Post, new { id = "postform" }))
                 {
                     <input type="hidden" value=@Model.user.Id name="userID" id="userID" />
                     <input type="submit" value="Follow" />
                 }
             </span>
-            <span class="unfollowtakki">
+            <span class="unfollowtakki hide">
                 @using (Html.BeginForm("Unfollow", "Profile", FormMethod.Post, new { id = "postform" }))
                 {
                     <input type="hidden" value=@Model.user.Id name="userID" id="userID" />
@@ -30,3 +32,5 @@
         @Html.Partial("ProfileFeed", Model.feed)
     </div>
 </body>
+
+
