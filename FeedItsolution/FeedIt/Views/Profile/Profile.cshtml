@@ -8,19 +8,13 @@
             <div>
                 <img src="@Url.Content(Model.user.profilePicture)" alt="picture" class="groupprofilepicture" />
             </div>
-                <div class="followtakki hide">
-                    @using (Html.BeginForm("Follow", "Profile", FormMethod.Post, new { id = "postform" }))
-                    {
+                <div class="followtakki hidden" id="followtakki">
                         <input type="hidden" value=@Model.user.Id name="userID" id="userID" />
-                        <input type="submit" value="Follow" class="btn btn-default" />
-                    }
+                        <input type="button" value="Follow" class="btn btn-default" id="follow" />
                 </div>
-                <div class="unfollowtakki">
-                    @using (Html.BeginForm("Unfollow", "Profile", FormMethod.Post, new { id = "postform" }))
-                    {
+                <div class="unfollowtakki" id="unfollowtakki">
                         <input type="hidden" value=@Model.user.Id name="userID" id="userID" />
-                         <input type="submit" value="Unfollow" class="btn btn-default" />
-                    }
+                         <input type="button" value="Unfollow" class="btn btn-default" id="unfollow" />
                 </div>
             </div>
             <div class="groupabout">

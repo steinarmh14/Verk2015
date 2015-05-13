@@ -1,5 +1,39 @@
 ﻿$(function () {
 
+    $('body').on('click', '#follow', function () {
+        var userID = $('#userID').val();
+
+        var theForm = $(this);
+
+        $.ajax({
+            type: 'POST',
+            url: '/Profile/Follow',
+            data: {
+                userID: userID
+            }
+        }).done(function (data) {
+            $("#followtakki").addClass("hidden");
+            $("#unfollowtakki").removeClass("hidden");
+        })
+    });
+
+    $('body').on('click', '#unfollow', function () {
+        var userID = $('#userID').val();
+
+        var theForm = $(this);
+
+        $.ajax({
+            type: 'POST',
+            url: '/Profile/Unfollow',
+            data: {
+                userID: userID
+            }
+        }).done(function (data) {
+            $("#followtakki").removeClass("hidden");
+            $("#unfollowtakki").addClass("hidden");
+        })
+    });
+
     $('body').on('click', '#followersbutton', function () {
         $("#followings").addClass("hidden");
         $("#followers").removeClass("hidden");

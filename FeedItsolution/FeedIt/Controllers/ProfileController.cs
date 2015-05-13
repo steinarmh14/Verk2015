@@ -159,7 +159,8 @@ namespace FeedIt.Controllers
 
                 followerService.addFollower(strID, userID);
             }
-            return RedirectToAction("Profile", new { userID =  userID });
+            //return RedirectToAction("Profile", new { userID =  userID });
+            return Json(userID, JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
@@ -174,7 +175,8 @@ namespace FeedIt.Controllers
 
                 followerService.removeFollower(strID, userID);
             }
-            return RedirectToAction("Profile", new { userID = userID });
+            //return RedirectToAction("Profile", new { userID = userID });
+            return Json(userID, JsonRequestBehavior.AllowGet);
         }
     }
 }
