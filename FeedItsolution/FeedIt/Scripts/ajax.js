@@ -64,7 +64,7 @@
         $("#friendfeed").addClass("hidden");
     });
 
-    /*$('body').on('submit', '#commentform', function () {
+    $('body').on('submit', '#commentform', function () {
         var post = $('#postid').val();
         var comment = $('#content').val();
 
@@ -83,7 +83,7 @@
                      + data.comment.comment + '</p> <footer> - ' + data.user.Id + ' at '
                      + data.comment.date + '</footer> </div> </blockquote>')
         });
-    });*/
+    });
 
     $('body').on('click', '#rateform', function () {
         var post = $('#postid').val();
