@@ -589,12 +589,12 @@ border-bottom:3px solid rgba(255,255,255,0.6);
 
 .followtakki
 {
-  margin-right:1%;
+  position:relative;
 }
 
 .unfollowtakki
  {
-    margin-right:1%;
+    display:inline-flex;
 }
 
 .mygroupspicturesearch
@@ -749,7 +749,12 @@ border-bottom:3px solid rgba(255,255,255,0.6);
 .mygroups
 {
     margin-left:26%;
-    margin-bottom:10px;
+    margin-bottom:2%;
+}
+
+.searchmargin
+{
+    margin-bottom:2%;
 }
 
 .mygroupsname
@@ -766,7 +771,7 @@ border-bottom:3px solid rgba(255,255,255,0.6);
 
 .groupnameingroups
 {
-    margin-left:70%;
+    margin-left:60%;
 }
 
 .groupname
