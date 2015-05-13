@@ -7,14 +7,24 @@
 <body style="background-color:#EEE">
     <h2 style="background-color:#EEE">@Model.user.fullName</h2>
     <div class="navleftmyprofile">
-        <fieldset>
         <div>
             <img src="@Url.Content(Model.user.profilePicture)" alt="picture" class="groupprofilepicture" />
         </div>
         <div class="groupabout">
             <p>@Model.user.aboutMe</p>
+            <div class="navrightfollowers">
+                <button id="followersbutton" class="followermargin">Followers</button>
+                <button id="followingbutton">Following</button>
+                <div id="followers" class="hidden">
+                    <p class="followermargin">Followers:</p>
+                    @Html.Partial("FollowerFollowing", Model.followers)
+                </div>
+                <div id="followings" class="hidden">
+                    <p class="followermargin">Following:</p>
+                    @Html.Partial("FollowerFollowing", Model.followings)
+                </div>
+            </div>
         </div>
-        </fieldset>
     </div>
     <div>
         @Html.Partial("ProfileFeed", Model.feed)

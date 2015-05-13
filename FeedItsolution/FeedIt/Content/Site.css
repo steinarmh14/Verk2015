@@ -353,11 +353,17 @@ border-bottom:3px solid rgba(255,255,255,0.6);
 
 height:1px;
 background:#717171;
-margin-top: 12%;
+margin-top: 10%;
 border-bottom:3px solid rgba(255,255,255,0.6);
-
-
 }
+
+.line-separatorChangePass{
+height:1px;
+background:#717171;
+margin-top: 7%;
+border-bottom:3px solid rgba(255,255,255,0.6);
+}
+
 #postform
 {
     margin-top: 1%;
@@ -371,13 +377,16 @@ border-bottom:3px solid rgba(255,255,255,0.6);
 .editProfile{
 	position: absolute;
 	z-index: 2;
+    margin-top: 3%;
+    margin-left: 35%;
+    margin-right: auto;
 }
 
 .editProfile div{
 	float: left;
 	color: #fff;
 	font-family: 'Exo', sans-serif;
-	font-size: 30px;
+	font-size: 45px;
 	font-weight: 200;
 }
 
@@ -549,7 +558,20 @@ border-bottom:3px solid rgba(255,255,255,0.6);
 {
     background-color: #EEE;
     float:right;
-    width: 30%;
+    width: 25%;
+}
+
+.followermargin
+{
+    margin-left:35%;
+}
+
+.navrightfollowers
+{
+    background-color: #EEE;
+    float:right;
+    position:static;
+    width: 25%;
 }
 
 .feedbuttons
