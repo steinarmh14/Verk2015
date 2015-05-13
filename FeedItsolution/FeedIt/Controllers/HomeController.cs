@@ -11,17 +11,21 @@ namespace FeedIt.Controllers
 {
     public class HomeController : Controller
     {
+        private ApplicationDbContext db = new ApplicationDbContext();
+
         [Authorize]
         public ActionResult Index()
         {
+            NewsFeedService newsFeedService = new NewsFeedService(db);
+
             FeedLists model = new FeedLists();
 
             string strID = User.Identity.GetUserId();
-            model.userFeed = NewsFeedService.Instance.getFeedForUser(strID);
+            model.userFeed = newsFeedService.getFeedForUser(strID);
 
-            model.groupsFeed = NewsFeedService.Instance.getFeedForGroups(strID);
+            model.groupsFeed = newsFeedService.getFeedForGroups(strID);
 
-            model.allFeed = NewsFeedService.Instance.getAllPosts(strID);
+            model.allFeed = newsFeedService.getAllPosts(strID);
 
             return View(model);
            // return View();
@@ -30,6 +34,9 @@ namespace FeedIt.Controllers
         [HttpPost]
         public ActionResult createPost(FormCollection collection)
         {
+            PostService postService = new PostService(db);
+            FollowerService followerService = new FollowerService(db);
+
             string about = collection["description"];
             string picture = collection["picture"];
 
@@ -51,12 +58,12 @@ namespace FeedIt.Controllers
             string strID = User.Identity.GetUserId();
             //Console.WriteLine(strID);
 
-            if(!FollowerService.Instance.isFollower(strID, strID))
+            if(!followerService.isFollower(strID, strID))
             {
-                    FollowerService.Instance.addFollower(strID, strID);
+                    followerService.addFollower(strID, strID);
             }
 
-            PostService.Instance.createPost(post, strID);
+            postService.createPost(post, strID);
             //RedirectToAction("~Controllers/Home/Index");
             return RedirectToAction("Index", "Home");
         }

@@ -11,6 +11,8 @@ namespace FeedIt.Controllers
 {
     public class GroupController : Controller
     {
+        private ApplicationDbContext db = new ApplicationDbContext();
+
         // GET: Group
         public ActionResult Index()
         {
@@ -24,17 +26,20 @@ namespace FeedIt.Controllers
 
         public ActionResult GroupView(int? id)
         {
+            GroupService groupService = new GroupService(db);
+            NewsFeedService newsFeedService = new NewsFeedService(db);
+
             if (id.HasValue)
             {
                 int realID = id.Value;
-                if (GroupService.Instance.isFollower(realID, User.Identity.GetUserId()))
+                if (groupService.isFollower(realID, User.Identity.GetUserId()))
                 {
-                IEnumerable<UserFeed> groupFeed = NewsFeedService.Instance.getFeedForGroup(realID);
+                IEnumerable<UserFeed> groupFeed = newsFeedService.getFeedForGroup(realID);
 
                 GroupViewModel model = new GroupViewModel();
                 model.feed = groupFeed;
-                model.group = GroupService.Instance.getGroupByID(realID);
-                model.followers = GroupService.Instance.getFollowers(realID);
+                model.group = groupService.getGroupByID(realID);
+                model.followers = groupService.getFollowers(realID);
                 return View(model);
                 }
                 else
@@ -47,24 +52,29 @@ namespace FeedIt.Controllers
 
         public ActionResult NotFollowingGroup(int id)
         {
-            IEnumerable<UserFeed> groupFeed = NewsFeedService.Instance.getFeedForGroup(id);
+            NewsFeedService newsFeedService = new NewsFeedService(db);
+            GroupService groupService = new GroupService(db);
+
+            IEnumerable<UserFeed> groupFeed = newsFeedService.getFeedForGroup(id);
 
             GroupViewModel model = new GroupViewModel();
             model.feed = groupFeed;
-            model.group = GroupService.Instance.getGroupByID(id);
-            model.followers = GroupService.Instance.getFollowers(id);
+            model.group = groupService.getGroupByID(id);
+            model.followers = groupService.getFollowers(id);
             return View(model);
         }
 
         [HttpPost]
         public ActionResult Follow(FormCollection collection)
         {
+            GroupService groupService = new GroupService(db);
+
             string groupID = collection["groupID"];
             int realGroupID = Int32.Parse(groupID);
             if (!String.IsNullOrEmpty(groupID))
             {
                 string strID = User.Identity.GetUserId();
-                GroupService.Instance.followGroup(realGroupID, strID);
+                groupService.followGroup(realGroupID, strID);
             }
             return RedirectToAction("GroupView", new { id = realGroupID });
         }
@@ -72,32 +82,38 @@ namespace FeedIt.Controllers
         [HttpPost]
         public ActionResult Unfollow(FormCollection collection)
         {
+            GroupService groupService = new GroupService(db);
+
             string groupID = collection["groupID"];
             if (!String.IsNullOrEmpty(groupID))
             {
                 string strID = User.Identity.GetUserId();
                 int realGroupID = Int32.Parse(groupID);
-                GroupService.Instance.unfollowGroup(realGroupID, strID);
+                groupService.unfollowGroup(realGroupID, strID);
             }
             return RedirectToAction("GroupView", new { id = groupID });
         }
 
         public ActionResult MyGroupsView()
         {
+            GroupService groupService = new GroupService(db);
+
             string userId = User.Identity.GetUserId();
 
             GroupList groups = new GroupList();
-            groups.myGroups = GroupService.Instance.getGroups(userId);
+            groups.myGroups = groupService.getGroups(userId);
 
             return View(groups);
         }
 
         public ActionResult EditGroupView(int? groupID)
         {
+            GroupService groupService = new GroupService(db);
+
             if(groupID.HasValue)
             {
                 int realGroupID = groupID.Value;
-                Group group = GroupService.Instance.getGroupByID(realGroupID);
+                Group group = groupService.getGroupByID(realGroupID);
                 return View(group);
             }
             return View("Error");
@@ -105,10 +121,12 @@ namespace FeedIt.Controllers
 
         public ActionResult EditMyGroupsView()
         {
+            GroupService groupService = new GroupService(db);
+
             string userID = User.Identity.GetUserId();
 
             List<Group> group = new List<Group>();
-            group = GroupService.Instance.getMyGroups(userID);  
+            group = groupService.getMyGroups(userID);  
 
             return View(group);
         }
@@ -117,6 +135,8 @@ namespace FeedIt.Controllers
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
+            GroupService groupService = new GroupService(db);
+
             string name = collection["groupName"];
             string about = collection["aboutGroup"];
             string strID = User.Identity.GetUserId();
@@ -133,7 +153,7 @@ namespace FeedIt.Controllers
                 group.picture = "http://www.abc.net.au/news/image/954416-3x2-940x627.jpg";
             }
 
-            GroupService.Instance.createGroup(group);
+            groupService.createGroup(group);
 
             return RedirectToAction("GroupView", new { id = group.ID });
         }
@@ -141,15 +161,17 @@ namespace FeedIt.Controllers
         [HttpPost]
         public ActionResult deleteGroup(int? id)
         {
+            GroupService groupService = new GroupService(db);
+
             if (id.HasValue)
             {
                 int realID = id.Value;
                 string strID = User.Identity.GetUserId();
-                Group group = GroupService.Instance.getGroupByID(realID);
+                Group group = groupService.getGroupByID(realID);
 
                 if (strID == group.owner)
                 {
-                    GroupService.Instance.deleteGroup(realID);
+                    groupService.deleteGroup(realID);
                 }
             }
             return RedirectToAction("Manage", "Account");
@@ -164,6 +186,8 @@ namespace FeedIt.Controllers
         [HttpPost]
         public ActionResult editGroup(FormCollection collection)
         {
+            GroupService groupService = new GroupService(db);
+
             string groupID = collection["groupID"];
             string groupName = collection["groupName"];
             string description = collection["aboutGroup"];
@@ -174,7 +198,7 @@ namespace FeedIt.Controllers
             group.about = description;
             group.picture = groupPicture;
 
-            GroupService.Instance.editGroup(Int32.Parse(groupID), group);
+            groupService.editGroup(Int32.Parse(groupID), group);
              
             return RedirectToAction("GroupView", new { id = groupID });
          
@@ -183,6 +207,8 @@ namespace FeedIt.Controllers
         [HttpPost]
         public ActionResult createPost(FormCollection collection)
         {
+            PostService postService = new PostService(db);
+
             string about = collection["description"];
             string picture = collection["picture"];
             string groupID = collection["groupID"];
@@ -205,7 +231,7 @@ namespace FeedIt.Controllers
 
             string strID = User.Identity.GetUserId();
             post.owner = strID;
-            PostService.Instance.createPost(post, strID);
+            postService.createPost(post, strID);
 
             return RedirectToAction("GroupView", new { id = ID });
         }

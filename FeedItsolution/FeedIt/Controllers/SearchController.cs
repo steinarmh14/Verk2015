@@ -11,6 +11,8 @@ namespace FeedIt.Controllers
 {
     public class SearchController : Controller
     {
+        private ApplicationDbContext db = new ApplicationDbContext();
+
         public ActionResult Index()
         {
             return View();
@@ -18,21 +20,26 @@ namespace FeedIt.Controllers
 
         public ActionResult Search (FormCollection collection)
         {
+            ProfileService profileService = new ProfileService(db);
+            GroupService groupService = new GroupService(db);
+
             string search = collection["search"];
             SearchViewModel model = new SearchViewModel();
 
-            model.groups = GroupService.Instance.getGroupsByName(search);
-            model.users = ProfileService.Instance.getProfilesByName(search);
+            model.groups = groupService.getGroupsByName(search);
+            model.users = profileService.getProfilesByName(search);
 
             return View(model);
         }
 
         public ActionResult searchGroupsByName(string name)
         {
+            GroupService groupService = new GroupService(db);
+
             if (!String.IsNullOrEmpty(name))
             {
                 List<Group> groups = new List<Group>();
-                groups = GroupService.Instance.getGroupsByName(name);
+                groups = groupService.getGroupsByName(name);
                 return View(groups);
             }
             else
