@@ -7,7 +7,7 @@ namespace FeedIt.Models
 {
     public class SearchViewModel
     {
-        public IEnumerable<ApplicationUser> users { get; set; }
-        public IEnumerable<Group> groups { get; set; }
+        public List<ApplicationUser> users { get; set; }
+        public List<Group> groups { get; set; }
     }
 }

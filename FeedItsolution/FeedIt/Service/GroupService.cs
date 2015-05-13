@@ -174,7 +174,6 @@ namespace FeedIt.Service
                              select s).SingleOrDefault();
                 return group;
             }
-
             
         }
 

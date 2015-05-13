@@ -200,7 +200,6 @@
     <Compile Include="Service\NewsFeedService.cs" />
     <Compile Include="Service\PostService.cs" />
     <Compile Include="Service\ProfileService.cs" />
-    <Compile Include="Service\UserService.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>

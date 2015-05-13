@@ -3,6 +3,9 @@
 @{
     ViewBag.Title = "EditProfile";
 }
+
+<p class="marginEditAccount fontLogin">You're logged in as <strong>@User.Identity.GetUserName()</strong></p>
+
 <div class="editProfile">
     <div>Edit<span>Profile</span></div>
 </div>
@@ -20,7 +23,7 @@
     <div class="line-separatorEdit"></div>
     <div class="login">
         <div class="form-group">
-            <div>
+            <div><br>
                 <p class="fontLogin col-md-12">Full name</p>
             </div>
             <div class="col-md-12">
