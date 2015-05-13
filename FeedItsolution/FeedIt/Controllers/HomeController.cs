@@ -36,6 +36,7 @@ namespace FeedIt.Controllers
         {
             PostService postService = new PostService(db);
             FollowerService followerService = new FollowerService(db);
+            ProfileService profileService = new ProfileService(db);
 
             string about = collection["description"];
             string picture = collection["picture"];
@@ -62,10 +63,13 @@ namespace FeedIt.Controllers
             {
                     followerService.addFollower(strID, strID);
             }
+            UserFeed userFeed = new UserFeed();
+            userFeed.post = post;
+            userFeed.user = profileService.getProfileByID(User.Identity.GetUserId());
 
             postService.createPost(post, strID);
-            //RedirectToAction("~Controllers/Home/Index");
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index");
+            //return Json(userFeed, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult About()
