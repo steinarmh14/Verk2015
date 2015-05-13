@@ -10,7 +10,7 @@ namespace FeedIt.Service
     {
         private static ProfileService instance;
 
-        public static ProfileService Instance
+        /*public static ProfileService Instance
         {
             get
             {
@@ -20,65 +20,58 @@ namespace FeedIt.Service
                 }
                 return instance;
             }
+        }*/
+
+        private readonly ApplicationDbContext _db;
+
+        public ProfileService(ApplicationDbContext context = null)
+        {
+            _db = context ?? new ApplicationDbContext();
         }
 
         public ApplicationUser getProfileByID(string userID)
         {
             ApplicationUser user;
-            using (var db = new ApplicationDbContext())
-            {
-                user = (from s in db.Users
-                            where s.Id == userID
-                            select s).SingleOrDefault();
-            }
+            user = (from s in _db.Users
+                        where s.Id == userID
+                        select s).SingleOrDefault();
             return user;
         }
 
         public List<ApplicationUser> getProfilesByName(string name)
         {
-            using (var db = new ApplicationDbContext())
-            {
-                var profileNames = (from s in db.Users
-                                    where s.UserName.StartsWith(name) || s.UserName.EndsWith(name) || s.fullName.StartsWith(name) || s.fullName.EndsWith(name)
-                                    select s).ToList();
-                return profileNames;
-            }
-
-            
+            var profileNames = (from s in _db.Users
+                                where s.UserName.StartsWith(name) || s.UserName.EndsWith(name) || s.fullName.StartsWith(name) || s.fullName.EndsWith(name)
+                                select s).ToList();
+            return profileNames;            
         }
 
         public void editUser(string userID, string about, string fullName, string profilePicture)
         {
-            using (var db = new ApplicationDbContext())
+            var edit = (from s in _db.Users
+                        where s.Id == userID
+                        select s).SingleOrDefault();
+            if(!String.IsNullOrEmpty(about))
             {
-                var edit = (from s in db.Users
-                            where s.Id == userID
-                            select s).SingleOrDefault();
-                if(!String.IsNullOrEmpty(about))
-                {
-                    edit.aboutMe = about;
-                }
-                if (!String.IsNullOrEmpty(fullName))
-                {
-                    edit.fullName = fullName;
-                }
-                if (!String.IsNullOrEmpty(profilePicture))
-                {
-                    edit.profilePicture = profilePicture;
-                }
-                db.SaveChanges();
+                edit.aboutMe = about;
             }
+            if (!String.IsNullOrEmpty(fullName))
+            {
+                edit.fullName = fullName;
+            }
+            if (!String.IsNullOrEmpty(profilePicture))
+            {
+                edit.profilePicture = profilePicture;
+            }
+            _db.SaveChanges();
         }
         public void deleteUser(string userID)
         {
-            using(var db = new ApplicationDbContext())
-            {
-                var remove = (from s in db.Users
-                            where s.Id == userID
-                            select s).SingleOrDefault();
-                db.Users.Remove(remove);
-                db.SaveChanges();
-            }
+            var remove = (from s in _db.Users
+                        where s.Id == userID
+                        select s).SingleOrDefault();
+            _db.Users.Remove(remove);
+            _db.SaveChanges();
         }
     }
 }

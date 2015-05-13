@@ -11,20 +11,24 @@ namespace FeedIt.Controllers
 {
     public class PostController : Controller
     {
+        private ApplicationDbContext db = new ApplicationDbContext();
         // GET: Post
         public ActionResult Index(int id)
         {
-            Post post = PostService.Instance.getPostById(id);
+            PostService postService = new PostService(db);
+            ProfileService profileService = new ProfileService(db);
+
+            Post post = postService.getPostById(id);
             PostViewModel model = new PostViewModel();
             model.post = post;
-            IEnumerable<Comment> comments = PostService.Instance.getCommentsForPost(id);
-            model.user = ProfileService.Instance.getProfileByID(post.owner);
+            IEnumerable<Comment> comments = postService.getCommentsForPost(id);
+            model.user = profileService.getProfileByID(post.owner);
             List<CommentUser> commentList = new List<CommentUser>();
             foreach (var item in comments)
             {
                 CommentUser commentUser = new CommentUser();
                 commentUser.comment = item;
-                ApplicationUser user = ProfileService.Instance.getProfileByID(item.ownerID);
+                ApplicationUser user = profileService.getProfileByID(item.ownerID);
                 commentUser.user = user;
                 commentList.Add(commentUser);
             }
@@ -35,22 +39,24 @@ namespace FeedIt.Controllers
         [HttpPost]
         public ActionResult ratePost(FormCollection collection)
         {
+            PostService postService = new PostService(db);
+
             string postId = collection["postid"];
             string rateInfo = collection["rateinfo"];
             if (!string.IsNullOrEmpty(postId))
             {
                 int id = Int32.Parse(postId);
                 int rating = Int32.Parse(rateInfo);
-                int currentRating = PostService.Instance.getCurrentRatingFromUser(User.Identity.GetUserId(), id);
+                int currentRating = postService.getCurrentRatingFromUser(User.Identity.GetUserId(), id);
                 if (currentRating == -1)
                 {
-                    PostService.Instance.rate(id, rating, User.Identity.GetUserId());
+                    postService.rate(id, rating, User.Identity.GetUserId());
                 }
                 else
                 {
-                    PostService.Instance.updateRatingFromUser(User.Identity.GetUserId(), id, rating, currentRating);
+                    postService.updateRatingFromUser(User.Identity.GetUserId(), id, rating, currentRating);
                 }
-                Post post = PostService.Instance.getPostById(id);
+                Post post = postService.getPostById(id);
                 post.rating = System.Math.Round(post.rating, 1);
                 return Json(post, JsonRequestBehavior.AllowGet);
             }
@@ -62,6 +68,10 @@ namespace FeedIt.Controllers
         {
             string postID = collection["postID"];
             string content = collection["content"];
+
+            ProfileService service = new ProfileService(db);
+            PostService postService = new PostService(db);
+
             int realPostID = Int32.Parse(postID);
             Comment comment = new Comment();
             comment.comment = content;
@@ -69,22 +79,30 @@ namespace FeedIt.Controllers
             comment.postID = realPostID;
             string strID = User.Identity.GetUserId();
             comment.ownerID = strID;
-            PostService.Instance.addComment(comment, realPostID);
-            /*CommentUser commentUser = new CommentUser();
+            //PostService.Instance.addComment(comment, realPostID);
+            CommentUser commentUser = new CommentUser();
             commentUser.comment = comment;
-            commentUser.user = ProfileService.Instance.getProfileByID(strID);
-            return Json(commentUser, JsonRequestBehavior.AllowGet);*/
-            return RedirectToAction("Index", new { id = realPostID });
+            commentUser.user = service.getProfileByID(strID);
+            PostViewModel model = new PostViewModel();
+            List<CommentUser> cu = new List<CommentUser>();
+            cu.Add(commentUser);
+            model.comments = cu;
+            model.post = postService.getPostById(realPostID);
+            model.user = null;
+            return Json(new { comments = cu, post = postService.getPostById(realPostID) }, JsonRequestBehavior.AllowGet);
+            //return RedirectToAction("Index", new { id = realPostID });
         }
 
         public ActionResult getComments(int? postID)
         {
+            PostService postService = new PostService(db);
+
             if (postID.HasValue)
             {
                 int realPostID = postID.Value;
                 List<Comment> comments = new List<Comment>();
 
-                comments = PostService.Instance.getCommentsForPost(realPostID);
+                comments = postService.getCommentsForPost(realPostID);
                 return View(comments);
             }
             return View("Error");
@@ -93,10 +111,11 @@ namespace FeedIt.Controllers
         [HttpPost]
         public ActionResult deleteComment(int? commentID)
         {
+            PostService postService = new PostService(db);
             if (commentID.HasValue)
             {
                 int realCommentID = commentID.Value;
-                PostService.Instance.deleteComment(realCommentID);
+                postService.deleteComment(realCommentID);
             }
             return View();
         }
@@ -104,10 +123,11 @@ namespace FeedIt.Controllers
         [HttpPost]
         public ActionResult addDescription(string description, int? postID)
         {
+            PostService postService = new PostService(db);
             if (postID.HasValue)
             {
                 int realPostID = postID.Value;
-                PostService.Instance.addDescription(description, realPostID);
+                postService.addDescription(description, realPostID);
             }
             return View();
         }
