@@ -101,24 +101,32 @@ namespace FeedIt.Controllers
                     GroupService.Instance.deleteGroup(realID);
                 }
             }
+            return RedirectToAction("Manage", "Account");
+        }
+
+        public ActionResult editGroup(int? id)
+        {
             return View();
+                
         }
 
         [HttpPost]
-        public ActionResult editGroup(int? id)
+        public ActionResult editGroup(FormCollection collection)
         {
-            if (id.HasValue)
-            {
-                string strID = User.Identity.GetUserId();
-                int realID = id.Value;
-                Group group = GroupService.Instance.getGroupByID(realID);
+            string groupID = collection["groupID"];
+            string groupName = collection["groupName"];
+            string description = collection["description"];
+            string groupPicture = collection["groupPicture"];
 
-                if (strID == group.owner)
-                {
-                    return View("EditGroupView");
-                }
-            }
-            return View();
+            Group group = new Group();
+            group.name = groupName;
+            group.about = description;
+            group.picture = groupPicture;
+
+            GroupService.Instance.editGroup(Int32.Parse(groupID), group);
+             
+            return RedirectToAction("GroupView", new { id = groupID });
+         
         }
 
         [HttpPost]

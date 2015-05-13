@@ -117,6 +117,7 @@ namespace FeedIt.Service
                                              select s).SingleOrDefault();
 
                             currGroup.name = group.name;
+                            currGroup.picture = group.picture;
                             currGroup.about = group.about;
 
                             db.SaveChanges();
