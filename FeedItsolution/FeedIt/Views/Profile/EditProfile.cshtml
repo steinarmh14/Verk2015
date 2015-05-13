@@ -52,10 +52,10 @@
         </div>
     </div>
 }
-@using (Html.BeginForm("DeleteProfile", "Profile", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+@using (Html.BeginForm("deleteProfile", "Profile", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
     <div>
        <input type="hidden" value="@User.Identity.GetUserId()" />
-       <input type="submit" value="Delete profile" class="btn btn-default" />
+       <input type="submit" value="Delete Group" onclick="location.href = 'Login';" class="btn btn-default" />
     </div>
 }

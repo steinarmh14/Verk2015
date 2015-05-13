@@ -183,10 +183,10 @@ namespace FeedIt.Service
             using (var db = new ApplicationDbContext())
             {
                 var groups = (from s in db.Groups
-                              where s.name == name
+                              where s.name.StartsWith(name) || s.name.EndsWith(name)
                               select s).ToList();
 
-                            return groups;
+                return groups;
             }
 
         }
