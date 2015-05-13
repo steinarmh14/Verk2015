@@ -76,7 +76,8 @@ namespace FeedIt.Controllers
                 string strID = User.Identity.GetUserId();
                 groupService.followGroup(realGroupID, strID);
             }
-            return RedirectToAction("GroupView", new { id = realGroupID });
+            //return RedirectToAction("GroupView", new { id = realGroupID });
+            return Json(groupID, JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
@@ -91,7 +92,8 @@ namespace FeedIt.Controllers
                 int realGroupID = Int32.Parse(groupID);
                 groupService.unfollowGroup(realGroupID, strID);
             }
-            return RedirectToAction("GroupView", new { id = groupID });
+            //return RedirectToAction("GroupView", new { id = groupID });
+            return Json(groupID, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult MyGroupsView()

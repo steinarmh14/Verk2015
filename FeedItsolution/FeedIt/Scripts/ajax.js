@@ -34,6 +34,40 @@
         })
     });
 
+    $('body').on('click', '#gfollow', function () {
+        var groupID = $('#groupID').val();
+
+        var theForm = $(this);
+
+        $.ajax({
+            type: 'POST',
+            url: '/Group/Follow',
+            data: {
+                groupID: groupID
+            }
+        }).done(function (data) {
+            $("#gfollowtakki").addClass("hidden");
+            $("#gunfollowtakki").removeClass("hidden");
+        })
+    });
+
+    $('body').on('click', '#gunfollow', function () {
+        var groupID = $('#groupID').val();
+
+        var theForm = $(this);
+
+        $.ajax({
+            type: 'POST',
+            url: '/Group/Unfollow',
+            data: {
+                groupID: groupID
+            }
+        }).done(function (data) {
+            $("#gfollowtakki").removeClass("hidden");
+            $("#gunfollowtakki").addClass("hidden");
+        })
+    });
+
     $('body').on('click', '#followersbutton', function () {
         $("#followings").addClass("hidden");
         $("#followers").removeClass("hidden");

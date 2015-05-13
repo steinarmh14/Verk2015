@@ -8,20 +8,14 @@
         <div>
             <img src="@Url.Content(Model.group.picture)" alt="picture" class="groupprofilepicture" />
         </div>
-        <span class="followtakki">
-            @using (Html.BeginForm("Follow", "Group", FormMethod.Post, new { id = "postform" }))
-            {
-                <input type="hidden" value=@Model.group.ID name="groupID" id="groupID" />
-                <input type="submit" value="Follow" class="btn btn-default" />
-            }
-        </span>
-        <span class="unfollowtakki hide">
-            @using (Html.BeginForm("Unfollow", "Group", FormMethod.Post, new { id = "postform" }))
-            {
-                <input type="hidden" value=@Model.group.ID name="groupID" id="groupID" />
-                <input type="submit" value="Unfollow" class="btn btn-default" />
-            }
-        </span>
+        <div class="followtakki" id="gfollowtakki">
+            <input type="hidden" value=@Model.group.ID name="groupID" id="groupID" />
+            <input type="button" value="Follow" class="btn btn-default" id="gfollow" />
+        </div>
+        <div class="unfollowtakki hidden" id="gunfollowtakki">
+            <input type="hidden" value=@Model.group.ID name=groupID" id="goupID" />
+            <input type="button" value="Unfollow" class="btn btn-default" id="gunfollow" />
+        </div>
     </div>
         <div class="groupabout">
             <p>@Model.group.about</p>
