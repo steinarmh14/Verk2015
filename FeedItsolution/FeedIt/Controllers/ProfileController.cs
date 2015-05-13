@@ -48,26 +48,53 @@ namespace FeedIt.Controllers
                 {
                     return RedirectToAction("Index");
                 }
-                List<UserFeed> profileFeed = new List<UserFeed>();
-                ApplicationUser user = new ApplicationUser();
-                user = ProfileService.Instance.getProfileByID(userID);
-                IEnumerable<Post> posts = NewsFeedService.Instance.getAllPostsFromUser(userID);
-
-                foreach (var post in posts)
+                if (FollowerService.Instance.isFollower(User.Identity.GetUserId(), userID))
                 {
-                    UserFeed singleUserFeed = new UserFeed();
-                    singleUserFeed.user = user;
-                    singleUserFeed.post = post;
-                    profileFeed.Add(singleUserFeed);
+                    List<UserFeed> profileFeed = new List<UserFeed>();
+                    ApplicationUser user = new ApplicationUser();
+                    user = ProfileService.Instance.getProfileByID(userID);
+                    IEnumerable<Post> posts = NewsFeedService.Instance.getAllPostsFromUser(userID);
+
+                    foreach (var post in posts)
+                    {
+                        UserFeed singleUserFeed = new UserFeed();
+                        singleUserFeed.user = user;
+                        singleUserFeed.post = post;
+                        profileFeed.Add(singleUserFeed);
+                    }
+                    ProfileViewModel model = new ProfileViewModel();
+                    model.feed = profileFeed;
+                    model.user = user;
+                    model.followers = FollowerService.Instance.getFollowers(userID);
+                    model.followings = FollowerService.Instance.getFollowing(userID);
+                    return View(model);
                 }
-                ProfileViewModel model = new ProfileViewModel();
-                model.feed = profileFeed;
-                model.user = user;
-                model.followers = FollowerService.Instance.getFollowers(userID);
-                model.followings = FollowerService.Instance.getFollowing(userID);
-                return View(model);
+                return RedirectToAction("NotFollowingProfile", new { userID = userID });
+                
             }
             return View("Error");
+        }
+
+        public ActionResult NotFollowingProfile (string userID)
+        {
+            List<UserFeed> profileFeed = new List<UserFeed>();
+            ApplicationUser user = new ApplicationUser();
+            user = ProfileService.Instance.getProfileByID(userID);
+            IEnumerable<Post> posts = NewsFeedService.Instance.getAllPostsFromUser(userID);
+
+            foreach (var post in posts)
+            {
+                UserFeed singleUserFeed = new UserFeed();
+                singleUserFeed.user = user;
+                singleUserFeed.post = post;
+                profileFeed.Add(singleUserFeed);
+            }
+            ProfileViewModel model = new ProfileViewModel();
+            model.feed = profileFeed;
+            model.user = user;
+            model.followers = FollowerService.Instance.getFollowers(userID);
+            model.followings = FollowerService.Instance.getFollowing(userID);
+            return View(model);
         }
 
         public ActionResult MyProfileView()
@@ -93,11 +120,14 @@ namespace FeedIt.Controllers
             return View();
         }
 
-        /*[HttpPost]
-        public ActionResult deleteProfile(FormCollection collection)
+        [HttpPost]
+        public ActionResult DeleteProfile(FormCollection collection)
         {
+            string userID = collection["userID"];
+            ProfileService.Instance.deleteUser(userID);
 
-        }*/
+            return RedirectToAction("Index", "Home");
+        }
 
         [HttpPost]
         public ActionResult Follow(FormCollection collection)
