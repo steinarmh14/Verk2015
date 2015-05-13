@@ -146,12 +146,20 @@ namespace FeedIt.Service
                 var currGroup = (from s in db.Groups
                                              where s.ID == ID
                                              select s).SingleOrDefault();
+                if(!String.IsNullOrEmpty(group.name))
+                {
+                    currGroup.name = group.name;
+                }
+                if (!String.IsNullOrEmpty(group.about))
+                {
+                    currGroup.about = group.about;
+                }
+                if (!String.IsNullOrEmpty(group.picture))
+                {
+                    currGroup.picture = group.picture;
+                }  
 
-                            currGroup.name = group.name;
-                            currGroup.picture = group.picture;
-                            currGroup.about = group.about;
-
-                            db.SaveChanges();
+               db.SaveChanges();
             }
 
             

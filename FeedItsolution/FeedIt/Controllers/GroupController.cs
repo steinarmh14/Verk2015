@@ -166,7 +166,7 @@ namespace FeedIt.Controllers
         {
             string groupID = collection["groupID"];
             string groupName = collection["groupName"];
-            string description = collection["description"];
+            string description = collection["aboutGroup"];
             string groupPicture = collection["groupPicture"];
 
             Group group = new Group();

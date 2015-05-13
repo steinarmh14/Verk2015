@@ -4,8 +4,6 @@
     ViewBag.Title = "EditProfile";
 }
 
-<h2>EditProfile</h2>
-
 @using (Html.BeginForm("EditProfile", "Profile", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
     <div class="line-separatorEdit"></div>
@@ -27,7 +25,7 @@
                 <p class="fontLogin col-md-12">Full name</p>
             </div>
             <div class="col-md-12">
-                <input type="text" id="fullName" name="fullName" />
+                <input type="text" id="fullName" name="fullName" placeholder="Enter full name..." />
             </div>
         </div>
         <div class="form-group">
@@ -43,7 +41,7 @@
                 <p class="fontLogin col-md-12">Profile Picture</p>
             </div>
             <div class="col-md-12">
-                <input type="text" id="profilePicture" name="profilePicture" />
+                <input type="text" id="profilePicture" name="profilePicture" placeholder="Enter URL to profile picture..." />
             </div>
         </div>
         <div class="form-group">
