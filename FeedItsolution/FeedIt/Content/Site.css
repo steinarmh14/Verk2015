@@ -583,19 +583,12 @@ border-bottom:3px solid rgba(255,255,255,0.6);
  {
 }
 
-.mygroups
-{
-    border-style:solid;
-    margin-bottom:10px;
-}
 
 .mygroupspicture
 {
-    border-style:solid;
-    border-color:black;
-    border-width:thin;
-    width:75px;
-    height:75px;
+    padding-top:2%;
+    width:80px;
+    height:80px;
 }
 
 .feedprofilepic
@@ -722,16 +715,15 @@ border-bottom:3px solid rgba(255,255,255,0.6);
 
 .mygroups
 {
-    border-style:solid;
-    border-width:thin;
-    border-color: lightgray;
+    margin-left:26%;
     margin-bottom:10px;
 }
 
 .mygroupsname
 {
+    margin-left:8%;
     text-align:center;
-    font-size:14px;
+    font-size:20px;
 }
 
 .navcentermygropus
