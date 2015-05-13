@@ -1,0 +1,32 @@
+﻿@model FeedIt.Models.GroupList
+
+@{
+    ViewBag.Title = "Edit my groups";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<body>
+    <h2 style="text-align:center">Groups I can edit</h2>
+    <div class="wrapper">
+        <div class="navleft">
+        </div>
+        <div class="navcentermygroups">
+            @foreach (var item in Model.myGroups)
+            {
+                if (item != null)
+                {
+                    <div class="mygroups">
+                        <div>
+                            <a href="@Url.Action("EditGroupView", "Group")">
+                                <img src="@Url.Content(item.picture)" alt="picture" class="mygroupspicture" />
+                            </a>
+                            <a href=@Url.Action("EditGroupView", "Group") class="mygroupsname">@item.name</a>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+        <div class="navright">
+        </div>
+    </div>
+</body>
+
