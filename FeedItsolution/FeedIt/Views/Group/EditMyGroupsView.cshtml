@@ -1,4 +1,4 @@
-﻿@model FeedIt.Models.GroupList
+﻿@model  List<FeedIt.Models.Group>
 
 @{
     ViewBag.Title = "Edit my groups";
@@ -10,16 +10,16 @@
         <div class="navleft">
         </div>
         <div class="navcentermygroups">
-            @foreach (var item in Model.myGroups)
+            @foreach(var item in Model)
             {
-                if (item != null)
+                if (item != null) 
                 {
                     <div class="mygroups">
                         <div>
-                            <a href="@Url.Action("EditGroupView", "Group")">
+                            <a href="@Url.Action("EditGroupView", "Group", new {groupID = item.ID})">
                                 <img src="@Url.Content(item.picture)" alt="picture" class="mygroupspicture" />
                             </a>
-                            <a href=@Url.Action("EditGroupView", "Group") class="mygroupsname">@item.name</a>
+                            <a href=@Url.Action("EditGroupView", "Group", new {groupID = item.ID}) class="mygroupsname">@item.name</a>
                         </div>
                     </div>
                 }

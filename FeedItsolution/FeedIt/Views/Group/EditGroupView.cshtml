@@ -1,4 +1,4 @@
-﻿
+﻿@model FeedIt.Models.Group
 @using Microsoft.AspNet.Identity
 @using FeedIt.Models;
 @{
@@ -6,6 +6,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<h2>@Model.name</h2>
 
 @using (Html.BeginForm("EditGroup", "Group", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
@@ -44,7 +45,7 @@
     <div class="form-group">
         <div class="col-md-12">
             <input type="button" value="Delete Group" onclick="location.href = 'Login';" class="btn btn-default" />
-            <input type="hidden" value=@Model.ID />
+            <input type="hidden" value=@Model.ID name="groupID" id="groupID" />
             <input type="submit" value="Save Changes" class="btn btn-default" />
         </div>
     </div>
