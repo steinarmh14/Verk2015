@@ -325,7 +325,7 @@ html {
 }
 
 body {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'sans-serif', Exo;
   font-size: 14px;
   line-height: 1.428571429;
   color: #333333;
@@ -3233,11 +3233,12 @@ input[type="button"].btn-block {
   height: 0;
   margin-left: 2px;
   vertical-align: middle;
-  border-top: 4px solid #000000;
+  border-top: 4px solid #5379fa;
   border-right: 4px solid transparent;
   border-bottom: 0 dotted;
   border-left: 4px solid transparent;
   content: "";
+  color: #5379fa;
 }
 
 .dropdown {
@@ -4551,7 +4552,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
 }
 
 .navbar-inverse .navbar-nav > li > a {
-  color: #999999;
+  color: #5379fa;
 }
 
 .navbar-inverse .navbar-nav > li > a:hover,
@@ -4605,8 +4606,8 @@ textarea.input-group-sm > .input-group-btn > .btn {
 }
 
 .navbar-inverse .navbar-nav > .dropdown > a .caret {
-  border-top-color: #999999;
-  border-bottom-color: #999999;
+  border-top-color: #5379fa;
+  border-bottom-color: #5379fa;
 }
 
 .navbar-inverse .navbar-nav > .open > a .caret,
