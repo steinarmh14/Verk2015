@@ -470,7 +470,9 @@ border-bottom:3px solid rgba(255,255,255,0.6);
     border-width:thin;
     border-radius:10px;
     width:50px;
+    margin-bottom:1%;
     height:50px;
+
 }
 
 .groupprofilepicture
@@ -480,6 +482,7 @@ border-bottom:3px solid rgba(255,255,255,0.6);
     border-width:thin;
     width:75px;
     height:75px;
+    border-radius:8px;
 }
 
 .Postuser{
@@ -582,6 +585,8 @@ border-bottom:3px solid rgba(255,255,255,0.6);
 
 .posts
 {
+    margin-top:1%;
+    margin-bottom:1%;
     background-color: #EEE;
 }
 
@@ -589,6 +594,14 @@ border-bottom:3px solid rgba(255,255,255,0.6);
 {
     background-color: #EEE;
 }
+
+.borderbottom
+{
+    border-bottom-style:solid;
+    border-bottom-color:lightgrey;
+    border-bottom-width:thin;
+}
+
 
 .bodydiv
 {
@@ -603,7 +616,11 @@ border-bottom:3px solid rgba(255,255,255,0.6);
 {
     text-align:center;
     margin-top:8px;
-    margin-bottom:10px;
+    margin-bottom:1%;
+    border-bottom-style:solid;
+    border-bottom-color:lightgrey;
+    border-bottom-width:thin;
+    padding-bottom:1%;
 }
 
 .margintop
@@ -663,16 +680,6 @@ border-bottom:3px solid rgba(255,255,255,0.6);
     width:55px;
     height:55px;
     margin-left:65%;
-}
-
-.groupprofilepicture
-{
-    border-style:solid;
-    border-color:black;
-    border-width:thin;
-    width:75px;
-    height:75px;
-
 }
 
 .navcentermygroups
@@ -831,5 +838,9 @@ border-bottom:3px solid rgba(255,255,255,0.6);
     border-radius:5px;
 }
 
+.newsfeed
+{
+    color:#5379fa;
+}
 
 
