@@ -71,7 +71,14 @@ namespace FeedIt.Service
         }
         public void deleteUser(string userID)
         {
-
+            using(var db = new ApplicationDbContext())
+            {
+                var remove = (from s in db.Users
+                            where s.Id == userID
+                            select s).SingleOrDefault();
+                db.Users.Remove(remove);
+                db.SaveChanges();
+            }
         }
     }
 }

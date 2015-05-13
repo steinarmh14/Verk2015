@@ -93,11 +93,14 @@ namespace FeedIt.Controllers
             return View();
         }
 
-        /*[HttpPost]
-        public ActionResult deleteProfile(FormCollection collection)
+        [HttpPost]
+        public ActionResult DeleteProfile(FormCollection collection)
         {
+            string userID = collection["userID"];
+            ProfileService.Instance.deleteUser(userID);
 
-        }*/
+            return RedirectToAction("Index", "Home");
+        }
 
         [HttpPost]
         public ActionResult Follow(FormCollection collection)
