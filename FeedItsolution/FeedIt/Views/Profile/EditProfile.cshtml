@@ -3,31 +3,28 @@
 @{
     ViewBag.Title = "EditProfile";
 }
-
-<h2>EditProfile</h2>
+<div class="editProfile">
+    <div>Edit<span>Profile</span></div>
+</div>
 
 @using (Html.BeginForm("EditProfile", "Profile", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
-    <div class="line-separatorEdit"></div>
 
     @Html.AntiForgeryToken()
     @Html.ValidationSummary()
-    <div class="grad2"></div>
+    <div class="grad"></div>
     <div class="editProfile2">
         <div>feed<span>It</span></div>
     </div>
     <br>
+    <div class="line-separatorEdit"></div>
     <div class="login">
-        <div class="editProfile leftmarginEdit">
-            <div>Edit<span>Profile</span></div>
-        </div>
-        <br><br><br>
         <div class="form-group">
             <div>
                 <p class="fontLogin col-md-12">Full name</p>
             </div>
             <div class="col-md-12">
-                <input type="text" id="fullName" name="fullName" />
+                <input type="text" id="fullName" name="fullName" placeholder="Enter full name..." />
             </div>
         </div>
         <div class="form-group">
@@ -43,22 +40,21 @@
                 <p class="fontLogin col-md-12">Profile Picture</p>
             </div>
             <div class="col-md-12">
-                <input type="text" id="profilePicture" name="profilePicture" />
+                <input type="text" id="profilePicture" name="profilePicture" placeholder="Enter URL to profile picture..." />
             </div>
         </div>
         <div class="form-group">
             <div class="col-md-12">
                 <input type="button" value="Cancel" class="btn btn-default" onclick="@("window.location.href='" + @Url.Action("Index", "Home") + "'");" />
-                <input type="submit" value="Save Changes" class="btn btn-default" />
-                
+                <input type="submit" value="Save Changes" class="btn btn-default" />            
             </div>
         </div>
     </div>
 }
-@using (Html.BeginForm("DeleteProfile", "Profile", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+@using (Html.BeginForm("deleteProfile", "Profile", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
     <div>
        <input type="hidden" value="@User.Identity.GetUserId()" />
-       <input type="submit" value="Delete profile" class="btn btn-default" />
+       <input type="submit" value="Delete Group" onclick="location.href = 'Login';" class="btn btn-default" />
     </div>
 }

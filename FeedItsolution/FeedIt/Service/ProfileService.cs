@@ -39,7 +39,7 @@ namespace FeedIt.Service
             using (var db = new ApplicationDbContext())
             {
                 var profileNames = (from s in db.Users
-                                    where s.UserName == name
+                                    where s.UserName.StartsWith(name) || s.UserName.EndsWith(name) || s.fullName.StartsWith(name) || s.fullName.EndsWith(name)
                                     select s).ToList();
                 return profileNames;
             }

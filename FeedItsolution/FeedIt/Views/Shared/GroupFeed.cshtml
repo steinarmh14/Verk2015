@@ -17,7 +17,7 @@
                     <p class="groupposttime">
                         @item.post.date.Day/@item.post.date.Month - @item.post.date.Hour:@item.post.date.Minute
                     </p>
-                    <p class="groupnameingroups">group:<a href=@Url.Action("GroupView", "Group", new { id = item.group.ID })>@item.group.name</a></p>
+                    <p class="groupnameingroups">Group: <a href=@Url.Action("GroupView", "Group", new { id = item.group.ID })>@item.group.name</a></p>
                 </div>
                 <div class="Post">
                     <a href="@Url.Action("Index", "Post", new { id = item.post.ID})">

@@ -340,11 +340,20 @@ border-bottom:3px solid rgba(255,255,255,0.6);
 
 }
 
+.line-seperatorNewsFeed
+{
+    height:1px;
+    background:#717171;
+    margin-top: 1%;
+    border-bottom:3px solid rgba(255,255,255,0.6);
+    margin-bottom: 2%;
+}
+
 .line-separatorEdit{
 
 height:1px;
 background:#717171;
-margin-top: 12%;
+margin-top: 13%;
 border-bottom:3px solid rgba(255,255,255,0.6);
 
 
@@ -362,13 +371,16 @@ border-bottom:3px solid rgba(255,255,255,0.6);
 .editProfile{
 	position: absolute;
 	z-index: 2;
+    margin-top: 3%;
+    margin-left: 35%;
+    margin-right: auto;
 }
 
 .editProfile div{
 	float: left;
 	color: #fff;
 	font-family: 'Exo', sans-serif;
-	font-size: 30px;
+	font-size: 45px;
 	font-weight: 200;
 }
 
@@ -633,7 +645,7 @@ border-bottom:3px solid rgba(255,255,255,0.6);
     border-radius:5px;
     width:55px;
     height:55px;
-    margin-left:70%;
+    margin-left:65%;
 }
 
 .feedprofilepic
@@ -644,7 +656,7 @@ border-bottom:3px solid rgba(255,255,255,0.6);
     border-radius:5px;
     width:55px;
     height:55px;
-    margin-left:50%;
+    margin-left:65%;
 }
 
 .groupprofilepicture
@@ -800,6 +812,11 @@ border-bottom:3px solid rgba(255,255,255,0.6);
 .feedtextarea
 {
     border-radius:6px;
+}
+
+.feedtextbox
+{
+    border-radius:5px;
 }
 
 
