@@ -67,7 +67,7 @@ namespace FeedIt.Controllers
         public ActionResult Comment(FormCollection collection)
         {
             string postID = collection["postID"];
-            string content = collection["content"];
+            string content = collection["comment"];
 
             ProfileService service = new ProfileService(db);
             PostService postService = new PostService(db);
@@ -79,17 +79,18 @@ namespace FeedIt.Controllers
             comment.postID = realPostID;
             string strID = User.Identity.GetUserId();
             comment.ownerID = strID;
-            //PostService.Instance.addComment(comment, realPostID);
+            postService.addComment(comment, realPostID);
             CommentUser commentUser = new CommentUser();
             commentUser.comment = comment;
             commentUser.user = service.getProfileByID(strID);
-            PostViewModel model = new PostViewModel();
+            /*PostViewModel model = new PostViewModel();
             List<CommentUser> cu = new List<CommentUser>();
             cu.Add(commentUser);
             model.comments = cu;
             model.post = postService.getPostById(realPostID);
-            model.user = null;
-            return Json(new { comments = cu, post = postService.getPostById(realPostID) }, JsonRequestBehavior.AllowGet);
+            model.user = null;*/
+   
+            return Json(commentUser, JsonRequestBehavior.AllowGet);
             //return RedirectToAction("Index", new { id = realPostID });
         }
 

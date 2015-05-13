@@ -74,7 +74,7 @@
         $("#friendfeed").addClass("hidden");
     });
 
-    $('body').on('submit', '#commentform', function () {
+    $('body').on('click', '#commentform', function () {
         var post = $('#postid').val();
         var comment = $('#content').val();
 
@@ -82,18 +82,18 @@
 
         $.ajax({
             type: 'POST',
-            url: 'Post/Comment',
+            url: '/Post/Comment',
             data: {
                 postId: post,
                 comment: comment
             }
         }).done(function (data) {
+            console.log(data);
             $('#commentlist').prepend(
-               '<blockquote id="comment"> <div class="Commentsection"> <p>'
-                     + data.comment.comment + '</p> <footer> - ' + data.user.Id + ' at '
-                     + data.comment.date + '</footer> </div> </blockquote>')
+               '<blockquote class="Commentsection"> <div> <p>'
+                     + data.comment.comment + '</p> <footer> - ' + data.user.UserName + ' just now ' + '</footer> </div> </blockquote>')
             return false;
-        });
+        })
     });
 
     $('body').on('click', '#rateform', function () {
