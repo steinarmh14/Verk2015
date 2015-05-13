@@ -27,6 +27,8 @@ namespace FeedIt.Controllers
             if (id.HasValue)
             {
                 int realID = id.Value;
+                if (GroupService.Instance.isFollower(realID, User.Identity.GetUserId()))
+                {
                 IEnumerable<UserFeed> groupFeed = NewsFeedService.Instance.getFeedForGroup(realID);
 
                 GroupViewModel model = new GroupViewModel();
@@ -34,8 +36,50 @@ namespace FeedIt.Controllers
                 model.group = GroupService.Instance.getGroupByID(realID);
                 model.followers = GroupService.Instance.getFollowers(realID);
                 return View(model);
+                }
+                else
+                {
+                    return RedirectToAction("NotFollowingGroup", new { id = id });
+                }
             }
             return View("Error");
+        }
+
+        public ActionResult NotFollowingGroup(int id)
+        {
+            IEnumerable<UserFeed> groupFeed = NewsFeedService.Instance.getFeedForGroup(id);
+
+            GroupViewModel model = new GroupViewModel();
+            model.feed = groupFeed;
+            model.group = GroupService.Instance.getGroupByID(id);
+            model.followers = GroupService.Instance.getFollowers(id);
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult Follow(FormCollection collection)
+        {
+            string groupID = collection["groupID"];
+            int realGroupID = Int32.Parse(groupID);
+            if (!String.IsNullOrEmpty(groupID))
+            {
+                string strID = User.Identity.GetUserId();
+                GroupService.Instance.followGroup(realGroupID, strID);
+            }
+            return RedirectToAction("GroupView", new { id = realGroupID });
+        }
+
+        [HttpPost]
+        public ActionResult Unfollow(FormCollection collection)
+        {
+            string groupID = collection["groupID"];
+            if (!String.IsNullOrEmpty(groupID))
+            {
+                string strID = User.Identity.GetUserId();
+                int realGroupID = Int32.Parse(groupID);
+                GroupService.Instance.unfollowGroup(realGroupID, strID);
+            }
+            return RedirectToAction("GroupView", new { id = groupID });
         }
 
         public ActionResult MyGroupsView()
@@ -44,15 +88,6 @@ namespace FeedIt.Controllers
 
             GroupList groups = new GroupList();
             groups.myGroups = GroupService.Instance.getGroups(userId);
-
-            return View(groups);
-        }
-
-        public ActionResult EditMyGroupsView()
-        {
-            string userID = User.Identity.GetUserId();
-            GroupList groups = new GroupList();
-            groups.myGroups = GroupService.Instance.getMyGroups(userID);
 
             return View(groups);
         }

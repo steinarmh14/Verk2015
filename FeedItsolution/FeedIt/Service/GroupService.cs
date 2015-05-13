@@ -45,6 +45,37 @@ namespace FeedIt.Service
             } 
         }
 
+        public void unfollowGroup(int groupID, string userID)
+        {
+            using (var db = new ApplicationDbContext())
+            {
+                var follower = (from s in db.GroupFollowers
+                                where s.groupID == groupID && s.userID == userID
+                                select s).FirstOrDefault();
+
+                db.GroupFollowers.Remove(follower);
+                db.SaveChanges();
+            } 
+        }
+
+        public bool isFollower(int groupID, string followingID)
+        {
+            using (var db = new ApplicationDbContext())
+            {
+                var follower = (from s in db.GroupFollowers
+                                where s.userID == followingID && s.groupID == groupID
+                                select s).FirstOrDefault();
+                if (follower == null)
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
+            }
+        }
+
         public List<ApplicationUser> getFollowers(int groupID)
         {
             List<ApplicationUser> result = new List<ApplicationUser>();

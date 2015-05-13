@@ -69,8 +69,7 @@ namespace FeedIt.Controllers
                     model.followings = FollowerService.Instance.getFollowing(userID);
                     return View(model);
                 }
-                return RedirectToAction("NotFollowingProfile", new { userID = userID });
-                
+                return RedirectToAction("NotFollowingProfile", new { userID = userID });               
             }
             return View("Error");
         }
@@ -132,27 +131,29 @@ namespace FeedIt.Controllers
         [HttpPost]
         public ActionResult Follow(FormCollection collection)
         {
-            string userID = collection["userID"];
-            if(!String.IsNullOrEmpty(userID))
+            string groupID = collection["groupID"];
+            int realGroupID = Int32.Parse(groupID);
+            if(!String.IsNullOrEmpty(groupID))          
             {
                 string strID = User.Identity.GetUserId();
 
-                FollowerService.Instance.addFollower(strID, userID);
+                GroupService.Instance.followGroup(realGroupID, strID);
             }
-            return RedirectToAction("Profile", new { userID =  userID });
+            return RedirectToAction("GroupView", new { id =  realGroupID });
         }
 
         [HttpPost]
         public ActionResult Unfollow(FormCollection collection)
         {
-            string userID = collection["userID"];
-            if(!String.IsNullOrEmpty(userID))
+            string groupID = collection["groupID"];
+            int realGroupID = Int32.Parse(groupID);
+            if (!String.IsNullOrEmpty(groupID))
             {
                 string strID = User.Identity.GetUserId();
 
-                FollowerService.Instance.removeFollower(strID, userID);
+                GroupService.Instance.unfollowGroup(realGroupID, strID);
             }
-            return RedirectToAction("Profile", new { userID = userID });
+            return RedirectToAction("GroupView", new { id = realGroupID });
         }
     }
 }
