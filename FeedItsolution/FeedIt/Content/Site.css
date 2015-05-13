@@ -621,7 +621,11 @@ border-bottom:3px solid rgba(255,255,255,0.6);
     border-bottom-style:solid;
     border-bottom-color:lightgrey;
     border-bottom-width:thin;
-    padding-bottom:1%;
+}
+
+.postbuttongroups
+{
+    margin-bottom:1%;
 }
 
 .margintop
