@@ -69,19 +69,6 @@
         </div>
     </blockquote>
 }
-        <div id="commentlist">
-            @foreach (var comment in Model.comments)
-            {
-                <blockquote id="comment">
-                    <div class="Commentsection">
-                        <p>
-                            @comment.comment.comment
-                        </p>
-                        <footer> - @comment.user.UserName at @comment.comment.date</footer>
-                    </div>
-                </blockquote>
-            }
-        </div>
     </div>
 </body>
 
