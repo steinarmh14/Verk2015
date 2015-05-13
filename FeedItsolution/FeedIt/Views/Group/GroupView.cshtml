@@ -13,14 +13,14 @@
             @using (Html.BeginForm("Follow", "Group", FormMethod.Post, new { id = "postform" }))
             {
                 <input type="hidden" value=@Model.group.ID name="groupID" id="groupID" />
-                <input type="submit" value="Follow" />
+                <input type="submit" value="Follow" class="btn btn-default" />
             }
         </span>
         <span class="unfollowtakki">
             @using (Html.BeginForm("Unfollow", "Group", FormMethod.Post, new { id = "postform" }))
             {
                 <input type="hidden" value=@Model.group.ID name="groupID" id="groupID" />
-                <input type="submit" value="Unfollow" />
+                <input type="submit" value="Unfollow" class="btn btn-default" />
             }
         </span>
            <div class="groupabout">
@@ -38,7 +38,7 @@
                      <textarea rows="7" cols="75" placeholder="Description/recipe" name="description" id="description" class="feedtextarea"></textarea>
                  </div>
                  <div class="postbutton">
-                     <input type="submit" value="Feed to group" class="postbuttongroups"/>
+                     <input type="submit" value="Feed to group" class="postbuttongroups btn btn-default" />
                  </div>
              </div>
         }
