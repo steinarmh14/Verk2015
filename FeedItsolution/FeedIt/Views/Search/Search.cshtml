@@ -20,7 +20,8 @@
         <a href="@Url.Action("Profile", "Profile", new { userID = item.Id})">
             <img src="@Url.Content(item.profilePicture)" alt="picture" class="mygroupspicturesearch" />
         </a>
-        <a href=@Url.Action("Profile", "Profile", new { userID = item.Id }) class="searchresult">@item.UserName <br/> @item.fullName</a>
+        <a href=@Url.Action("Profile", "Profile", new { userID = item.Id }) class="searchresult">@item.UserName</a>
+        <a href=@Url.Action("Profile", "Profile", new { userID = item.Id }) class="searchresultfullname">@item.fullName</a>
     </div>
 }
             </div>
