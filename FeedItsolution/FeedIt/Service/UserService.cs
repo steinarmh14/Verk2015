@@ -9,7 +9,7 @@ namespace FeedIt.Service
 {
     public class UserService
     {
-        private static UserService instance;
+        /*private static UserService instance;
 
         public static UserService Instance
         {
@@ -21,31 +21,33 @@ namespace FeedIt.Service
                 }
                 return instance;
             }
+        }*/
+
+        private readonly ApplicationDbContext _db;
+
+        public UserService(ApplicationDbContext context = null)
+        {
+            _db = context ?? new ApplicationDbContext();
         }
 
         public ApplicationUser getUserByID(string id)
         {
-            using (var db = new ApplicationDbContext())
-            {
-                var user = (from s in db.Users
+                var user = (from s in _db.Users
                             where s.Id == id
                             select s).SingleOrDefault();
 
                 return user;
-            }
         }
 
         public void editUser(string userID, string about, string picture)
         {
-           using (var db = new ApplicationDbContext())
-           {
-                 var edit = (from s in db.Users
+
+                 var edit = (from s in _db.Users
                             where s.Id == userID
                            select s).SingleOrDefault();
                  edit.aboutMe = about;
                  edit.profilePicture = picture;
-                 db.SaveChanges();
-           }          
+                 _db.SaveChanges();          
         }
        
         public void deleteUser(int userID)
