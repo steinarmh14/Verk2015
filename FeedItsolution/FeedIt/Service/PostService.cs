@@ -9,7 +9,7 @@ namespace FeedIt.Service
 {
     public class PostService
     {
-        private static PostService instance;
+        /*private static PostService instance;
 
         public static PostService Instance
         {
@@ -21,47 +21,45 @@ namespace FeedIt.Service
                 }
                 return instance;
             }
+        }*/
+
+        private readonly ApplicationDbContext _db;
+
+        public PostService(ApplicationDbContext context = null)
+        {
+            _db = context ?? new ApplicationDbContext();
         }
 
         public void createPost(Post post, string userID)
         {
-            using (var db = new ApplicationDbContext())
-            {
+
                 post.owner = userID;
-                db.Posts.Add(post);
-                db.SaveChanges();
-            }
+                _db.Posts.Add(post);
+                _db.SaveChanges();
         }
 
         public void createPostForGroup(Post post, string userID, int groupID)
         {
-            using (var db = new ApplicationDbContext())
-            {
                 post.owner = userID;
                 post.groupID = groupID;
-                db.Posts.Add(post);
-                db.SaveChanges();
-            }
-
+                _db.Posts.Add(post);
+                _db.SaveChanges();
         }
 
         public Post getPostById(int postID)
         {
-            using (var db = new ApplicationDbContext())
-            {
-                Post result = (from s in db.Posts
+
+            Post result = (from s in _db.Posts
                                where s.ID == postID
                                select s).SingleOrDefault();
                             return result;
-            }
-    
+
         }
 
         public void rate(int postID,int rating, string userID)
         {
-            using (var db = new ApplicationDbContext())
-            {
-                Post post = (from s in db.Posts
+
+            Post post = (from s in _db.Posts
                              where s.ID == postID
                              select s).SingleOrDefault();
 
@@ -76,7 +74,7 @@ namespace FeedIt.Service
                post.rateCount = rateCount;
                post.rating = currentRating;
 
-               var userRating = (from s in db.UserRatings
+               var userRating = (from s in _db.UserRatings
                                  where s.postID == postID && s.userID == userID
                                  select s).FirstOrDefault();
                if (userRating == null)
@@ -85,79 +83,61 @@ namespace FeedIt.Service
                    uRating.rating = rating;
                    uRating.userID = userID;
                    uRating.postID = postID;
-                   db.UserRatings.Add(uRating);
+                   _db.UserRatings.Add(uRating);
                }
                else
                {
                    userRating.rating = rating;
-               }   
-               db.SaveChanges();
-            }           
+               }
+               _db.SaveChanges();          
         }
 
         public void addComment(Comment comment, int postID)
         {
-            using (var db = new ApplicationDbContext())
-            {
                 comment.postID = postID;
-                db.Comments.Add(comment);
-                db.SaveChanges();
-            }
+                _db.Comments.Add(comment);
+                _db.SaveChanges();
             
         }
 
         public List<Comment> getCommentsForPost(int ID)
         {
-            using (var db = new ApplicationDbContext())
-            {
-                var comments = (from s in db.Comments
+            var comments = (from s in _db.Comments
                                 where s.postID == ID
                                 select s).ToList();
 
                var dateOrdered = comments.OrderByDescending(x => x.date).Take(15).ToList();
 
                return dateOrdered;
-            }
-
-            
         }
 
 
         public void deleteComment(int commentID)
         {
-            using (var db = new ApplicationDbContext())
-            {
-                var comment = (from s in db.Comments
+            var comment = (from s in _db.Comments
                                where s.ID == commentID
                                select s).FirstOrDefault();
 
-                            db.Comments.Remove(comment);
-                            db.SaveChanges();
-            }
-
+            _db.Comments.Remove(comment);
+                           _db.SaveChanges();
         }
 
         public void addDescription(string description, int postID)
         {
-            using (var db = new ApplicationDbContext())
-            {
-                var post = (from s in db.Posts
+
+                var post = (from s in _db.Posts
                             where s.ID == postID
                             select s).FirstOrDefault();
 
                             post.about = description;
 
-                            db.SaveChanges();
-            }
-
+                            _db.SaveChanges();
             
         }
 
         public int getCurrentRatingFromUser (string userID, int postID)
         {
-            using (var db = new ApplicationDbContext())
-            {
-                var userRating = (from s in db.UserRatings
+                var userRating = (from s in _db.UserRatings
                             where s.postID == postID && s.userID == userID
                             select s).SingleOrDefault();
                 if (userRating == null)
@@ -168,13 +148,10 @@ namespace FeedIt.Service
                 {
                     return userRating.rating;
                 }
-            }
         }
         public void updateRatingFromUser (string userID, int postID, int rating, int previousRating)
         {
-            using (var db = new ApplicationDbContext())
-            {
-                var userRating = (from s in db.UserRatings
+                var userRating = (from s in _db.UserRatings
                                   where s.postID == postID && s.userID == userID
                                   select s).FirstOrDefault();
                 if (userRating == null)
@@ -184,7 +161,7 @@ namespace FeedIt.Service
                 else
                 {
                     userRating.rating = rating;
-                    Post post = (from s in db.Posts
+                    Post post = (from s in _db.Posts
                                  where s.ID == postID
                                  select s).SingleOrDefault();
 
@@ -197,9 +174,8 @@ namespace FeedIt.Service
 
                     post.rateCount = rateCount;
                     post.rating = currentRating;
-                    db.SaveChanges();
+                    _db.SaveChanges();
                 }
-            }
         }
 
     }

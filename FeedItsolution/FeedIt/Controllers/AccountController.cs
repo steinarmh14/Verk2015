@@ -130,11 +130,13 @@ namespace FeedIt.Controllers
             return View();
         }
 
-       
+        private ApplicationDbContext db = new ApplicationDbContext();
 
         public ActionResult ChangeUserInfo()
         {
-            ApplicationUser model = ProfileService.Instance.getProfileByID(User.Identity.GetUserId());
+            ProfileService profileService = new ProfileService(db);
+
+            ApplicationUser model = profileService.getProfileByID(User.Identity.GetUserId());
             return View(model);
         }
 

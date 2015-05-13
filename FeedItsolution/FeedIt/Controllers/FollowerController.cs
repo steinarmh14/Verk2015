@@ -10,6 +10,8 @@ namespace FeedIt.Controllers
 {
     public class FollowerController : Controller
     {
+        private ApplicationDbContext db = new ApplicationDbContext();
+
         // GET: Follower
         public ActionResult Index()
         {
@@ -18,10 +20,12 @@ namespace FeedIt.Controllers
         
         public ActionResult showFollowers(string userID)
         {
+            FollowerService followerService = new FollowerService(db);
+
             if(!String.IsNullOrEmpty(userID))
             {
                 List<ApplicationUser> users = new List<ApplicationUser>();
-                users = FollowerService.Instance.getFollowers(userID);
+                users = followerService.getFollowers(userID);
                 return View(users);
             }
 
@@ -34,10 +38,12 @@ namespace FeedIt.Controllers
 
         public ActionResult showFollowing(string userID)
         {
+            FollowerService followerService = new FollowerService(db);
+
             if (!String.IsNullOrEmpty(userID))
             {
                 List<ApplicationUser> users = new List<ApplicationUser>();
-                users = FollowerService.Instance.getFollowing(userID);
+                users = followerService.getFollowing(userID);
                 return View(users);
             }
 

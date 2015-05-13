@@ -92,6 +92,7 @@
                '<blockquote id="comment"> <div class="Commentsection"> <p>'
                      + data.comment.comment + '</p> <footer> - ' + data.user.Id + ' at '
                      + data.comment.date + '</footer> </div> </blockquote>')
+            return false;
         });
     });
 
