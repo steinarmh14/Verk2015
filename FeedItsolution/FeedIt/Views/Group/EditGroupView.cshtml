@@ -1,13 +1,13 @@
-﻿@using Microsoft.AspNet.Identity
-@model FeedIt.Models.ManageUserViewModel
-
+﻿
+@using Microsoft.AspNet.Identity
+@using FeedIt.Models;
 @{
-    ViewBag.Title = "EditGroupView";
+    ViewBag.Title = "Edit my group";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 
-@using (Html.BeginForm("Manage", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+@using (Html.BeginForm("EditGroup", "Group", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
     <div class="line-separator"></div>
     <div class="grad"></div>
@@ -16,12 +16,20 @@
     </div>
     <br>
     <div class="login">
+        <div class="form-group">
+            <div>
+                <p class="fontLogin col-md-12">Group name</p>
+            </div>
+            <div class="col-md-12">
+                <input type="text" id="groupName" name="groupName" />
+            </div>
+        </div>
     <div class="form-group">
         <div>
-            <p class="fontLogin col-md-12">About Me</p>
+            <p class="fontLogin col-md-12">Group description</p>
         </div>
         <div class="col-md-12">
-            <textarea cols="45" rows="6" placeholder="About me..."></textarea>
+            <textarea id="decription" cols="45" rows="6" placeholder="Description"></textarea>
         </div>
     </div>
     <div class="form-group">
@@ -29,15 +37,14 @@
             <p class="fontLogin col-md-12">Group Picture</p>
         </div>
         <div class="col-md-12">
-            <form action="upload-script-url" method="post" enctype="multipart/form-data">
-                <input type="file" name="file">
-            </form>
+            <input type="text" id="groupPicture" name="groupPicture" />
         </div>
     </div>
 
     <div class="form-group">
         <div class="col-md-12">
-            <input type="button" value="Delete Profile" onclick="location.href = 'Login';" class="btn btn-default" />
+            <input type="button" value="Delete Group" onclick="location.href = 'Login';" class="btn btn-default" />
+            <input type="hidden" value=@Model.ID />
             <input type="submit" value="Save Changes" class="btn btn-default" />
         </div>
     </div>
