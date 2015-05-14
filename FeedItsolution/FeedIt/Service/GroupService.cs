@@ -166,11 +166,20 @@ namespace FeedIt.Service
 
         public List<Group> getGroupsByName(string name)
         {
+<<<<<<< HEAD
+
+                var groups = (from s in _db.Groups
+                              where s.name.StartsWith(name) || s.name.EndsWith(name)
+                              select s).ToList();
+
+                return groups;
+=======
             var groups = (from s in _db.Groups
                           where s.name.StartsWith(name) || s.name.EndsWith(name)
                           select s).ToList();
 
             return groups;
+>>>>>>> 5e5ef493e53ab06d40689eeada6bfdd4ec8e226e
         }
     }
 }
