@@ -25,6 +25,7 @@
                             <input type="submit" class="postbutton btn btn-default" value="Feed it" />
                         </div>
                     </div>
+                    <div class="line-seperatorNewsFeed"></div>
                 }
             </div>
         </div>
@@ -36,21 +37,15 @@
             </span>
         </div>
         <div class="posts" id="friendfeed">
-            <p class="borderbottom">
-                Feed from friends
-            </p>
+            <p> Feed from friends </p>
             @Html.Partial("UserFeed", Model.userFeed)
         </div>
         <div class="posts hidden" id="groupfeed">
-            <p class="borderbottom">
-                Feed from groups
-            </p>
+            <p> Feed from groups </p>
             @Html.Partial("GroupFeed", Model.groupsFeed)
         </div>
         <div class="posts hidden" id="allfeed">
-            <p class="borderbottom">
-                Feed from friends and groups
-            </p>
+            <p> Feed from friends and groups </p>
             @Html.Partial("UserFeed", Model.allFeed)
         </div>
     </div>
