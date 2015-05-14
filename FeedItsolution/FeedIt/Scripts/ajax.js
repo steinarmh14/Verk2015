@@ -1,4 +1,18 @@
 ﻿$(function () {
+    $('body').on('click', '#deletegroup', function () {
+        var groupID = $('#groupID').val();
+        $.ajax({
+            type: 'POST',
+            url: '/Group/deleteGroup',
+            data: {
+                groupID: groupID
+            }
+        }).done(function (data) {
+            $('#editgroupform').addClass("hidden");
+            $('#groupremovedresponse').removeClass("hidden");
+        })
+    });
+
     $('body').on('click', '#follow', function () {
         var userID = $('#userID').val();
 
