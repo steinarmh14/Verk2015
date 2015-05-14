@@ -112,9 +112,12 @@ namespace FeedIt.Controllers
             {
                 int realGroupID = groupID.Value;
                 Group group = groupService.getGroupByID(realGroupID);
-                return View(group);
+                if (group != null)
+                {
+                    return View(group);
+                }
             }
-            return View("Error");
+            return RedirectToAction("EditMyGroupsView");
         }
 
         public ActionResult EditMyGroupsView()

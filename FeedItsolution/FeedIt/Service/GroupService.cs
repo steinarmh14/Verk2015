@@ -115,8 +115,11 @@ namespace FeedIt.Service
                }
                var rating = (from v in _db.UserRatings
                          where v.postID == item.ID
-                         select v).SingleOrDefault();
-               _db.UserRatings.Remove(rating);
+                             select v).SingleOrDefault();
+               if (rating != null)
+               {
+                   _db.UserRatings.Remove(rating);
+               }
 
                _db.Posts.Remove(item);
            }
@@ -163,12 +166,20 @@ namespace FeedIt.Service
 
         public List<Group> getGroupsByName(string name)
         {
+<<<<<<< HEAD
 
                 var groups = (from s in _db.Groups
                               where s.name.StartsWith(name) || s.name.EndsWith(name)
                               select s).ToList();
 
                 return groups;
+=======
+            var groups = (from s in _db.Groups
+                          where s.name.StartsWith(name) || s.name.EndsWith(name)
+                          select s).ToList();
+
+            return groups;
+>>>>>>> 5e5ef493e53ab06d40689eeada6bfdd4ec8e226e
         }
     }
 }
