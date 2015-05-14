@@ -340,8 +340,14 @@ height:1px;
 background:#717171;
 margin-top: 15%;
 border-bottom:3px solid rgba(255,255,255,0.6);
+}
 
+.line-separatorCreateGroup{
 
+height:1px;
+background:#717171;
+margin-top: 10%;
+border-bottom:3px solid rgba(255,255,255,0.6);
 }
 
 .line-seperatorNewsFeed
@@ -365,6 +371,14 @@ border-bottom:3px solid rgba(255,255,255,0.6);
 height:1px;
 background:#717171;
 margin-top: 7%;
+border-bottom:3px solid rgba(255,255,255,0.6);
+}
+
+.line-separatorEditGroups{
+
+height:1px;
+background:#717171;
+margin-top: 10%;
 border-bottom:3px solid rgba(255,255,255,0.6);
 }
 
@@ -629,9 +643,6 @@ border-bottom:3px solid rgba(255,255,255,0.6);
     text-align:center;
     margin-top:8px;
     margin-bottom:1%;
-    border-bottom-style:solid;
-    border-bottom-color:lightgrey;
-    border-bottom-width:thin;
 }
 
 .postbuttongroups

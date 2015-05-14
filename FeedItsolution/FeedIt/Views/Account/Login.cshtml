@@ -4,14 +4,15 @@
     ViewBag.Title = "Log in";
 }
 
+<div class="editProfile">
+    <div>Wel<span>come!</span></div>
+</div>
+<br><br><br>
 
 <body>
-    <a href='@Url.Action("Index", "Home")'>
-        <img class="logo" src="../Images/feeditLOGO.jpg" />
-    </a>
-    <div class="line-separator"></div>
 @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
+    <div class="line-separatorEdit"></div>
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
     <div class="grad"></div>

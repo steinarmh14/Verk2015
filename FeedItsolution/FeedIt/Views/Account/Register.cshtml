@@ -1,9 +1,10 @@
 ﻿@model FeedIt.Models.RegisterViewModel
 <body>
-    <a href='@Url.Action("Index", "Home")'>
-        <img class="logo" src="../Images/feeditLOGO.jpg" />
-    </a>
-    <div class="line-separator"></div>
+    <div class="editProfile">
+        <div>Create<span>User</span></div>
+    </div>
+    <br><br><br>
+    <div class="line-separatorEdit"></div>
 
     @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
     {
