@@ -54,6 +54,12 @@ namespace FeedIt.Controllers
             NewsFeedService newsFeedService = new NewsFeedService(db);
             GroupService groupService = new GroupService(db);
 
+
+            if(groupService.isFollower(id, User.Identity.GetUserId()))
+            {
+                return RedirectToAction("GroupView", new { id = id });
+            }
+
             IEnumerable<UserFeed> groupFeed = newsFeedService.getFeedForGroup(id);
             GroupViewModel model = new GroupViewModel();
             model.feed = groupFeed;
@@ -202,10 +208,6 @@ namespace FeedIt.Controllers
             string picture = collection["picture"];
             string groupID = collection["groupID"];
             int ID = Int32.Parse(groupID);
-            if (String.IsNullOrEmpty(about) || String.IsNullOrEmpty(picture))
-            {
-                return RedirectToAction("GroupView", new { id = ID });
-            }
             Post post = new Post();
             // til að byrja með er ratingið alltaf 0!!!!! fix later
             post.about = about;

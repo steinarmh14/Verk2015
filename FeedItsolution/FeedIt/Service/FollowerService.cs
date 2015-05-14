@@ -18,9 +18,11 @@ namespace FeedIt.Service
         public void addFollower(string followerID, string followingID)
         {
             Follower follower = new Follower { follower = followerID, following = followingID };
-
-            _db.Followers.Add(follower);
-            _db.SaveChanges();
+            if(!isFollower(followerID, followingID))
+            {
+                _db.Followers.Add(follower);
+                _db.SaveChanges();
+            }
         }
 
         public bool isFollower(string followerID, string followingID)
