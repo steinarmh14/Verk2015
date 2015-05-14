@@ -25,7 +25,7 @@
                         </a>
 
 
-                        using (Html.BeginForm("Search", "Search", FormMethod.Post, new { id = "postform" , @class="centerform"}))
+                        using (Html.BeginForm("Search", "Search", FormMethod.Post, new { id = "postform", @class = "centerform" }))
                         {
                             <div class="searchContainer">
                                 <input type="text" class="searchTerm" placeholder="What are you looking for?" id="search" name="search">
@@ -33,56 +33,56 @@
                             </div>
                         }
 
-                    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
-                    {
-                        @Html.AntiForgeryToken()
-                        <div style="display:none" class="username">@User.Identity.GetUserName()</div>
-                        <ul class="nav navbar-nav navbar-right">
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle dropdown-header" data-toggle="dropdown" role="button" aria-expanded="false" style="font-size:large"> </a>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li>@Html.ActionLink("My Profile", "Index", "Profile")</li>
-                                    <li>@Html.ActionLink("Edit My Profile", "EditProfile", "Profile")</li>
-                                    <li>@Html.ActionLink("Change My Password", "Manage", "Account")</li>
-                                    <li class="divider"></li>
-                                    <li>@Html.ActionLink("My Groups", "MyGroupsView", "Group")</li>
-                                    <li>@Html.ActionLink("Create Group", "CreateGroup", "Group")</li>
-                                    <li>@Html.ActionLink("Edit My Groups", "EditMyGroupsView", "Group")</li>
-                                    <li class="divider"></li>                    
-                                    <li><a href="javascript:document.getElementById('logoutForm').submit()">Log Out</a></li>
-                                </ul>
-                            </li>
-                        </ul>
+                        using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            <div style="display:none" class="username">@User.Identity.GetUserName()</div>
+                            <ul class="nav navbar-nav navbar-right">
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle dropdown-header" data-toggle="dropdown" role="button" aria-expanded="false" style="font-size:large"> </a>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li>@Html.ActionLink("My Profile", "Index", "Profile")</li>
+                                        <li>@Html.ActionLink("Edit My Profile", "EditProfile", "Profile")</li>
+                                        <li>@Html.ActionLink("Change My Password", "Manage", "Account")</li>
+                                        <li class="divider"></li>
+                                        <li>@Html.ActionLink("My Groups", "MyGroupsView", "Group")</li>
+                                        <li>@Html.ActionLink("Create Group", "CreateGroup", "Group")</li>
+                                        <li>@Html.ActionLink("Edit My Groups", "EditMyGroupsView", "Group")</li>
+                                        <li class="divider"></li>
+                                        <li><a href="javascript:document.getElementById('logoutForm').submit()">Log Out</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
 
+                        }
                     }
-                    }
-            </div>
-                
                 </div>
+
             </div>
-            }
-            <!--comment fyrr-->
+        </div>
+    }
+    <!--comment fyrr-->
 
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav"></ul>
-                @Html.Partial("_LoginPartial")
-            </div>
+    <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav"></ul>
+        @Html.Partial("_LoginPartial")
+    </div>
 
-            <div>
-                @RenderBody()
+    <div>
+        @RenderBody()
 
-                <footer></footer>
-            </div>
+        <footer></footer>
+    </div>
 
-            @Scripts.Render("~/bundles/jquery")
-            @Scripts.Render("~/bundles/bootstrap")
-            @RenderSection("scripts", required: false)
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
 
-        </body>
+</body>
 
-    </html>
-    <script type="text/javascript">
-        var user = $(".username").html();
-        $(".dropdown-header").html(user + " <span class='caret'></span>");
-    </script>
-    <!--Layout site.-->
+</html>
+<script type="text/javascript">
+    var user = $(".username").html();
+    $(".dropdown-header").html(user + " <span class='caret'></span>");
+</script>
+<!--Layout site.-->

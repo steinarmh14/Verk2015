@@ -18,17 +18,15 @@ namespace FeedIt.Controllers
             return View();
         }
 
-        public ActionResult Search (FormCollection collection)
+        public ActionResult Search(FormCollection collection)
         {
             ProfileService profileService = new ProfileService(db);
             GroupService groupService = new GroupService(db);
 
             string search = collection["search"];
             SearchViewModel model = new SearchViewModel();
-
             model.groups = groupService.getGroupsByName(search);
             model.users = profileService.getProfilesByName(search);
-
             return View(model);
         }
 
@@ -46,20 +44,6 @@ namespace FeedIt.Controllers
             {
                 return View();
             }
-
         }
-        /*public ActionResult searchUsersByName(string name)
-        {
-            if (!String.IsNullOrEmpty(name))
-            {
-                List<ApplicationUser> users = new List<ApplicationUser>();
-                users = UserService.Instance.getGroupsUsersByName(name);
-                return View(users);
-            }
-            else
-            {
-                return View();
-            }
-        }*/
     }
 }

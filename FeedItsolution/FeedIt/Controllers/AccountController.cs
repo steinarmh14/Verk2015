@@ -52,14 +52,11 @@ namespace FeedIt.Controllers
                     await SignInAsync(user, model.RememberMe);
                     return RedirectToLocal(returnUrl);
                 }
-
                 else
                 {
                     ModelState.AddModelError("", "Invalid username or password.");
                 }
-
             }
-
             // If we got this far, something failed, redisplay form
             return View(model);
         }
@@ -81,19 +78,17 @@ namespace FeedIt.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser() { UserName = model.UserName, fullName = model.FullName, profilePicture = String.Empty};
+                var user = new ApplicationUser() { UserName = model.UserName, fullName = model.FullName, profilePicture = String.Empty };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
                     await SignInAsync(user, isPersistent: false);
                     return RedirectToAction("Index", "Home");
                 }
-
                 else
                 {
                     AddErrors(result);
                 }
-
             }
 
             // If we got this far, something failed, redisplay form
@@ -190,7 +185,6 @@ namespace FeedIt.Controllers
                     }
                 }
             }
-
             // If we got this far, something failed, redisplay form
             return View(model);
         }
@@ -216,7 +210,6 @@ namespace FeedIt.Controllers
             {
                 return RedirectToAction("Login");
             }
-
             // Sign in the user with this external login provider if the user already has a login
             var user = await UserManager.FindAsync(loginInfo.Login);
             if (user != null)
@@ -271,7 +264,6 @@ namespace FeedIt.Controllers
             {
                 return RedirectToAction("Manage");
             }
-
             if (ModelState.IsValid)
             {
                 // Get the information about the user from the external login provider
@@ -293,7 +285,6 @@ namespace FeedIt.Controllers
                 }
                 AddErrors(result);
             }
-
             ViewBag.ReturnUrl = returnUrl;
             return View(model);
         }
@@ -333,7 +324,6 @@ namespace FeedIt.Controllers
             }
             base.Dispose(disposing);
         }
-
         #region Helpers
         // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";
@@ -393,7 +383,8 @@ namespace FeedIt.Controllers
 
         private class ChallengeResult : HttpUnauthorizedResult
         {
-            public ChallengeResult(string provider, string redirectUri) : this(provider, redirectUri, null)
+            public ChallengeResult(string provider, string redirectUri)
+                : this(provider, redirectUri, null)
             {
             }
 

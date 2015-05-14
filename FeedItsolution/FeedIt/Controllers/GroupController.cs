@@ -34,13 +34,12 @@ namespace FeedIt.Controllers
                 int realID = id.Value;
                 if (groupService.isFollower(realID, User.Identity.GetUserId()))
                 {
-                IEnumerable<UserFeed> groupFeed = newsFeedService.getFeedForGroup(realID);
-
-                GroupViewModel model = new GroupViewModel();
-                model.feed = groupFeed;
-                model.group = groupService.getGroupByID(realID);
-                model.followers = groupService.getFollowers(realID);
-                return View(model);
+                    IEnumerable<UserFeed> groupFeed = newsFeedService.getFeedForGroup(realID);
+                    GroupViewModel model = new GroupViewModel();
+                    model.feed = groupFeed;
+                    model.group = groupService.getGroupByID(realID);
+                    model.followers = groupService.getFollowers(realID);
+                    return View(model);
                 }
                 else
                 {
@@ -56,7 +55,6 @@ namespace FeedIt.Controllers
             GroupService groupService = new GroupService(db);
 
             IEnumerable<UserFeed> groupFeed = newsFeedService.getFeedForGroup(id);
-
             GroupViewModel model = new GroupViewModel();
             model.feed = groupFeed;
             model.group = groupService.getGroupByID(id);
@@ -101,10 +99,8 @@ namespace FeedIt.Controllers
             GroupService groupService = new GroupService(db);
 
             string userId = User.Identity.GetUserId();
-
             GroupList groups = new GroupList();
             groups.myGroups = groupService.getGroups(userId);
-
             return View(groups);
         }
 
@@ -112,7 +108,7 @@ namespace FeedIt.Controllers
         {
             GroupService groupService = new GroupService(db);
 
-            if(groupID.HasValue)
+            if (groupID.HasValue)
             {
                 int realGroupID = groupID.Value;
                 Group group = groupService.getGroupByID(realGroupID);
@@ -126,10 +122,8 @@ namespace FeedIt.Controllers
             GroupService groupService = new GroupService(db);
 
             string userID = User.Identity.GetUserId();
-
             List<Group> group = new List<Group>();
-            group = groupService.getMyGroups(userID);  
-
+            group = groupService.getMyGroups(userID);
             return View(group);
         }
 
@@ -143,20 +137,16 @@ namespace FeedIt.Controllers
             string about = collection["aboutGroup"];
             string strID = User.Identity.GetUserId();
             string picture = collection["groupPicture"];
-
             Group group = new Group();
             group.about = about;
             group.name = name;
             group.owner = strID;
             group.picture = picture;
-
-            if(String.IsNullOrEmpty(group.picture))
+            if (String.IsNullOrEmpty(group.picture))
             {
                 group.picture = "http://www.abc.net.au/news/image/954416-3x2-940x627.jpg";
             }
-
             groupService.createGroup(group);
-
             return RedirectToAction("GroupView", new { id = group.ID });
         }
 
@@ -182,7 +172,7 @@ namespace FeedIt.Controllers
         public ActionResult editGroup()
         {
             return View();
-                
+
         }
 
         [HttpPost]
@@ -194,16 +184,12 @@ namespace FeedIt.Controllers
             string groupName = collection["groupName"];
             string description = collection["aboutGroup"];
             string groupPicture = collection["groupPicture"];
-
             Group group = new Group();
             group.name = groupName;
             group.about = description;
             group.picture = groupPicture;
-
             groupService.editGroup(Int32.Parse(groupID), group);
-             
             return RedirectToAction("GroupView", new { id = groupID });
-         
         }
 
         [HttpPost]
@@ -215,14 +201,11 @@ namespace FeedIt.Controllers
             string picture = collection["picture"];
             string groupID = collection["groupID"];
             int ID = Int32.Parse(groupID);
-
             if (String.IsNullOrEmpty(about) || String.IsNullOrEmpty(picture))
             {
                 return RedirectToAction("GroupView", new { id = ID });
             }
-
             Post post = new Post();
-
             // til að byrja með er ratingið alltaf 0!!!!! fix later
             post.about = about;
             post.picture = picture;
@@ -230,11 +213,9 @@ namespace FeedIt.Controllers
             post.rateCount = 0;
             post.rating = 0;
             post.groupID = ID;
-
             string strID = User.Identity.GetUserId();
             post.owner = strID;
             postService.createPost(post, strID);
-
             return RedirectToAction("GroupView", new { id = ID });
         }
     }

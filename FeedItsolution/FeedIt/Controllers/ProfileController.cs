@@ -20,16 +20,13 @@ namespace FeedIt.Controllers
             NewsFeedService newsFeedService = new NewsFeedService(db);
             FollowerService followerService = new FollowerService(db);
 
-
             string userID = User.Identity.GetUserId();
-
             if (!String.IsNullOrEmpty(userID))
             {
                 List<UserFeed> profileFeed = new List<UserFeed>();
                 ApplicationUser user = new ApplicationUser();
                 user = profileService.getProfileByID(userID);
                 IEnumerable<Post> posts = newsFeedService.getAllPostsFromUser(userID);
-
                 foreach (var post in posts)
                 {
                     UserFeed singleUserFeed = new UserFeed();
@@ -52,10 +49,10 @@ namespace FeedIt.Controllers
             ProfileService profileService = new ProfileService(db);
             NewsFeedService newsFeedService = new NewsFeedService(db);
 
-            if(!String.IsNullOrEmpty(userID))
+            if (!String.IsNullOrEmpty(userID))
             {
                 string theUser = User.Identity.GetUserId();
-                if(userID == theUser)
+                if (userID == theUser)
                 {
                     return RedirectToAction("Index");
                 }
@@ -65,7 +62,6 @@ namespace FeedIt.Controllers
                     ApplicationUser user = new ApplicationUser();
                     user = profileService.getProfileByID(userID);
                     IEnumerable<Post> posts = newsFeedService.getAllPostsFromUser(userID);
-
                     foreach (var post in posts)
                     {
                         UserFeed singleUserFeed = new UserFeed();
@@ -80,12 +76,12 @@ namespace FeedIt.Controllers
                     model.followings = followerService.getFollowing(userID);
                     return View(model);
                 }
-                return RedirectToAction("NotFollowingProfile", new { userID = userID });               
+                return RedirectToAction("NotFollowingProfile", new { userID = userID });
             }
             return View("Error");
         }
 
-        public ActionResult NotFollowingProfile (string userID)
+        public ActionResult NotFollowingProfile(string userID)
         {
             ProfileService profileService = new ProfileService(db);
             NewsFeedService newsFeedService = new NewsFeedService(db);
@@ -95,7 +91,6 @@ namespace FeedIt.Controllers
             ApplicationUser user = new ApplicationUser();
             user = profileService.getProfileByID(userID);
             IEnumerable<Post> posts = newsFeedService.getAllPostsFromUser(userID);
-
             foreach (var post in posts)
             {
                 UserFeed singleUserFeed = new UserFeed();
@@ -125,9 +120,7 @@ namespace FeedIt.Controllers
             string aboutMe = collection["aboutMe"];
             string profilePicture = collection["profilePicture"];
             string fullName = collection["fullName"];
-
             profileService.editUser(userID, aboutMe, fullName, profilePicture);
-
             return RedirectToAction("Profile", new { userID = userID });
         }
 
@@ -143,7 +136,6 @@ namespace FeedIt.Controllers
 
             string userID = collection["userID"];
             profileService.deleteUser(userID);
-
             return RedirectToAction("Index", "Home");
         }
 
@@ -153,13 +145,11 @@ namespace FeedIt.Controllers
             FollowerService followerService = new FollowerService(db);
 
             string userID = collection["userID"];
-            if(!String.IsNullOrEmpty(userID))          
+            if (!String.IsNullOrEmpty(userID))
             {
                 string strID = User.Identity.GetUserId();
-
                 followerService.addFollower(strID, userID);
             }
-            //return RedirectToAction("Profile", new { userID =  userID });
             return Json(userID, JsonRequestBehavior.AllowGet);
         }
 
@@ -172,10 +162,8 @@ namespace FeedIt.Controllers
             if (!String.IsNullOrEmpty(userID))
             {
                 string strID = User.Identity.GetUserId();
-
                 followerService.removeFollower(strID, userID);
             }
-            //return RedirectToAction("Profile", new { userID = userID });
             return Json(userID, JsonRequestBehavior.AllowGet);
         }
     }

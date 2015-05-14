@@ -4,10 +4,10 @@
 }
 @foreach (var item in Model)
 {
-<div class="searchmargin">
-    <a href="@Url.Action("Profile", "Profile", new { userID = item.Id})">
-        <img src="@Url.Content(item.profilePicture)" alt="picture" class="followpicture" />
-    </a>
-    <a href=@Url.Action("Profile", "Profile", new { userID = item.Id }) class="followname">@item.UserName</a>
-</div>
+    <div class="searchmargin">
+        <a href="@Url.Action("Profile", "Profile", new { userID = item.Id})">
+            <img src="@Url.Content(item.profilePicture)" alt="picture" class="followpicture" />
+        </a>
+        <a href=@Url.Action("Profile", "Profile", new { userID = item.Id }) class="followname">@item.UserName</a>
+    </div>
 }

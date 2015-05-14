@@ -21,7 +21,6 @@ namespace FeedIt.Controllers
 
             string strID = User.Identity.GetUserId();
             List<UserFeed> model = newsFeedService.getFeedForUser(strID);
-
             return View(model);
         }
 
@@ -31,7 +30,6 @@ namespace FeedIt.Controllers
 
             string strID = User.Identity.GetUserId();
             List<UserFeed> model = newsFeedService.getFeedForGroups(strID);
-
             return View(model);
         }
 
@@ -41,7 +39,6 @@ namespace FeedIt.Controllers
 
             string strID = User.Identity.GetUserId();
             List<UserFeed> model = newsFeedService.getAllPosts(strID);
-
             return View(model);
         }
 
@@ -49,7 +46,7 @@ namespace FeedIt.Controllers
         {
             NewsFeedService newsFeedService = new NewsFeedService(db);
 
-            if(groupID.HasValue)
+            if (groupID.HasValue)
             {
                 int realGroupID = groupID.Value;
                 List<UserFeed> model = newsFeedService.getFeedForGroup(realGroupID);

@@ -8,20 +8,6 @@ namespace FeedIt.Service
 {
     public class ProfileService
     {
-        private static ProfileService instance;
-
-        /*public static ProfileService Instance
-        {
-            get
-            {
-                if(instance == null)
-                {
-                    instance = new ProfileService();
-                }
-                return instance;
-            }
-        }*/
-
         private readonly ApplicationDbContext _db;
 
         public ProfileService(ApplicationDbContext context = null)
@@ -33,8 +19,8 @@ namespace FeedIt.Service
         {
             ApplicationUser user;
             user = (from s in _db.Users
-                        where s.Id == userID
-                        select s).SingleOrDefault();
+                    where s.Id == userID
+                    select s).SingleOrDefault();
             return user;
         }
 
@@ -43,7 +29,7 @@ namespace FeedIt.Service
             var profileNames = (from s in _db.Users
                                 where s.UserName.StartsWith(name) || s.UserName.EndsWith(name) || s.fullName.StartsWith(name) || s.fullName.EndsWith(name)
                                 select s).ToList();
-            return profileNames;            
+            return profileNames;
         }
 
         public void editUser(string userID, string about, string fullName, string profilePicture)
@@ -51,7 +37,7 @@ namespace FeedIt.Service
             var edit = (from s in _db.Users
                         where s.Id == userID
                         select s).SingleOrDefault();
-            if(!String.IsNullOrEmpty(about))
+            if (!String.IsNullOrEmpty(about))
             {
                 edit.aboutMe = about;
             }
@@ -65,11 +51,12 @@ namespace FeedIt.Service
             }
             _db.SaveChanges();
         }
+
         public void deleteUser(string userID)
         {
             var remove = (from s in _db.Users
-                        where s.Id == userID
-                        select s).SingleOrDefault();
+                          where s.Id == userID
+                          select s).SingleOrDefault();
             _db.Users.Remove(remove);
             _db.SaveChanges();
         }
