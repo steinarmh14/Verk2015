@@ -17,23 +17,21 @@ namespace FeedIt.Controllers
         {
             return View();
         }
-        
+
         public ActionResult showFollowers(string userID)
         {
             FollowerService followerService = new FollowerService(db);
 
-            if(!String.IsNullOrEmpty(userID))
+            if (!String.IsNullOrEmpty(userID))
             {
                 List<ApplicationUser> users = new List<ApplicationUser>();
                 users = followerService.getFollowers(userID);
                 return View(users);
             }
-
             else
             {
                 return View();
             }
-
         }
 
         public ActionResult showFollowing(string userID)
@@ -46,7 +44,6 @@ namespace FeedIt.Controllers
                 users = followerService.getFollowing(userID);
                 return View(users);
             }
-
             else
             {
                 return View();

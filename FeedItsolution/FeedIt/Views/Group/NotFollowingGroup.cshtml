@@ -17,9 +17,9 @@
             <input type="button" value="Unfollow" class="btn btn-default" id="gunfollow" />
         </div>
     </div>
-        <div class="groupabout">
-            <p>@Model.group.about</p>
-        </div>
+    <div class="groupabout">
+        <p>@Model.group.about</p>
+    </div>
     <div class="createpostforms">
         @using (Html.BeginForm("createPost", "Group", FormMethod.Post, new { id = "makePostForm" }))
         {

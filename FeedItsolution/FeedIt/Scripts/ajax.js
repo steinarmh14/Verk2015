@@ -1,5 +1,4 @@
 ﻿$(function () {
-
     $('body').on('click', '#follow', function () {
         var userID = $('#userID').val();
 

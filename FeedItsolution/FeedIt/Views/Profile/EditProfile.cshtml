@@ -23,7 +23,8 @@
     <div class="line-separatorEdit"></div>
     <div class="login">
         <div class="form-group">
-            <div><br>
+            <div>
+                <br>
                 <p class="fontLogin col-md-12">Full name</p>
             </div>
             <div class="col-md-12">
@@ -49,7 +50,7 @@
         <div class="form-group">
             <div class="col-md-12">
                 <input type="button" value="Cancel" class="btn btn-default" onclick="@("window.location.href='" + @Url.Action("Index", "Home") + "'");" />
-                <input type="submit" value="Save Changes" class="btn btn-default" />            
+                <input type="submit" value="Save Changes" class="btn btn-default" />
             </div>
             <input type="submit" value="Delete Group" onclick="location.href = 'Login';" class="btn btn-default" />
         </div>
@@ -58,7 +59,7 @@
 @using (Html.BeginForm("deleteProfile", "Profile", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
     <div>
-       <input type="hidden" value="@User.Identity.GetUserId()" />
+        <input type="hidden" value="@User.Identity.GetUserId()" />
         <input type="submit" value="Delete Group" onclick="location.href = 'Login';" class="btn btn-default" />
     </div>
 }

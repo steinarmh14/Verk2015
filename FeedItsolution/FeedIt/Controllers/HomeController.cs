@@ -19,16 +19,12 @@ namespace FeedIt.Controllers
             NewsFeedService newsFeedService = new NewsFeedService(db);
 
             FeedLists model = new FeedLists();
-
             string strID = User.Identity.GetUserId();
             model.userFeed = newsFeedService.getFeedForUser(strID);
-
             model.groupsFeed = newsFeedService.getFeedForGroups(strID);
-
             model.allFeed = newsFeedService.getAllPosts(strID);
-
             return View(model);
-           // return View();
+            // return View();
         }
 
         [HttpPost]
@@ -40,14 +36,11 @@ namespace FeedIt.Controllers
 
             string about = collection["description"];
             string picture = collection["picture"];
-
-            if(String.IsNullOrEmpty(about) || String.IsNullOrEmpty(picture))
+            if (String.IsNullOrEmpty(about) || String.IsNullOrEmpty(picture))
             {
                 return RedirectToAction("Index", "Home");
             }
-
             Post post = new Post();
-
             // til að byrja með er ratingið alltaf 0!!!!! fix later
             post.about = about;
             post.groupID = -1;
@@ -55,18 +48,15 @@ namespace FeedIt.Controllers
             post.date = DateTime.Now;
             post.rateCount = 0;
             post.rating = 0;
-
             string strID = User.Identity.GetUserId();
             //Console.WriteLine(strID);
-
-            if(!followerService.isFollower(strID, strID))
+            if (!followerService.isFollower(strID, strID))
             {
-                    followerService.addFollower(strID, strID);
+                followerService.addFollower(strID, strID);
             }
             UserFeed userFeed = new UserFeed();
             userFeed.post = post;
             userFeed.user = profileService.getProfileByID(User.Identity.GetUserId());
-
             postService.createPost(post, strID);
             return RedirectToAction("Index");
             //return Json(userFeed, JsonRequestBehavior.AllowGet);
@@ -75,16 +65,13 @@ namespace FeedIt.Controllers
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
-
             return View();
         }
 
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";
-
             return View();
         }
-
     }
 }

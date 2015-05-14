@@ -9,51 +9,51 @@
     <title>Feedit</title>
 </head>
 <body>
-            <div class="text-center">
-                <div class="bodydiv">
-                    <h2><span>News</span><span class="newsfeed">Feed</span></h2>
-                    <div class="createpostforms">
-                        @using (Html.BeginForm("createPost", "Home", FormMethod.Post, new { id = "makePostForm" }))
-                        {
-                            <div>
-                                <label>Insert photo URL</label>
-                                <input class="feedtextbox" type="text" name="picture" id="picture" placeholder="Insert photo URL" />
-                                <div class="margintop">
-                                    <textarea rows="7" cols="65" placeholder="Description/recipe" name="description" id="description" class="feedtextarea"></textarea>
-                                </div>
-                                <div>
-                                    <input type="submit" class="postbutton btn btn-default" value="Feed it" />
-                                </div>
-                            </div>
-                        }
+    <div class="text-center">
+        <div class="bodydiv">
+            <h2><span>News</span><span class="newsfeed">Feed</span></h2>
+            <div class="createpostforms">
+                @using (Html.BeginForm("createPost", "Home", FormMethod.Post, new { id = "makePostForm" }))
+                {
+                    <div>
+                        <label>Insert photo URL</label>
+                        <input class="feedtextbox" type="text" name="picture" id="picture" placeholder="Insert photo URL" />
+                        <div class="margintop">
+                            <textarea rows="7" cols="65" placeholder="Description/recipe" name="description" id="description" class="feedtextarea"></textarea>
+                        </div>
+                        <div>
+                            <input type="submit" class="postbutton btn btn-default" value="Feed it" />
+                        </div>
                     </div>
-                </div>
-                <div class="wrapper">
-                    <span class="feedbuttons">
-                        <button id="friendsfeedbutton" class="btn btn-default">Friends</button>
-                        <button id="allfeedbutton" class="btn btn-default">All</button>
-                        <button id="groupfeedbutton" class="btn btn-default">Groups</button>
-                    </span>
-                </div>
-                    <div class="posts" id="friendfeed">
-                        <p class="borderbottom">
-                            Feed from friends
-                        </p>
-                        @Html.Partial("UserFeed", Model.userFeed)
-                    </div>
-                    <div class="posts hidden" id="groupfeed">
-                        <p class="borderbottom">
-                            Feed from groups
-                        </p>
-                        @Html.Partial("GroupFeed", Model.groupsFeed)
-                    </div>
-                    <div class="posts hidden" id="allfeed">
-                        <p class="borderbottom">
-                            Feed from friends and groups
-                        </p>
-                        @Html.Partial("UserFeed", Model.allFeed)
-                    </div>
-                </div>
+                }
+            </div>
+        </div>
+        <div class="wrapper">
+            <span class="feedbuttons">
+                <button id="friendsfeedbutton" class="btn btn-default">Friends</button>
+                <button id="allfeedbutton" class="btn btn-default">All</button>
+                <button id="groupfeedbutton" class="btn btn-default">Groups</button>
+            </span>
+        </div>
+        <div class="posts" id="friendfeed">
+            <p class="borderbottom">
+                Feed from friends
+            </p>
+            @Html.Partial("UserFeed", Model.userFeed)
+        </div>
+        <div class="posts hidden" id="groupfeed">
+            <p class="borderbottom">
+                Feed from groups
+            </p>
+            @Html.Partial("GroupFeed", Model.groupsFeed)
+        </div>
+        <div class="posts hidden" id="allfeed">
+            <p class="borderbottom">
+                Feed from friends and groups
+            </p>
+            @Html.Partial("UserFeed", Model.allFeed)
+        </div>
+    </div>
 
 </body>
 </html>

@@ -5,16 +5,16 @@
         <h2>@Model.user.fullName</h2>
         <div>
             <div>
-            <div>
-                <img src="@Url.Content(Model.user.profilePicture)" alt="picture" class="groupprofilepicture" />
-            </div>
+                <div>
+                    <img src="@Url.Content(Model.user.profilePicture)" alt="picture" class="groupprofilepicture" />
+                </div>
                 <div class="followtakki hidden" id="followtakki">
-                        <input type="hidden" value=@Model.user.Id name="userID" id="userID" />
-                        <input type="button" value="Follow" class="btn btn-default" id="follow" />
+                    <input type="hidden" value=@Model.user.Id name="userID" id="userID" />
+                    <input type="button" value="Follow" class="btn btn-default" id="follow" />
                 </div>
                 <div class="unfollowtakki" id="unfollowtakki">
-                        <input type="hidden" value=@Model.user.Id name="userID" id="userID" />
-                         <input type="button" value="Unfollow" class="btn btn-default" id="unfollow" />
+                    <input type="hidden" value=@Model.user.Id name="userID" id="userID" />
+                    <input type="button" value="Unfollow" class="btn btn-default" id="unfollow" />
                 </div>
             </div>
             <div class="groupabout">
@@ -37,5 +37,5 @@
     <div>
         @Html.Partial("ProfileFeed", Model.feed)
     </div>
-    
+
 </body>

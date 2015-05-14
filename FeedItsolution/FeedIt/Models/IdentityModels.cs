@@ -23,8 +23,7 @@ namespace FeedIt.Models
                 else
                 {
                     _profilePicture = value;
-                }
-                
+                }          
             }
         }
     }
@@ -34,13 +33,11 @@ namespace FeedIt.Models
         // tables:
         public DbSet<Comment> Comments { get; set; }
         public DbSet<Group> Groups { get; set; }
-        public DbSet<Post> Posts { get; set; }
-        
+        public DbSet<Post> Posts { get; set; }     
         // link tables:
         public DbSet<Follower> Followers { get; set; }
         public DbSet<GroupFollower> GroupFollowers { get; set; }
         public DbSet<UserRating> UserRatings { get; set; }
-
         public ApplicationDbContext()
             : base("DefaultConnection")
         {

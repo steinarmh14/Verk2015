@@ -12,6 +12,7 @@ namespace FeedIt.Controllers
     public class PostController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
+
         // GET: Post
         public ActionResult Index(int id)
         {
@@ -83,13 +84,15 @@ namespace FeedIt.Controllers
             CommentUser commentUser = new CommentUser();
             commentUser.comment = comment;
             commentUser.user = service.getProfileByID(strID);
+
+            //Til þess að breta í Json þarf að uncommenta næstu línur
             /*PostViewModel model = new PostViewModel();
             List<CommentUser> cu = new List<CommentUser>();
             cu.Add(commentUser);
             model.comments = cu;
             model.post = postService.getPostById(realPostID);
             model.user = null;*/
-   
+
             return Json(commentUser, JsonRequestBehavior.AllowGet);
             //return RedirectToAction("Index", new { id = realPostID });
         }
@@ -102,7 +105,6 @@ namespace FeedIt.Controllers
             {
                 int realPostID = postID.Value;
                 List<Comment> comments = new List<Comment>();
-
                 comments = postService.getCommentsForPost(realPostID);
                 return View(comments);
             }
@@ -113,6 +115,7 @@ namespace FeedIt.Controllers
         public ActionResult deleteComment(int? commentID)
         {
             PostService postService = new PostService(db);
+
             if (commentID.HasValue)
             {
                 int realCommentID = commentID.Value;
@@ -132,6 +135,5 @@ namespace FeedIt.Controllers
             }
             return View();
         }
-
     }
 }
