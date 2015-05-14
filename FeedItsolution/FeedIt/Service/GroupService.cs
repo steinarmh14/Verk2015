@@ -167,7 +167,6 @@ namespace FeedIt.Service
         public List<Group> getGroupsByName(string name)
         {
 
-
                 var groups = (from s in _db.Groups
                               where s.name.StartsWith(name) || s.name.EndsWith(name)
                               select s).ToList();
