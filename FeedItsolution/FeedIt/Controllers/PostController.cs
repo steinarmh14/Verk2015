@@ -70,6 +70,11 @@ namespace FeedIt.Controllers
             string postID = collection["postID"];
             string content = collection["comment"];
 
+            if (string.IsNullOrEmpty(content))
+            {
+                return Json("", JsonRequestBehavior.AllowGet);
+            }
+
             ProfileService service = new ProfileService(db);
             PostService postService = new PostService(db);
 

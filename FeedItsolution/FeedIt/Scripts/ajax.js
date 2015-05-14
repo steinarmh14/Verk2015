@@ -124,12 +124,16 @@
             }
         }).done(function (data) {
             console.log(data);
+            if (data == "") {
 
-            $('#commentlist').prepend(
-               '<blockquote class="Commentsection"> <div> <p>'
-                     + data.comment.comment + '</p> <footer> - ' + data.user.UserName + ' just now ' + '</footer> </div> </blockquote>');
-            $('#content').val('');
-            return false;
+            }
+            else {
+                $('#commentlist').prepend(
+                   '<blockquote class="Commentsection"> <div> <p>'
+                         + data.comment.comment + '</p> <footer> - ' + data.user.UserName + ' just now ' + '</footer> </div> </blockquote>');
+                $('#content').val('');
+                return false;
+            }
         })
     });
 
