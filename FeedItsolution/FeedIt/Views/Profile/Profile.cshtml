@@ -4,7 +4,8 @@
     <div class="wrapper">
         <h2 class="newsfeed">@Model.user.fullName</h2>
         <div>
-            <div>
+            <div class="col-md-3">
+                <div class="fillSpace"></div>
                 <div>
                     <img src="@Url.Content(Model.user.profilePicture)" alt="picture" class="groupprofilepicture" />
                 </div>
@@ -16,27 +17,36 @@
                     <input type="hidden" value=@Model.user.Id name="userID" id="userID" />
                     <input type="button" value="Unfollow" class="btn btn-default" id="unfollow" />
                 </div>
-            </div>
-            <div class="groupabout">
-                <p>@Model.user.aboutMe</p>
-            </div>
-            <div class="line-seperatorNewsFeed"></div>
-            <div class="navrightfollowers">
-                <button id="followersbutton" class="followermargin btn btn-default">Followers</button>
-                <button id="followingbutton" class="btn btn-default">Following</button>
-                <div id="followers" class="hidden">
-                    <p class="followermargin">Followers:</p>
-                    @Html.Partial("FollowerFollowing", Model.followers)
+                <div class="groupabout">
+                    <p>@Model.user.aboutMe</p>
                 </div>
-                <div id="followings" class="hidden">
-                    <p class="followermargin">Following:</p>
-                    @Html.Partial("FollowerFollowing", Model.followings)
-                </div>
+                
+            </div>
+            
+        </div>
+
+    </div>
+
+    <div class="line-seperatorProfile col-md-12"></div>
+    <div>
+
+        <div class="navrightfollowers">
+            
+            <button id="followersbutton" class="followermargin btn btn-default">Followers</button>
+            <button id="followingbutton" class="btn btn-default">Following</button>
+            <div id="followers" class="hidden">
+                <p class="followermargin">Followers:</p>
+                @Html.Partial("FollowerFollowing", Model.followers)
+            </div>
+            <div id="followings" class="hidden">
+                <p class="followermargin">Following:</p>
+                @Html.Partial("FollowerFollowing", Model.followings)
             </div>
         </div>
-    </div>
-    <div>
-        @Html.Partial("ProfileFeed", Model.feed)
+
+        <div>
+            @Html.Partial("ProfileFeed", Model.feed)
+        </div>
     </div>
 
 </body>
