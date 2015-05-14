@@ -52,14 +52,6 @@
                 <input type="button" value="Cancel" class="btn btn-default" onclick="@("window.location.href='" + @Url.Action("Index", "Home") + "'");" />
                 <input type="submit" value="Save Changes" class="btn btn-default" />
             </div>
-            <input type="submit" value="Delete Group" onclick="location.href = 'Login';" class="btn btn-default" />
         </div>
-    </div>
-}
-@using (Html.BeginForm("deleteProfile", "Profile", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-{
-    <div>
-        <input type="hidden" value="@User.Identity.GetUserId()" />
-        <input type="submit" value="Delete Group" onclick="location.href = 'Login';" class="btn btn-default" />
     </div>
 }
