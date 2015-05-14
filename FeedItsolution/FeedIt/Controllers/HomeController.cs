@@ -36,10 +36,6 @@ namespace FeedIt.Controllers
 
             string about = collection["description"];
             string picture = collection["picture"];
-            if (String.IsNullOrEmpty(about) || String.IsNullOrEmpty(picture))
-            {
-                return RedirectToAction("Index", "Home");
-            }
             Post post = new Post();
             // til að byrja með er ratingið alltaf 0!!!!! fix later
             post.about = about;
