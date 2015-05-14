@@ -570,6 +570,13 @@ border-bottom:3px solid rgba(255,255,255,0.6);
     margin-left:35%;
 }
 
+.deletepost
+{
+    float:left;
+    margin-left: 18%;
+    position: absolute; 
+}
+
 .navrightfollowers
 {
     background-color: #EEE;

@@ -135,5 +135,19 @@ namespace FeedIt.Controllers
             }
             return View();
         }
+
+        [HttpPost]
+        public ActionResult deletePost(FormCollection collection)
+        {
+            string strID = collection["postID"];
+            if(!String.IsNullOrEmpty(strID))
+            {
+                int postID = Int32.Parse(strID);
+                PostService postService = new PostService(db);
+                postService.deletePost(postID);
+            }
+            return RedirectToAction("Index", "Home");
+        }
+
     }
 }

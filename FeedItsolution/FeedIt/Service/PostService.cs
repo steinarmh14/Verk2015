@@ -147,5 +147,32 @@ namespace FeedIt.Service
                 _db.SaveChanges();
             }
         }
+        public void deletePost(int postID)
+        {
+            Post post = (from s in _db.Posts
+                         where s.ID == postID
+                         select s).SingleOrDefault();
+
+            var rating = (from b in _db.UserRatings
+                          where b.postID == postID
+                          select b).ToList();
+
+            foreach(var item in rating)
+            {
+                _db.UserRatings.Remove(item);
+            }
+
+            var comments = (from c in _db.Comments
+                            where c.postID == postID
+                            select c).ToList();
+
+            foreach (var item in comments)
+            {
+                _db.Comments.Remove(item);
+            }
+
+            _db.Posts.Remove(post);
+            _db.SaveChanges();
+        }
     }
 }

@@ -13,11 +13,23 @@
                 <a href=@Url.Action("profile", "Profile", new { userID = Model.user.Id})>@Model.user.UserName </a>
                 <p>@Model.post.date</p>
             </div>
+            @if(Model.user.Id == @User.Identity.GetUserId())
+            {
+                using (Html.BeginForm("deletePost", "Post", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                {
+                <div class="deletepost">
+                    <input type="submit" name="deletePost" value="Delete post" id="deletePost" class="btn btn-default" />
+                    <input type="hidden" name="postID" id="postID" value=@Model.post.ID />        
+                </div>
+                }
+            }
             <div>
                 <img class="postpicture" src="@Url.Content(Model.post.picture)" alt="picture" />
             </div>
         </div>
-
+        <div>
+            
+        </div>
         <div>
             <p class="recipe">@Model.post.about</p>
             <p>Rating: <span id="currentrating">@System.Math.Round(@Model.post.rating, 1)</span></p>
