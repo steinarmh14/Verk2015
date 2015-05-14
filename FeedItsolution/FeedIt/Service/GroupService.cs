@@ -125,16 +125,39 @@ namespace FeedIt.Service
 
         public void deleteGroup(int groupID)
         {
-
-                    var group = (from s in _db.Groups
+           var group = (from s in _db.Groups
                                  where s.ID == groupID
                                  select s).FirstOrDefault();
-                    _db.Groups.Remove(group);
-                    _db.SaveChanges();
-                
-    
+           var posts = (from b in _db.Posts
+                        where b.groupID == groupID
+                        select b).ToList();
+           foreach(var item in posts)
+           {
+               var comments = (from c in _db.Comments
+                            where c.postID == item.ID
+                            select c).ToList();
+               foreach(var comment in comments)
+               {
+                   _db.Comments.Remove(comment);
+               }
+               var rating = (from v in _db.UserRatings
+                         where v.postID == item.ID
+                         select v).SingleOrDefault();
+               _db.UserRatings.Remove(rating);
 
-            
+               _db.Posts.Remove(item);
+           }
+           var groupFollower = (from o in _db.GroupFollowers
+                        where o.groupID == groupID
+                        select o).ToList();
+
+            foreach(var follower in groupFollower)
+            {
+                _db.GroupFollowers.Remove(follower);
+            }
+
+            _db.Groups.Remove(group);
+            _db.SaveChanges();
         }
 
         public void editGroup(int ID, Group group)
@@ -176,7 +199,6 @@ namespace FeedIt.Service
 
         public List<Group> getGroupsByName(string name)
         {
-
                 var groups = (from s in _db.Groups
                               where s.name.StartsWith(name) || s.name.EndsWith(name)
                               select s).ToList();

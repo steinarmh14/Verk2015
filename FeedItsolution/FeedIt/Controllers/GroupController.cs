@@ -161,21 +161,19 @@ namespace FeedIt.Controllers
         }
 
         [HttpPost]
-        public ActionResult deleteGroup(int? id)
+        public ActionResult deleteGroup(FormCollection collection)
         {
+            string strID = collection["groupID"];
+
             GroupService groupService = new GroupService(db);
 
-            if (id.HasValue)
+            if(!string.IsNullOrEmpty(strID))
             {
-                int realID = id.Value;
-                string strID = User.Identity.GetUserId();
-                Group group = groupService.getGroupByID(realID);
-
-                if (strID == group.owner)
-                {
-                    groupService.deleteGroup(realID);
-                }
+                int groupID = Int32.Parse(strID);
+                Group group = groupService.getGroupByID(groupID);
+                groupService.deleteGroup(groupID);
             }
+ 
             return RedirectToAction("Manage", "Account");
         }
 

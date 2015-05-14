@@ -24,6 +24,7 @@ namespace FeedIt.Controllers
             GroupService groupService = new GroupService(db);
 
             string search = collection["search"];
+
             SearchViewModel model = new SearchViewModel();
 
             model.groups = groupService.getGroupsByName(search);
