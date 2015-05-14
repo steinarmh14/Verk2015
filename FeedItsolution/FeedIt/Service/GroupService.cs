@@ -128,10 +128,6 @@ namespace FeedIt.Service
             {
                 _db.GroupFollowers.Remove(follower);
             }
-
-            var group = (from s in _db.Groups
-                         where s.ID == groupID
-                         select s).FirstOrDefault();
             _db.Groups.Remove(group);
             _db.SaveChanges();
         }
@@ -167,20 +163,12 @@ namespace FeedIt.Service
 
         public List<Group> getGroupsByName(string name)
         {
-<<<<<<< HEAD
+
                 var groups = (from s in _db.Groups
                               where s.name.StartsWith(name) || s.name.EndsWith(name)
                               select s).ToList();
 
                 return groups;
-
-=======
-            var groups = (from s in _db.Groups
-                          where s.name.StartsWith(name) || s.name.EndsWith(name)
-                          select s).ToList();
-
-            return groups;
->>>>>>> 1b3c74e380f497a4d88a8aa9701ea54d5f5375dc
         }
     }
 }
