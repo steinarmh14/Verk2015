@@ -52,10 +52,12 @@ namespace FeedIt.Controllers
                     await SignInAsync(user, model.RememberMe);
                     return RedirectToLocal(returnUrl);
                 }
+
                 else
                 {
                     ModelState.AddModelError("", "Invalid username or password.");
                 }
+
             }
 
             // If we got this far, something failed, redisplay form
@@ -86,10 +88,12 @@ namespace FeedIt.Controllers
                     await SignInAsync(user, isPersistent: false);
                     return RedirectToAction("Index", "Home");
                 }
+
                 else
                 {
                     AddErrors(result);
                 }
+
             }
 
             // If we got this far, something failed, redisplay form
