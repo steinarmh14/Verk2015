@@ -3,7 +3,7 @@
     ViewBag.Title = "GroupView";
 }
 
-<h2>@Model.group.name</h2>
+<h2 class="newsfeed">@Model.group.name</h2>
 <body>
     <div class="navleft">
         <div>
@@ -14,7 +14,7 @@
             <input type="button" value="Follow" class="btn btn-default" id="gfollow" />
         </div>
         <div class="unfollowtakki" id="gunfollowtakki">
-            <input type="hidden" value=@Model.group.ID name=groupID" id="goupID" />
+            <input type="hidden" value=@Model.group.ID name="groupID" id="goupID" />
             <input type="button" value="Unfollow" class="btn btn-default" id="gunfollow" />
         </div>
         <div class="groupabout">

@@ -6,7 +6,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>@Model.name</h2>
+<h2 class="newsfeed">@Model.name</h2>
 
 @using (Html.BeginForm("EditGroup", "Group", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
