@@ -52,19 +52,25 @@ namespace FeedIt.Service
             List<UserFeed> postsList = new List<UserFeed>();
             foreach (var d in groups)
             {
-                UserFeed userFeed = new UserFeed();
-                userFeed.post = (from n in _db.Posts
-                                 where n.groupID == d.groupID
-                                 select n).FirstOrDefault();
-                if (userFeed.post != null)
+                var posts = (from g in _db.Posts
+                             where g.groupID == d.groupID
+                             select g).ToList();
+                foreach (var l in posts)
                 {
-                    userFeed.user = (from h in _db.Users
-                                     where h.Id == userFeed.post.owner
-                                     select h).SingleOrDefault();
-                    userFeed.group = (from x in _db.Groups
-                                      where x.ID == userFeed.post.groupID
-                                      select x).SingleOrDefault();
-                    postsList.Add(userFeed);
+                    UserFeed userFeed = new UserFeed();
+                    userFeed.post = (from n in _db.Posts
+                                     where n.ID == l.ID
+                                     select n).FirstOrDefault();
+                    if (userFeed.post != null)
+                    {
+                        userFeed.user = (from h in _db.Users
+                                         where h.Id == userFeed.post.owner
+                                         select h).SingleOrDefault();
+                        userFeed.group = (from x in _db.Groups
+                                          where x.ID == userFeed.post.groupID
+                                          select x).SingleOrDefault();
+                        postsList.Add(userFeed);
+                    }
                 }
             }
             var dateOrdered = postsList.OrderByDescending(x => x.post.date).Take(15).ToList();
