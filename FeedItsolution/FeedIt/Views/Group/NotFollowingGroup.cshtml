@@ -13,13 +13,14 @@
             <input type="button" value="Follow" class="btn btn-default" id="gfollow" />
         </div>
         <div class="unfollowtakki hidden" id="gunfollowtakki">
-            <input type="hidden" value=@Model.group.ID name=groupID" id="goupID" />
+            <input type="hidden" value=@Model.group.ID name="groupID" id="goupID" />
             <input type="button" value="Unfollow" class="btn btn-default" id="gunfollow" />
         </div>
-    </div>
+    </div><div class="line-seperatorNotFoll"></div>
     <div class="groupabout">
         <p>@Model.group.about</p>
     </div>
+
     <div class="createpostforms">
         @using (Html.BeginForm("createPost", "Group", FormMethod.Post, new { id = "makePostForm" }))
         {
@@ -36,6 +37,7 @@
             </div>
         }
     </div>
+
     <div>
         <div class="navrightfollowers">
             <button id="followersbutton" class="followermargin btn btn-default">Followers</button>
@@ -46,5 +48,6 @@
         </div>
         @Html.Partial("GroupFeed", Model.feed)
     </div>
+
 </body>
 

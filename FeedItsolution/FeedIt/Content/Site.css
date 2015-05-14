@@ -355,6 +355,14 @@ border-bottom:3px solid rgba(255,255,255,0.6);
     margin-bottom: 2%;
 }
 
+.line-seperatorNotFoll
+{
+    height:1px;
+    background:#717171;
+    border-bottom:3px solid rgba(255,255,255,0.6);
+    margin-bottom: 2%;
+}
+
 .line-separatorEdit{
 
 height:1px;
@@ -631,7 +639,8 @@ border-bottom:3px solid rgba(255,255,255,0.6);
 }
 .groupabout
 {
-   margin-top:20px;
+   margin-top:2%;
+   
 }
 
 .postbutton
@@ -896,4 +905,8 @@ border-style:solid;
     font-size:x-large;
 }
 
-
+.fillSpace
+{
+    width: 10%;
+    height: 10%;
+}
