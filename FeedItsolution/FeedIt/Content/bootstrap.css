@@ -46,6 +46,7 @@ video {
 
 .recipe {
     font-size: larger;
+    word-break:break-all;
 }
 
 .wholepage {
