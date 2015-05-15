@@ -369,6 +369,15 @@ border-bottom:3px solid rgba(255,255,255,0.6);
     margin-bottom: 2%;
 }
 
+.line-seperatorNotFollProfile
+{
+    height:1px;
+    background:#717171;
+    margin-top: 18%;
+    border-bottom:3px solid rgba(255,255,255,0.6);
+    margin-bottom: 2%;
+}
+
 .line-seperatorNotFoll
 {
     height:1px;
