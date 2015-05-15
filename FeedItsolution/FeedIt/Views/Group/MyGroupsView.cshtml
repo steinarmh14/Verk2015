@@ -1,4 +1,4 @@
-@model List<FeedIt.Models>
+@model List<FeedIt.Models.Group>
 
 @{
     ViewBag.Title = "My groups";
@@ -10,7 +10,7 @@
         <div class="navleft">
         </div>
         <div class="navcentermygroups">
-            @foreach (var item in Model.myGroups)
+            @foreach (var item in Model)
             {
                 if (item != null)
                 {

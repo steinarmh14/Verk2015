@@ -25,7 +25,7 @@
                 <p class="fontLogin col-md-12">Name</p>
             </div>
             <div class="col-md-12">
-                <input type="text" id="groupName" name="groupName" pattern=".{5,20}" required title="5 to 20 characters"/>
+                <input type="text" id="groupName" name="groupName" placeholder="Enter desired group name..." pattern=" .{5,20}" required title="5 to 20 characters" />
             </div>
         </div>
         <div class="form-group">
@@ -40,10 +40,10 @@
             <div>
                 <label class="fontLogin col-md-12">Group picture</label>
                 <div class="col-md-12">
-                    <input type="text" id="groupPicture" name="groupPicture" />
+                    <input type="text" placeholder="Enter URL to group picture..." id=" grouppicture" name="groupPicture" />
                 </div>
                 <div class="col-md-12">
-                    <input type="button" value="Cancel" class="btn btn-default" />
+                    <input type="button" value="Cancel" class="btn btn-default" onclick="@("window.location.href='" + @Url.Action("Index", "Home") + "'");" />
                     <input type="submit" value="Create" class="btn btn-default" />
                 </div>
             </div>
