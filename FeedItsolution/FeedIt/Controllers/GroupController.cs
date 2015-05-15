@@ -105,8 +105,8 @@ namespace FeedIt.Controllers
             GroupService groupService = new GroupService(db);
 
             string userId = User.Identity.GetUserId();
-            GroupList groups = new GroupList();
-            groups.myGroups = groupService.getGroups(userId);
+            List<Group> groups = new List<Group>();
+            groups = groupService.getGroups(userId);
             return View(groups);
         }
 
