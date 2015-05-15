@@ -42,13 +42,16 @@
             </div>
         </div>
 
+
         <div class="form-group">
             <div class="col-md-12">
-                <input type="button" value="Delete Group" id="deletegroup" class="btn btn-default" />
-                <input type="hidden" value=@Model.ID name="groupID" id="groupID" />
+
+                <input type="button" value="Cancel" class="btn btn-default" onclick="@("window.location.href='" + @Url.Action("Index", "Home") + "'");" />
                 <input type="submit" value="Save Changes" class="btn btn-default" />
             </div>
         </div>
+        <input type="button" value="Delete Group" id="deletegroup" class="btn btn-default" />
+        <input type="hidden" value=@Model.ID name="groupID" id="groupID" />
     </div>
     <div id="groupremovedresponse" class="hidden deleteresponse login">Group has been deleted</div>
 }

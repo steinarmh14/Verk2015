@@ -147,7 +147,7 @@ namespace FeedIt.Controllers
         {
             bool hasPassword = HasPassword();
             ViewBag.HasLocalPassword = hasPassword;
-            ViewBag.ReturnUrl = Url.Action("Manage");
+            ViewBag.ReturnUrl = Url.Action("Index", "Home");
             if (hasPassword)
             {
                 if (ModelState.IsValid)
@@ -155,7 +155,7 @@ namespace FeedIt.Controllers
                     IdentityResult result = await UserManager.ChangePasswordAsync(User.Identity.GetUserId(), model.OldPassword, model.NewPassword);
                     if (result.Succeeded)
                     {
-                        return RedirectToAction("Manage", new { Message = ManageMessageId.ChangePasswordSuccess });
+                        return RedirectToAction("Index", "Home", new { Message = ManageMessageId.ChangePasswordSuccess });
                     }
                     else
                     {
