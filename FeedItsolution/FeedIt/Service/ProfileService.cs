@@ -60,5 +60,33 @@ namespace FeedIt.Service
             _db.Users.Remove(remove);
             _db.SaveChanges();
         }
+        public bool isFollower(int groupID, string followingID)
+        {
+            var follower = (from s in _db.GroupFollowers
+                            where s.userID == followingID && s.groupID == groupID
+                            select s).FirstOrDefault();
+            if (follower == null)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+        public bool isFollower(string followerID, string followingID)
+        {
+            var follower = (from s in _db.Followers
+                            where s.following == followingID && s.follower == followerID
+                            select s).FirstOrDefault();
+            if (follower == null)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
     }
 }

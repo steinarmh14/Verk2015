@@ -87,6 +87,11 @@ namespace FeedIt.Controllers
             NewsFeedService newsFeedService = new NewsFeedService(db);
             FollowerService followerService = new FollowerService(db);
 
+            if(profileService.isFollower(User.Identity.GetUserId(), userID))
+            {
+                return RedirectToAction("Profile", new { userID = userID });
+            }
+
             List<UserFeed> profileFeed = new List<UserFeed>();
             ApplicationUser user = new ApplicationUser();
             user = profileService.getProfileByID(userID);
